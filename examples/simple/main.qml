@@ -13,4 +13,14 @@ Window {
 
     Material.theme: Material.Dark
     Material.accent: Material.Purple
+
+    RoniaSpeedGauge {
+        size: 400
+    }
+
+
+    RoniaSimpleGauge {
+        size: 400
+        x: 500
+    }
 }

@@ -27,18 +27,7 @@ option(BUILD_DEBUG_POSTFIX_D "Append d suffix to debug libraries" OFF)
 # Dependencies
 # ##################################################################################################
 # Find the Qt libraries
-find_package(Qt6
-  COMPONENTS
-   Quick
-)
-
-if (NOT Qt6_FOUND)
-  find_package(Qt5 QUIET
-    COMPONENTS
-    Quick
-  )
-endif()
-
+find_package(Qt6 REQUIRED COMPONENTS Quick Core5Compat)
 
 if (NOT (Qt6_FOUND OR Qt5_FOUND))
   message(FATAL_ERRROR "Qt libraries were not found.")
@@ -71,12 +60,20 @@ qt_add_qml_module(RoniaGauges
     VERSION 1.0
 
     QML_FILES
+        resources/Components/RoniaCircularGauge.qml
+        resources/Components/RoniaGauge.qml
+        resources/Components/RoniaSpeedGauge.qml
+        resources/Components/RoniaSimpleGauge.qml
 
 
     SOURCES
 	
     RESOURCES
-        resources/fonts/Font\ Awesome\ 6\ Pro-Regular-400.otf
+        resources/Fonts/Font\ Awesome\ 6\ Pro-Regular-400.otf
+        resources/Fonts/Font\ Awesome\ 6\ Pro-Solid-900.otf
+        resources/Images/gauge/Simple/back.png
+        resources/Images/gauge/Speed/backOn.png
+        resources/Images/gauge/Speed/backOff.png
 
 )
 	
@@ -97,10 +94,7 @@ target_include_directories(RoniaGauges
 target_compile_definitions(RoniaGauges
     PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 
-target_link_libraries(RoniaGauges
-  PRIVATE
-    ${Qt}::Quick
-)
+target_link_libraries(RoniaGauges PRIVATE Qt6::Quick Qt6::Core5Compat)
 
 set_target_properties(RoniaGauges PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
