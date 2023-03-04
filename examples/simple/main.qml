@@ -15,12 +15,15 @@ Window {
     Material.accent: Material.Purple
 
     RoniaSpeedGauge {
-        size: 400
+        id: gauge
+        width: 400
+        height: 500
     }
 
 
     RoniaSimpleGauge {
-        size: 400
+        width: 400
+        height: 500
         x: 500
     }
 }

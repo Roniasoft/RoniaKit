@@ -72,6 +72,7 @@ qt_add_qml_module(RoniaGauges
         resources/Fonts/Font\ Awesome\ 6\ Pro-Regular-400.otf
         resources/Fonts/Font\ Awesome\ 6\ Pro-Solid-900.otf
         resources/Images/gauge/Simple/back.png
+        resources/Images/gauge/needle.png
         resources/Images/gauge/Speed/backOn.png
         resources/Images/gauge/Speed/backOff.png
 
