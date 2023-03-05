@@ -37,7 +37,7 @@ target_link_libraries(simple PRIVATE
     Qt${QT_VERSION_MAJOR}::Core
     Qt${QT_VERSION_MAJOR}::Gui
     Qt${QT_VERSION_MAJOR}::QuickControls2
-    RoniaGaugesplugin
+    RoniaKitplugin
 )
 
 

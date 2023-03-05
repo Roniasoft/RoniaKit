@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 
 #The Library name
-project(RoniaGauges VERSION 1.0 LANGUAGES CXX)
+project(RoniaKit VERSION 1.0 LANGUAGES CXX)
 
 # ##################################################################################################
 # Project Settings
@@ -15,7 +15,7 @@ set (QML_IMPORT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
 
 
 #message(${QML_IMPORT_PATH})
-#Turns on default settings for development of RoniaGauges 
+#Turns on default settings for development of RoniaKit
 set(DEVELOPER_DEFAULTS ON)
 
 option(BUILD_TESTING "Build tests" ${DEVELOPER_DEFAULTS})
@@ -47,7 +47,7 @@ endif()
 set(QT_QML_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/qml)
 
 # Library Definition
-qt_add_library(RoniaGauges STATIC)
+qt_add_library(RoniaKit STATIC)
 
 # Extra QML File properties
 set_source_files_properties(
@@ -55,15 +55,15 @@ set_source_files_properties(
         QT_QML_SINGLETON_TYPE True
 )
 
-qt_add_qml_module(RoniaGauges
-    URI "RoniaGauges"
+qt_add_qml_module(RoniaKit
+    URI "RoniaKit"
     VERSION 1.0
 
     QML_FILES
-        resources/Components/RoniaCircularGauge.qml
-        resources/Components/RoniaGauge.qml
-        resources/Components/RoniaSpeedGauge.qml
-        resources/Components/RoniaSimpleGauge.qml
+        resources/Components/RKCircularGauge.qml
+        resources/Components/RKControl.qml
+        resources/Components/RKCircularGaugeSpeed.qml
+        resources/Components/RKCircularGaugeModern.qml
 
 
     SOURCES
@@ -71,33 +71,36 @@ qt_add_qml_module(RoniaGauges
     RESOURCES
         resources/Fonts/Font\ Awesome\ 6\ Pro-Regular-400.otf
         resources/Fonts/Font\ Awesome\ 6\ Pro-Solid-900.otf
-        resources/Images/gauge/Simple/back.png
+        resources/Images/gauge/Modern/back.png
+        resources/Images/gauge/Modern/knob.png
         resources/Images/gauge/needle.png
+        resources/Images/gauge/knob.png
         resources/Images/gauge/Speed/backOn.png
         resources/Images/gauge/Speed/backOff.png
+        resources/Images/gauge/Speed/needle-on.png
 
 )
 	
 #Add a library to the project using the specified source file
-#add_library(RoniaGauges::RoniaGauges ALIAS RoniaGauges)
+#add_library(RoniaKit::RoniaKit ALIAS RoniaKit)
 
-target_include_directories(RoniaGauges
+target_include_directories(RoniaKit
   PUBLIC
     $<INSTALL_INTERFACE:include>
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/resources>
   PRIVATE
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Source>
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/RoniaGauges>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/RoniaKit>
 )
 
 #Definitions of preprocessor macros
-target_compile_definitions(RoniaGauges
+target_compile_definitions(RoniaKit
     PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 
-target_link_libraries(RoniaGauges PRIVATE Qt6::Quick Qt6::Core5Compat)
+target_link_libraries(RoniaKit PRIVATE Qt6::Quick Qt6::Core5Compat)
 
-set_target_properties(RoniaGauges PROPERTIES
+set_target_properties(RoniaKit PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
@@ -105,7 +108,7 @@ set_target_properties(RoniaGauges PROPERTIES
     WIN32_EXECUTABLE TRUE
 )
 
-install(TARGETS RoniaGauges
+install(TARGETS RoniaKit
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
 

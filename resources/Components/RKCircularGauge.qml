@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Controls
 
 
-RoniaGauge {
+RKControl {
     id: roniaGauge
 
     /* Object Properties

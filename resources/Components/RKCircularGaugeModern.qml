@@ -1,6 +1,6 @@
 import QtQuick
 
-RoniaCircularGauge {
+RKCircularGauge {
     id: control
 
     /* Children
@@ -14,7 +14,7 @@ RoniaCircularGauge {
 
         Image {
             anchors.fill: parent
-            source: "qrc:/RoniaGauges/resources/Images/gauge/Simple/back.png"
+            source: "qrc:/RoniaKit/resources/Images/gauge/Modern/back.png"
             asynchronous: true
             sourceSize {
                 width: width

@@ -22,9 +22,9 @@ Item {
 
     //! Background
     property Component background: Rectangle {
-        implicitHeight: control.size
-        implicitWidth: control.size
-        color: "#CCCCCC"
+        implicitHeight: root.height
+        implicitWidth: root.width
+        color: "#1e1e1e"
         anchors.centerIn: parent
         radius: width / 2
     }
@@ -45,12 +45,17 @@ Item {
 
         Image {
             anchors.fill: parent
-            source: "qrc:/RoniaGauges/resources/Images/gauge/needle.png"
+            source: "qrc:/RoniaKit/resources/Images/gauge/needle.png"
         }
     }
 
-    //! Overlay on the needled (behind the foreground)
-    property Component needleOverlay: null
+    //! Needle Knob
+    property Component needleKnob: Item {
+        Image {
+            source: "qrc:/RoniaKit/resources/Images/gauge/knob.png"
+            anchors.centerIn: parent
+        }
+    }
 
     //! Foreground
     property Component foreground:  null
@@ -63,10 +68,10 @@ Item {
         components of the style, in order to ensure that they are scaled
         proportionately when the gauge is resized.
     */
-    readonly property real outerRadius: Math.min(control.width, control.height) * 0.5
+    readonly property real outerRadius: Math.min(root.width, root.height) * 0.5
 
-    property real minimumValueAngle: -145
-    property real maximumValueAngle: 145
+    property real minimumValueAngle: -135
+    property real maximumValueAngle: 135
 
     //! This property holds the rotation of the needle in degrees.
     property real needleRotation: {
@@ -83,6 +88,7 @@ Item {
 
     //! Background Loader
     Loader {
+        id: backgroundLoader
         width: outerRadius * 2
         height: outerRadius * 2
         anchors.centerIn: parent
@@ -105,6 +111,12 @@ Item {
                 y: root.height / 2 - needleLoader.height
             }
         ]
+    }
+
+    //! Needle Knob
+    Loader {
+        sourceComponent: needleKnob
+        anchors.fill: backgroundLoader
     }
 
 
