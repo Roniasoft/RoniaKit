@@ -14,7 +14,7 @@ Window {
     Material.theme: Material.Dark
     Material.accent: Material.Purple
 
-    RKCircularGaugeSpeed {
+    CircularGaugeSpeed {
         id: gauge
         width: 400
         height: 500
@@ -22,7 +22,7 @@ Window {
     }
 
 
-    RKCircularGaugeModern {
+    CircularGaugeModern {
         width: 400
         height: 500
         x: 500
@@ -30,7 +30,7 @@ Window {
     }
 
 
-    RKCircularGauge {
+    CircularGauge {
         width: 400
         height: 500
         x: 1000

@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Controls
 
 
-RKControl {
+RoniaControl {
     id: control
 
     /* Property Declarations

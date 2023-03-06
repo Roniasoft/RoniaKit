@@ -60,10 +60,10 @@ qt_add_qml_module(RoniaKit
     VERSION 1.0
 
     QML_FILES
-        resources/Components/RKCircularGauge.qml
-        resources/Components/RKControl.qml
-        resources/Components/RKCircularGaugeSpeed.qml
-        resources/Components/RKCircularGaugeModern.qml
+        resources/Components/RoniaControl.qml
+        resources/Components/CircularGauge.qml
+        resources/Components/CircularGaugeSpeed.qml
+        resources/Components/CircularGaugeModern.qml
 
 
     SOURCES
