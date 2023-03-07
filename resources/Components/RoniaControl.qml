@@ -13,11 +13,8 @@ Item {
     //! Value
     property double value: 100.0
 
-    //! Minimum
-    property double minimumValue: 0.0
-
-    //! Maximum
-    property double maximumValue: 100.0
+    //! Range Control
+    property RangeControl rangeControl: RangeControl{}
 
     //! Background
     property Component background: Rectangle {
@@ -28,13 +25,30 @@ Item {
     }
 
     //! Major Tickmarks
-    property Component tickmark: null
+    property Component tickmark: Rectangle {
+            implicitWidth: outerRadius * 0.02
+            antialiasing: true
+            implicitHeight: outerRadius * 0.06
+            color: "#c8c8c8"
+        }
 
     //! Minor Tickmars
-    property Component minorTickmark: null
+    property Component minorTickmark: Rectangle {
+            implicitWidth: outerRadius * 0.01
+            antialiasing: true
+            implicitHeight: outerRadius * 0.03
+            color: "#c8c8c8"
+        }
 
     //! Tickmar Labels (major)
-    property Component tickmarkLabel: null
+    property Component tickmarkLabel: Text {
+            font.pixelSize: Math.max(6, __protectedScope.toPixels(0.12))
+            text: "1"
+            color: "#c8c8c8"
+            antialiasing: true
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+        }
 
     //! Needle
     property Component needle: null
@@ -64,5 +78,14 @@ Item {
 
     /* Functions
      * ****************************************************************************************/
+    property QtObject __protectedScope: QtObject {
+            /*!
+                Converts a value expressed as a percentage of \l outerRadius to
+                a pixel value.
+            */
+            function toPixels(percentageOfOuterRadius) {
+                return percentageOfOuterRadius * outerRadius;
+            }
+        }
 
 }

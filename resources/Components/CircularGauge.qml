@@ -1,12 +1,21 @@
 import QtQuick
 import QtQuick.Controls
 
-
 RoniaControl {
     id: control
 
+    rangeControl: circularRangeControl
+
     /* Property Declarations
      * ****************************************************************************************/
+
+    property CircularRangeControl circularRangeControl: CircularRangeControl {
+
+    }
+
+//    rangeControl: CircularRangeControl {
+
+//    }
 
     /*! The distance from the center of the gauge to the outer edge of the
         gauge.
@@ -16,14 +25,16 @@ RoniaControl {
         proportionately when the gauge is resized. */
     readonly property real outerRadius: Math.min(control.width, control.height) * 0.5
 
-    property real minimumValueAngle: -135
-    property real maximumValueAngle: 135
+
+
 
     //! This property holds the rotation of the needle in degrees.
     property real needleRotation: {
-        var percentage = (control.value - control.minimumValue) / (control.maximumValue - control.minimumValue);
-        minimumValueAngle + percentage * 270;
+        var percentage = (control.value -  circularRangeControl.minimumValue) / ( circularRangeControl.maximumValue -  circularRangeControl.minimumValue);
+        circularRangeControl.maximumAngle + percentage * 270;
     }
+
+
 
 
     /* Object Properties
@@ -65,7 +76,6 @@ RoniaControl {
             anchors.centerIn: parent
         }
     }
-
 
     //! Needle Loader
     Loader {

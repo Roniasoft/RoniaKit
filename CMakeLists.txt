@@ -67,6 +67,9 @@ qt_add_qml_module(RoniaKit
         resources/Components/CircularGaugeSpeed.qml
         resources/Components/CircularGaugeModern.qml
         resources/Components/FuelGauge.qml
+        resources/Components/RangeControl.qml
+        resources/Components/CircularRangeControl.qml
+
 
 
     SOURCES
