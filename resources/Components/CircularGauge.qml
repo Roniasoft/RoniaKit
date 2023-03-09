@@ -7,6 +7,8 @@ import QtQuick.Controls
 RoniaControl {
     id: control
 
+
+
     /* Property Declarations
      * ****************************************************************************************/
 
@@ -22,8 +24,8 @@ RoniaControl {
 
     //! This property holds the rotation of the needle in degrees.
     property real needleRotation: {
-        var percentage = (control.value -  circularRangeControl.minimumValue) / ( circularRangeControl.maximumValue -  circularRangeControl.minimumValue);
-        circularRangeControl.maximumAngle + percentage * 270;
+        var percentage = (control.value -  circularRangeControl.minimumAngle) / ( circularRangeControl.maximumAngle -  circularRangeControl.minimumAngle);
+        circularRangeControl.minimumAngle + percentage * 270;
     }
 
 
@@ -32,6 +34,7 @@ RoniaControl {
     rangeControl: circularRangeControl
     width: 250
     height: 250
+
 
     Behavior on value {
         NumberAnimation {
@@ -85,11 +88,72 @@ RoniaControl {
         ]
     }
 
+    Loader {
+        active: true
+        width: outerRadius * 2
+        height: outerRadius * 2
+        anchors.centerIn: parent
+
+        sourceComponent: Repeater {
+            id: tickmarkRepeater
+            property real p: (circularRangeControl.endAngle - (circularRangeControl.startAngle - 180)) /
+                             (tickmarkRepeater.model - 1)
+            model: rangeControl.majorTickCount
+            anchors.fill: parent
+            delegate: Loader {
+                id: tickmarkLoader
+                x: outerRadius
+                y: outerRadius
+                sourceComponent: control.tickmark
+                transform: [
+                    Rotation{
+                        angle: (circularRangeControl.startAngle - 180 + (index * p) - 180)
+                    },
+                    Translate {
+                        x: Math.sin((circularRangeControl.startAngle - 180 + index * p) * (Math.PI/180)) * outerRadius * -1
+                        y: Math.cos((circularRangeControl.startAngle - 180 + index * p) * (Math.PI/180)) * outerRadius
+                    }
+                ]
+            }
+        }
+    }
+
+    Loader {
+        active: true
+        width: outerRadius * 2
+        height: outerRadius * 2
+        anchors.centerIn: parent
+
+        sourceComponent: Repeater {
+            id: minortickmarkRepeater
+            property real p: (circularRangeControl.endAngle - (circularRangeControl.startAngle - 180)) /
+                             (minortickmarkRepeater.model - 1)
+            model: rangeControl.majorTickCount * 5 - 4
+            anchors.fill: parent
+            delegate: Loader {
+                id: minorTickmarkLoader
+                x: outerRadius
+                y: outerRadius
+                sourceComponent: control.minorTickmark
+                transform: [
+                    Rotation{
+                        angle: (circularRangeControl.startAngle - 180 + (index * p) - 180)
+                    },
+                    Translate {
+                        x: Math.sin((circularRangeControl.startAngle - 180 + index * p) * (Math.PI/180)) * outerRadius * -1
+                        y: Math.cos((circularRangeControl.startAngle - 180 + index * p) * (Math.PI/180)) * outerRadius
+                    }
+                ]
+            }
+        }
+    }
+
     //! Needle Knob
     Loader {
         sourceComponent: needleKnob
         anchors.fill: parent
     }
+
 
     /* Functions
      * ****************************************************************************************/

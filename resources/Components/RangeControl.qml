@@ -11,6 +11,9 @@ QtObject {
     //! Minimum
     property double minimumValue:     0.0
 
+
+    readonly property int tickmarkCount: 10
+
     //! Maximum
     property double maximumValue:     100.0
 
@@ -25,5 +28,8 @@ QtObject {
 
     //! Step size
     property int    stepSize:         null
+
+    property int    majorTickCount:   7
+
 
 }
