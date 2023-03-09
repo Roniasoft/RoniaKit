@@ -35,4 +35,10 @@ CircularGauge {
             source: "qrc:/RoniaKit/resources/Images/gauge/Speed/needle-on.png"
         }
     }
+
+    //!Custome gauges don't need tickmarks
+    Component.onCompleted:{
+        control.tickmark =  null
+        control.minorTickmark = null
+    }
 }

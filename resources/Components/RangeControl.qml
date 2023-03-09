@@ -33,10 +33,10 @@ QtObject {
     property int    minorTickCount:    4
 
     //!Major tickmark inset (modifiable by user)
-    property real   tickmarkInset:     50
+    property real   tickmarkInset:     20
 
     //!Minor tickmark inset (modifiable by user)
-    property real   minorTickmarkInset:50
+    property real   minorTickmarkInset:20
 
     //!Label inset (modifiable by user)
     property real   labelInset:        0.0

@@ -26,12 +26,13 @@ RoniaControl {
     property real needleRotation: {
         var percentage = (control.value - rangeControl.minimumValue) /
                          ( rangeControl.maximumValue -  rangeControl.minimumValue);
-        circularRangeControl.startAngle + percentage * 270;
+        rangeControl.startAngle + percentage *
+                Math.abs(rangeControl.endAngle -  rangeControl.startAngle);
     }
 
-    property real minorInsetRadius: outerRadius - circularRangeControl.minorTickmarkInset
+    property real minorInsetRadius: outerRadius - rangeControl.minorTickmarkInset
 
-    property real majorInsetRadius: outerRadius - circularRangeControl.tickmarkInset
+    property real majorInsetRadius: outerRadius - rangeControl.tickmarkInset
 
     /* Object Properties
      * ****************************************************************************************/
@@ -39,6 +40,9 @@ RoniaControl {
     width: 250
     height: 250
 
+    /* Font Loader
+     * ****************************************************************************************/
+    FontLoader {id: webFont; source: "qrc:/RoniaKit/resources/Fonts/DS-DIGIT.ttf" }
 
     Behavior on value {
         NumberAnimation {
@@ -102,7 +106,7 @@ RoniaControl {
 
         sourceComponent: Repeater {
             id: tickmarkRepeater
-            property real p: Math.abs(circularRangeControl.endAngle  - circularRangeControl.startAngle)
+            property real p: Math.abs(rangeControl.endAngle  - rangeControl.startAngle)
                              / (tickmarkRepeater.model - 1)
             model: rangeControl.majorTickCount
             anchors.fill: parent
@@ -113,12 +117,12 @@ RoniaControl {
                 sourceComponent: control.tickmark
                 transform: [
                     Rotation{
-                        angle: (circularRangeControl.startAngle + 360 + (index * p) )
+                        angle: (rangeControl.startAngle + 360 + (index * p) )
                     },
                     Translate {
-                        x: Math.sin((circularRangeControl.startAngle + 180 + index * p)
+                        x: Math.sin((rangeControl.startAngle + 180 + index * p)
                                     * (Math.PI/180)) * control.majorInsetRadius * -1
-                        y: Math.cos((circularRangeControl.startAngle + 180 + index * p)
+                        y: Math.cos((rangeControl.startAngle + 180 + index * p)
                                     * (Math.PI/180)) * control.majorInsetRadius
                     }
                 ]
@@ -135,7 +139,7 @@ RoniaControl {
 
         sourceComponent: Repeater {
             id: minortickmarkRepeater
-            property real p: Math.abs(circularRangeControl.endAngle  - circularRangeControl.startAngle)
+            property real p: Math.abs(rangeControl.endAngle  - rangeControl.startAngle)
                              / (minortickmarkRepeater.model - 1)
             model: (rangeControl.majorTickCount - 1) * rangeControl.minorTickCount + rangeControl.majorTickCount
             anchors.fill: parent
@@ -146,12 +150,12 @@ RoniaControl {
                 sourceComponent: control.minorTickmark
                 transform: [
                     Rotation{
-                        angle: (circularRangeControl.startAngle + 360 + (index * p))
+                        angle: (rangeControl.startAngle + 360 + (index * p))
                     },
                     Translate {
-                        x: Math.sin((circularRangeControl.startAngle + 180 + index * p)
+                        x: Math.sin((rangeControl.startAngle + 180 + index * p)
                                     * (Math.PI/180)) * control.minorInsetRadius * -1
-                        y: Math.cos((circularRangeControl.startAngle + 180 + index * p)
+                        y: Math.cos((rangeControl.startAngle + 180 + index * p)
                                     * (Math.PI/180)) * control.minorInsetRadius
                     }
                 ]
@@ -163,6 +167,17 @@ RoniaControl {
     Loader {
         sourceComponent: needleKnob
         anchors.fill: parent
+    }
+
+    //! Digital Value
+    Text{
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: outerRadius/2 + outerRadius/5
+        text: Math.round(control.value)
+        font.family: webFont.name
+        font.pixelSize: 30
+        color: "white"
     }
 
     /* Functions
