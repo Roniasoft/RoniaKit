@@ -1,21 +1,16 @@
 import QtQuick
 import QtQuick.Controls
 
+/*! ***********************************************************************************************
+ * Base Circular Gauge
+ * ************************************************************************************************/
 RoniaControl {
     id: control
-
-    rangeControl: circularRangeControl
 
     /* Property Declarations
      * ****************************************************************************************/
 
-    property CircularRangeControl circularRangeControl: CircularRangeControl {
-
-    }
-
-//    rangeControl: CircularRangeControl {
-
-//    }
+    property CircularRangeControl circularRangeControl: CircularRangeControl {}
 
     /*! The distance from the center of the gauge to the outer edge of the
         gauge.
@@ -25,9 +20,6 @@ RoniaControl {
         proportionately when the gauge is resized. */
     readonly property real outerRadius: Math.min(control.width, control.height) * 0.5
 
-
-
-
     //! This property holds the rotation of the needle in degrees.
     property real needleRotation: {
         var percentage = (control.value -  circularRangeControl.minimumValue) / ( circularRangeControl.maximumValue -  circularRangeControl.minimumValue);
@@ -35,10 +27,9 @@ RoniaControl {
     }
 
 
-
-
     /* Object Properties
      * ****************************************************************************************/
+    rangeControl: circularRangeControl
     width: 250
     height: 250
 
@@ -99,6 +90,7 @@ RoniaControl {
         sourceComponent: needleKnob
         anchors.fill: parent
     }
+
     /* Functions
      * ****************************************************************************************/
 
