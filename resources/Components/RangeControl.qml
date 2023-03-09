@@ -18,16 +18,16 @@ QtObject {
     property double maximumValue:     100.0
 
     //! Minor ticks visibility
-    property bool   minorTickVisible: null
+    property bool   minorTickVisible: true
 
     //! Major ticks visibility
-    property bool   majorTickVisible: null
+    property bool   majorTickVisible: true
 
     //! Labels ticks visibility
-    property bool   labelVisible:     null
+    property bool   labelVisible:     false
 
     //! Step size
-    property int    stepSize:         null
+    property int    stepSize:         0
 
     //! MajorTick Number
     property int    majorTickCount:   7

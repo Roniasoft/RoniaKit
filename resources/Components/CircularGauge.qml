@@ -90,7 +90,7 @@ RoniaControl {
 
     //! Major TickMark Loader
     Loader {
-        active: true
+        active: rangeControl.majorTickVisible ? true : false
         width: outerRadius * 2
         height: outerRadius * 2
         anchors.centerIn: parent
@@ -121,7 +121,7 @@ RoniaControl {
 
     //! Minor TickMark Loader
     Loader {
-        active: true
+        active: rangeControl.minorTickVisible ? true : false
         width: outerRadius * 2
         height: outerRadius * 2
         anchors.centerIn: parent
@@ -155,7 +155,6 @@ RoniaControl {
         sourceComponent: needleKnob
         anchors.fill: parent
     }
-
 
     /* Functions
      * ****************************************************************************************/
