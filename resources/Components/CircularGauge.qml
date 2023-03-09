@@ -88,6 +88,7 @@ RoniaControl {
         ]
     }
 
+    //! Major TickMark Loader
     Loader {
         active: true
         width: outerRadius * 2
@@ -118,6 +119,7 @@ RoniaControl {
         }
     }
 
+    //! Minor TickMark Loader
     Loader {
         active: true
         width: outerRadius * 2

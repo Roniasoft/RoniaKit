@@ -29,6 +29,7 @@ QtObject {
     //! Step size
     property int    stepSize:         null
 
+    //! MajorTick Number
     property int    majorTickCount:   7
 
 
