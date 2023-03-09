@@ -42,7 +42,7 @@ Item {
 
     //! Tickmar Labels (major)
     property Component tickmarkLabel: Text {
-            font.pixelSize: Math.max(6, __protectedScope.toPixels(0.12))
+            font.pixelSize: Math.max(6, 0.12 * outerRadius)
             text: "1"
             color: "#c8c8c8"
             antialiasing: true
@@ -78,14 +78,6 @@ Item {
 
     /* Functions
      * ****************************************************************************************/
-    property QtObject __protectedScope: QtObject {
-            /*!
-                Converts a value expressed as a percentage of \l outerRadius to
-                a pixel value.
-            */
-            function toPixels(percentageOfOuterRadius) {
-                return percentageOfOuterRadius * outerRadius;
-            }
-        }
+
 
 }

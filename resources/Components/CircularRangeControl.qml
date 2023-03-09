@@ -8,16 +8,10 @@ RangeControl {
     /* Property Declarations
      * ****************************************************************************************/
 
-    //! Minimum angle possible
-    property real minimumAngle: 180
-
-    //! Maximum ticks visibility
-    property real maximumAngle: 315
-
     //! Start angle
-    property real startAngle: 225
+    property real startAngle: -135
 
     //! End angle
-    property real endAngle: 315
+    property real endAngle: 135
 
 }

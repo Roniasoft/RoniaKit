@@ -9,28 +9,36 @@ QtObject {
      * ****************************************************************************************/
 
     //! Minimum
-    property double minimumValue:     0.0
-
-
-    readonly property int tickmarkCount: 10
+    property double minimumValue:      0.0
 
     //! Maximum
-    property double maximumValue:     100.0
+    property double maximumValue:      100.0
 
     //! Minor ticks visibility
-    property bool   minorTickVisible: true
+    property bool   minorTickVisible:  true
 
     //! Major ticks visibility
-    property bool   majorTickVisible: true
+    property bool   majorTickVisible:  true
 
     //! Labels ticks visibility
-    property bool   labelVisible:     false
+    property bool   labelVisible:      false
 
     //! Step size
-    property int    stepSize:         0
+    property int    stepSize:          0
 
-    //! MajorTick Number
-    property int    majorTickCount:   7
+    //! MajorTick count
+    property int    majorTickCount:    7
 
+    //! Minot Tick Count (between each two major ticks)
+    property int    minorTickCount:    4
+
+    //!Major tickmark inset (modifiable by user)
+    property real   tickmarkInset:     50
+
+    //!Minor tickmark inset (modifiable by user)
+    property real   minorTickmarkInset:50
+
+    //!Label inset (modifiable by user)
+    property real   labelInset:        0.0
 
 }
