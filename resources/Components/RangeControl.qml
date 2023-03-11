@@ -39,6 +39,6 @@ QtObject {
     property real   minorTickmarkInset:20
 
     //!Label inset (modifiable by user)
-    property real   labelInset:        0.0
+    property real   labelInset:        30
 
 }

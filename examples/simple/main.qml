@@ -24,6 +24,7 @@ Window {
             minorTickCount: sliderForMinorTickCount.value
             tickmarkInset: sliderForMajorInset.value
             minorTickmarkInset: sliderForMinorInset.value
+            labelInset: sliderForlabelInset.value
             startAngle: sliderForStartAngle.value
             endAngle: sliderForEndAngle.value
         }
@@ -40,6 +41,7 @@ Window {
             minorTickCount: sliderForMinorTickCount.value
             tickmarkInset: sliderForMajorInset.value
             minorTickmarkInset: sliderForMinorInset.value
+            labelInset: sliderForlabelInset.value
             startAngle: sliderForStartAngle.value
             endAngle: sliderForEndAngle.value
         }
@@ -57,6 +59,7 @@ Window {
             minorTickCount: sliderForMinorTickCount.value
             tickmarkInset: sliderForMajorInset.value
             minorTickmarkInset: sliderForMinorInset.value
+            labelInset: sliderForlabelInset.value
             startAngle: sliderForStartAngle.value
             endAngle: sliderForEndAngle.value
         }
@@ -112,8 +115,17 @@ Window {
         Text{ text: "Major Inset" }
     }
     Slider {
-        id: sliderForStartAngle
+        id: sliderForlabelInset
         anchors.bottom: sliderForMajorInset.top
+        width: 300
+        anchors.horizontalCenter: parent.horizontalCenter
+        from: 30
+        to: 80
+        Text{ text: "label Inset" }
+    }
+    Slider {
+        id: sliderForStartAngle
+        anchors.bottom: sliderForlabelInset.top
         width: 300
         anchors.horizontalCenter: parent.horizontalCenter
         from: -180
@@ -131,5 +143,6 @@ Window {
         Text{ text: "End Angle" }
         value: 135
     }
+
 
 }

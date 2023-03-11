@@ -34,6 +34,8 @@ RoniaControl {
 
     property real majorInsetRadius: outerRadius - rangeControl.tickmarkInset
 
+    property real labelInsetRadius: outerRadius - rangeControl.labelInset
+
     /* Object Properties
      * ****************************************************************************************/
     rangeControl: circularRangeControl
@@ -72,8 +74,8 @@ RoniaControl {
         }
     }
 
-//    tickmarkLabel: tickmarkLabel{
-//        text: "5"
+//    tickmarkLabel: Text{
+//        text: labelLoader.index
 //    }
 
     needleKnob : Item {
@@ -154,8 +156,8 @@ RoniaControl {
 
     Loader {
         active: true //rangeControl.minorTickVisible
-        width: control.minorInsetRadius * 2
-        height: control.minorInsetRadius * 2
+        width: control.labelInsetRadius * 2
+        height: control.labelInsetRadius * 2
         anchors.centerIn: parent
 
         sourceComponent: Repeater {
@@ -167,18 +169,30 @@ RoniaControl {
 
             delegate: Loader {
                 id: labelLoader
-                x: control.minorInsetRadius
-                y: control.minorInsetRadius
-                sourceComponent: control.tickmarkLabel
+                x: control.labelInsetRadius
+                y: control.labelInsetRadius
+
+                sourceComponent: Text{
+                    font.pixelSize: Math.max(6, 0.12 * outerRadius)
+                    text: Math.round(((rangeControl.maximumValue
+                                       - rangeControl.minimumValue)
+                                       / (rangeControl.majorTickCount - 1)
+                                       * index + Number.EPSILON) * 10) / 10
+                    color: "#c8c8c8"
+                    antialiasing: true
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                }
+
                 transform: [
                     Rotation{
-                        angle: (rangeControl.startAngle + 360 + (index * p))
+                        angle: (rangeControl.startAngle - 3 + 360 + (index * p))
                     },
                     Translate {
-                        x: Math.sin((rangeControl.startAngle + 180 + index * p)
-                                    * (Math.PI/180)) * control.minorInsetRadius * -1
-                        y: Math.cos((rangeControl.startAngle + 180 + index * p)
-                                    * (Math.PI/180)) * control.minorInsetRadius
+                        x: Math.sin((rangeControl.startAngle - 3 + 180 + index * p)
+                                    * (Math.PI/180)) * control.labelInsetRadius * -1
+                        y: Math.cos((rangeControl.startAngle - 3 + 180 + index * p )
+                                    * (Math.PI/180)) * control.labelInsetRadius
                     }
                 ]
             }
