@@ -62,7 +62,7 @@ CircularGauge {
                     requestPaint();
             }
             function degreesToRadians(degrees) {
-              return degrees * (Math.PI / 180);
+              return degrees * (Math.PI / 180.0);
             }
             onPaint: {
                 var ctx = getContext("2d");
@@ -73,8 +73,8 @@ CircularGauge {
                 ctx.arc(outerRadius,
                       outerRadius,
                       outerRadius*0.644 - ctx.lineWidth / 2,
-                      degreesToRadians(valueToAngle(control.value) - 215),
-                      degreesToRadians(valueToAngle(rangeControl.maximumValue) - 208 ));
+                      degreesToRadians(valueToAngle(control.value) - 215.0),
+                      degreesToRadians(valueToAngle(rangeControl.maximumValue) - 208.0 ));
                 ctx.stroke();
             }
         }
@@ -99,17 +99,19 @@ CircularGauge {
             color: "#3d62f4";
             font.pixelSize: outerRadius * 0.35;
             antialiasing: true
-            opacity: 0;
+            opacity: 0.1
         }
         Text {
             id: speedLabel
             font.family: webFont.name
-            anchors.centerIn: speedLabelBack
+            anchors.left: speedLabelBack.left
+            anchors.verticalCenter: speedLabelBack.verticalCenter
             text: control.value.toFixed(0);
             color: control.value > ((rangeControl.maximumValue-rangeControl.minimumValue) * 4 / 5)
                    ? "#ff5151" : "#3d62f4";
             font.pixelSize: outerRadius * 0.35;
             antialiasing: true
+            Behavior on color {ColorAnimation {duration: 200}}
         }
     }
     Loader {
@@ -129,7 +131,7 @@ CircularGauge {
     /* Functions
      * ****************************************************************************************/
     function valueToAngle (value1){
-        return value1 * 260 /
+        return value1 * 260.0 /
                Math.abs(rangeControl.maximumValue-rangeControl.minimumValue)
     }
 }
