@@ -67,6 +67,8 @@ qt_add_qml_module(RoniaKit
         resources/Components/CircularGaugeSpeed.qml
         resources/Components/CircularGaugeModern.qml
         resources/Components/FuelGauge.qml
+        resources/Components/RangeControl.qml
+        resources/Components/CircularRangeControl.qml
 
 
     SOURCES
@@ -74,6 +76,7 @@ qt_add_qml_module(RoniaKit
     RESOURCES
         resources/Fonts/Font\ Awesome\ 6\ Pro-Regular-400.otf
         resources/Fonts/Font\ Awesome\ 6\ Pro-Solid-900.otf
+        resources/Fonts/FontsFree-Net-DS-DIGI-1.ttf
         resources/Images/gauge/Modern/back.png
         resources/Images/gauge/Modern/knob.png
         resources/Images/gauge/needle.png

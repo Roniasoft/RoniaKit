@@ -1,5 +1,8 @@
 import QtQuick
 
+/*! ***********************************************************************************************
+ * Speed Circular Gauge
+ * ************************************************************************************************/
 CircularGauge {
     id: control
 
@@ -31,5 +34,11 @@ CircularGauge {
             anchors.fill: parent
             source: "qrc:/RoniaKit/resources/Images/gauge/Speed/needle-on.png"
         }
+    }
+
+    //!Custome gauges don't need tickmarks
+    Component.onCompleted:{
+        rangeControl.minorTickVisible = false
+        rangeControl.majorTickVisible = false
     }
 }
