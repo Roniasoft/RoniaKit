@@ -122,7 +122,7 @@ RoniaControl {
 
     //! Minor TickMark Loader
     Loader {
-        active: true //rangeControl.minorTickVisible
+        active: rangeControl.minorTickVisible
         width: control.minorInsetRadius * 2
         height: control.minorInsetRadius * 2
         anchors.centerIn: parent
@@ -155,7 +155,7 @@ RoniaControl {
     }
 
     Loader {
-        active: true //rangeControl.minorTickVisible
+        active: rangeControl.labelVisible
         width: control.labelInsetRadius * 2
         height: control.labelInsetRadius * 2
         anchors.centerIn: parent
@@ -174,10 +174,10 @@ RoniaControl {
 
                 sourceComponent: Text{
                     font.pixelSize: Math.max(6, 0.12 * outerRadius)
-                    text: Math.round(((rangeControl.maximumValue
-                                       - rangeControl.minimumValue)
-                                       / (rangeControl.majorTickCount - 1)
-                                       * index + Number.EPSILON) * 10) / 10
+                    text: Math.round((rangeControl.maximumValue
+                                      - rangeControl.minimumValue)
+                                      / (rangeControl.majorTickCount - 1)
+                                      * index)
                     color: "#c8c8c8"
                     antialiasing: true
                     horizontalAlignment: Text.AlignHCenter
@@ -210,7 +210,8 @@ RoniaControl {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
         anchors.bottomMargin: outerRadius/2 + outerRadius/5
-        text: Math.round((control.value + Number.EPSILON) * 100) / 100
+//        text: Math.round((control.value + Number.EPSILON) * 100) / 100
+        text: parseFloat(control.value.toFixed(rangeControl.decimalPoint))
         font.family: webFont.name
         font.pixelSize: 40
         color: "white"

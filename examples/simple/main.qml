@@ -19,14 +19,9 @@ Window {
         width: 400
         height: 500
         value: sliderForValue.value
-        rangeControl: CircularRangeControl{
-            majorTickCount: sliderForMajorTickCount.value
-            minorTickCount: sliderForMinorTickCount.value
-            tickmarkInset: sliderForMajorInset.value
-            minorTickmarkInset: sliderForMinorInset.value
-            labelInset: sliderForlabelInset.value
-            startAngle: sliderForStartAngle.value
-            endAngle: sliderForEndAngle.value
+        rangeControl: CircularRangeControl{ 
+            labelInset: sliderForlabelInset.value + 35
+            majorTickCount: 7
         }
     }
 

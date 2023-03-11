@@ -71,14 +71,12 @@ qt_add_qml_module(RoniaKit
         resources/Components/CircularRangeControl.qml
 
 
-
     SOURCES
 	
     RESOURCES
         resources/Fonts/Font\ Awesome\ 6\ Pro-Regular-400.otf
         resources/Fonts/Font\ Awesome\ 6\ Pro-Solid-900.otf
         resources/Fonts/FontsFree-Net-DS-DIGI-1.ttf
-        resources/Fonts/DS-DIGIT.ttf
         resources/Images/gauge/Modern/back.png
         resources/Images/gauge/Modern/knob.png
         resources/Images/gauge/needle.png
@@ -86,7 +84,6 @@ qt_add_qml_module(RoniaKit
         resources/Images/gauge/Speed/backOn.png
         resources/Images/gauge/Speed/backOff.png
         resources/Images/gauge/Speed/needle-on.png
-
 
 )
 	

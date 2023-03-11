@@ -21,7 +21,7 @@ QtObject {
     property bool   majorTickVisible:  true
 
     //! Labels ticks visibility
-    property bool   labelVisible:      false
+    property bool   labelVisible:      true
 
     //! Step size
     property int    stepSize:          0
@@ -40,5 +40,8 @@ QtObject {
 
     //!Label inset (modifiable by user)
     property real   labelInset:        30
+
+    //! Num of decimal points for digital value displayer
+    property int decimalPoint: 2
 
 }

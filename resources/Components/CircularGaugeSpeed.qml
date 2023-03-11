@@ -36,16 +36,9 @@ CircularGauge {
         }
     }
 
-//    tickmark: {
-//        visible: false
-//    }
-//    minorTickmark: {
-//        visible: false
-//    }
-
     //!Custome gauges don't need tickmarks
-//    Component.onCompleted:{
-//        control.tickmark.visible = false
-//        control.minorTickmark.visibile = false
-//    }
+    Component.onCompleted:{
+        rangeControl.minorTickVisible = false
+        rangeControl.majorTickVisible = false
+    }
 }
