@@ -164,7 +164,7 @@ RoniaControl {
                              / (labelRepeater.model - 1)
             model: rangeControl.majorTickCount
             anchors.fill: parent
-            text: index
+
             delegate: Loader {
                 id: labelLoader
                 x: control.minorInsetRadius
