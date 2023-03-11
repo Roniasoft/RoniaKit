@@ -30,6 +30,7 @@ Item {
             antialiasing: true
             implicitHeight: outerRadius * 0.06
             color: "#c8c8c8"
+            visible: true
         }
 
     //! Minor Tickmars
@@ -38,6 +39,7 @@ Item {
             antialiasing: true
             implicitHeight: outerRadius * 0.03
             color: "#c8c8c8"
+            visible: true
         }
 
     //! Tickmar Labels (major)

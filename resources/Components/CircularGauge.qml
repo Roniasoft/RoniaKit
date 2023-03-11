@@ -42,7 +42,7 @@ RoniaControl {
 
     /* Font Loader
      * ****************************************************************************************/
-    FontLoader {id: webFont; source: "qrc:/RoniaKit/resources/Fonts/DS-DIGIT.ttf" }
+    FontLoader {id: webFont; source: "qrc:/RoniaKit/resources/Fonts/FontsFree-Net-DS-DIGI-1.ttf" }
 
     Behavior on value {
         NumberAnimation {
@@ -72,6 +72,10 @@ RoniaControl {
         }
     }
 
+//    tickmarkLabel: tickmarkLabel{
+//        text: "5"
+//    }
+
     needleKnob : Item {
         Image {
             source: "qrc:/RoniaKit/resources/Images/gauge/knob.png"
@@ -79,22 +83,6 @@ RoniaControl {
         }
     }
 
-    //! Needle Loader
-    Loader {
-        id: needleLoader
-        sourceComponent: control.needle
-        transform: [
-            Rotation {
-                angle: needleRotation
-                origin.x: needleLoader.width / 2
-                origin.y: needleLoader.height
-            },
-            Translate {
-                x: control.width / 2 - needleLoader.width / 2
-                y: control.height / 2 - needleLoader.height
-            }
-        ]
-    }
 
     //! Major TickMark Loader
     Loader {
@@ -147,7 +135,41 @@ RoniaControl {
                 id: minorTickmarkLoader
                 x: control.minorInsetRadius
                 y: control.minorInsetRadius
+                visible: !(index%(control.rangeControl.minorTickCount+1)===0)
                 sourceComponent: control.minorTickmark
+                transform: [
+                    Rotation{
+                        angle: (rangeControl.startAngle + 360 + (index * p))
+                    },
+                    Translate {
+                        x: Math.sin((rangeControl.startAngle + 180 + index * p)
+                                    * (Math.PI/180)) * control.minorInsetRadius * -1
+                        y: Math.cos((rangeControl.startAngle + 180 + index * p)
+                                    * (Math.PI/180)) * control.minorInsetRadius
+                    }
+                ]
+            }
+        }
+    }
+
+    Loader {
+        active: true //rangeControl.minorTickVisible
+        width: control.minorInsetRadius * 2
+        height: control.minorInsetRadius * 2
+        anchors.centerIn: parent
+
+        sourceComponent: Repeater {
+            id: labelRepeater
+            property real p: Math.abs(rangeControl.endAngle  - rangeControl.startAngle)
+                             / (labelRepeater.model - 1)
+            model: rangeControl.majorTickCount
+            anchors.fill: parent
+            text: index
+            delegate: Loader {
+                id: labelLoader
+                x: control.minorInsetRadius
+                y: control.minorInsetRadius
+                sourceComponent: control.tickmarkLabel
                 transform: [
                     Rotation{
                         angle: (rangeControl.startAngle + 360 + (index * p))
@@ -174,10 +196,27 @@ RoniaControl {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
         anchors.bottomMargin: outerRadius/2 + outerRadius/5
-        text: Math.round(control.value)
+        text: Math.round((control.value + Number.EPSILON) * 100) / 100
         font.family: webFont.name
-        font.pixelSize: 30
+        font.pixelSize: 40
         color: "white"
+    }
+
+    //! Needle Loader
+    Loader {
+        id: needleLoader
+        sourceComponent: control.needle
+        transform: [
+            Rotation {
+                angle: needleRotation
+                origin.x: needleLoader.width / 2
+                origin.y: needleLoader.height
+            },
+            Translate {
+                x: control.width / 2 - needleLoader.width / 2
+                y: control.height / 2 - needleLoader.height
+            }
+        ]
     }
 
     /* Functions

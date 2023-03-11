@@ -79,6 +79,7 @@ Window {
         from: 3
         to: 10
         Text{ text: "Major Tick Count" }
+        value: 6
     }
 
     Slider {
@@ -89,6 +90,8 @@ Window {
         from: 0
         to: 10
         Text{ text: "Minor Tick Count" }
+        value: 3
+
     }
     Slider {
         id: sliderForMinorInset
@@ -116,6 +119,7 @@ Window {
         from: -180
         to: 0
         Text{ text: "Start Angle" }
+        value: -135
     }
     Slider {
         id: sliderForEndAngle
@@ -125,6 +129,7 @@ Window {
         from: 0
         to: 180
         Text{ text: "End Angle" }
+        value: 135
     }
 
 }
