@@ -30,7 +30,7 @@ Window {
             }
         }
 
-        AnalogGauge{
+        AnalogGauge {
             id: gauge1
             width: 400
             height: 500
@@ -80,7 +80,7 @@ Window {
         anchors.left: gaugeGrid.right
         width: 300
         from: 0
-        to: 200
+        to: 100
         Text{ text: "Value Count" }
     }
     Slider {
