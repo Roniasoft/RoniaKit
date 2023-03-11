@@ -7,8 +7,6 @@ import QtQuick.Controls
 RoniaControl {
     id: control
 
-
-
     /* Property Declarations
      * ****************************************************************************************/
 
@@ -35,6 +33,8 @@ RoniaControl {
     property real majorInsetRadius: outerRadius - rangeControl.tickmarkInset
 
     property real labelInsetRadius: outerRadius - rangeControl.labelInset
+
+    property bool digitalValueVisibility : true
 
     /* Object Properties
      * ****************************************************************************************/
@@ -199,22 +199,16 @@ RoniaControl {
         }
     }
 
-    //! Needle Knob
-    Loader {
-        sourceComponent: needleKnob
-        anchors.fill: parent
-    }
-
     //! Digital Value
     Text{
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
         anchors.bottomMargin: outerRadius/2 + outerRadius/5
-//        text: Math.round((control.value + Number.EPSILON) * 100) / 100
         text: parseFloat(control.value.toFixed(rangeControl.decimalPoint))
         font.family: webFont.name
         font.pixelSize: 40
         color: "white"
+        visible: digitalValueVisibility
     }
 
     //! Needle Loader
@@ -232,6 +226,12 @@ RoniaControl {
                 y: control.height / 2 - needleLoader.height
             }
         ]
+    }
+
+    //! Needle Knob
+    Loader {
+        sourceComponent: needleKnob
+        anchors.fill: parent
     }
 
     /* Functions

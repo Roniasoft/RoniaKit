@@ -69,6 +69,7 @@ qt_add_qml_module(RoniaKit
         resources/Components/FuelGauge.qml
         resources/Components/RangeControl.qml
         resources/Components/CircularRangeControl.qml
+        resources/Components/AnalogGauge.qml
 
 
     SOURCES
@@ -84,6 +85,12 @@ qt_add_qml_module(RoniaKit
         resources/Images/gauge/Speed/backOn.png
         resources/Images/gauge/Speed/backOff.png
         resources/Images/gauge/Speed/needle-on.png
+        resources/Images/gauge/AnalougeGauge/backScreen.svg
+        resources/Images/gauge/AnalougeGauge/innerRing.svg
+        resources/Images/gauge/AnalougeGauge/middleRing.svg
+        resources/Images/gauge/AnalougeGauge/outerRing.svg
+        resources/Images/gauge/AnalougeGauge/topScreen.svg
+
 
 )
 	
