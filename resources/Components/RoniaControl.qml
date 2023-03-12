@@ -45,7 +45,6 @@ Item {
     //! Tickmar Labels (major)
     property Component tickmarkLabel: Text {
             font.pixelSize: Math.max(6, 0.12 * outerRadius)
-            text: "1"
             color: "#c8c8c8"
             antialiasing: true
             horizontalAlignment: Text.AlignHCenter
@@ -76,7 +75,13 @@ Item {
         anchors.centerIn: parent
         sourceComponent: background
     }
-
+    Loader {
+        id: foregroundLoader
+        width: outerRadius * 2
+        height: outerRadius * 2
+        anchors.centerIn: parent
+        sourceComponent: foreground
+    }
 
     /* Functions
      * ****************************************************************************************/

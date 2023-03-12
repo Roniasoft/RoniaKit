@@ -14,57 +14,71 @@ Window {
     Material.theme: Material.Dark
     Material.accent: Material.Purple
 
-    CircularGaugeSpeed {
-        id: gauge
-        width: 400
-        height: 500
-        value: sliderForValue.value
-        rangeControl: CircularRangeControl{ 
-            labelInset: sliderForlabelInset.value + 35
-            majorTickCount: 7
+    Grid{
+        id: gaugeGrid
+        columns: 2
+        spacing: 2
+
+        CircularGaugeSpeed {
+            id: gauge
+            width: 400
+            height: 500
+            value: sliderForValue.value
+            rangeControl: CircularRangeControl{
+                labelInset: sliderForlabelInset.value + 35
+                majorTickCount: 7
+            }
         }
-    }
 
-
-    CircularGaugeModern {
-        width: 400
-        height: 500
-        x: 500
-        value: sliderForValue.value
-        rangeControl: CircularRangeControl{
-            majorTickCount: sliderForMajorTickCount.value
-            minorTickCount: sliderForMinorTickCount.value
-            tickmarkInset: sliderForMajorInset.value
-            minorTickmarkInset: sliderForMinorInset.value
-            labelInset: sliderForlabelInset.value
-            startAngle: sliderForStartAngle.value
-            endAngle: sliderForEndAngle.value
+        AnalogGauge {
+            id: gauge1
+            width: 400
+            height: 500
+            value: sliderForValue.value
+            rangeControl: CircularRangeControl{
+                labelInset: sliderForlabelInset.value
+            }
         }
-    }
 
+        CircularGaugeModern {
+            width: 400
+            height: 500
+            x: 500
+            value: sliderForValue.value
+            rangeControl: CircularRangeControl{
+                majorTickCount: sliderForMajorTickCount.value
+                minorTickCount: sliderForMinorTickCount.value
+                tickmarkInset: sliderForMajorInset.value
+                minorTickmarkInset: sliderForMinorInset.value
+                labelInset: sliderForlabelInset.value
+                startAngle: sliderForStartAngle.value
+                endAngle: sliderForEndAngle.value
+            }
+        }
 
-    CircularGauge {
-        id:simpleGauge
-        width: 400
-        height: 500
-        x: 1000
-        value: sliderForValue.value
-        rangeControl: CircularRangeControl{
-            majorTickCount: sliderForMajorTickCount.value
-            minorTickCount: sliderForMinorTickCount.value
-            tickmarkInset: sliderForMajorInset.value
-            minorTickmarkInset: sliderForMinorInset.value
-            labelInset: sliderForlabelInset.value
-            startAngle: sliderForStartAngle.value
-            endAngle: sliderForEndAngle.value
+        CircularGauge {
+            id:simpleGauge
+            width: 400
+            height: 500
+            x: 1000
+            value: sliderForValue.value
+            rangeControl: CircularRangeControl{
+                majorTickCount: sliderForMajorTickCount.value
+                minorTickCount: sliderForMinorTickCount.value
+                tickmarkInset: sliderForMajorInset.value
+                minorTickmarkInset: sliderForMinorInset.value
+                labelInset: sliderForlabelInset.value
+                startAngle: sliderForStartAngle.value
+                endAngle: sliderForEndAngle.value
+            }
         }
     }
 
     Slider {
         id: sliderForValue
         anchors.bottom: parent.bottom
+        anchors.left: gaugeGrid.right
         width: 300
-        anchors.horizontalCenter: parent.horizontalCenter
         from: 0
         to: 100
         Text{ text: "Value Count" }
@@ -73,7 +87,7 @@ Window {
         id: sliderForMajorTickCount
         anchors.bottom: sliderForValue.top
         width: 300
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.left: gaugeGrid.right
         from: 3
         to: 10
         Text{ text: "Major Tick Count" }
@@ -84,7 +98,7 @@ Window {
         id: sliderForMinorTickCount
         anchors.bottom: sliderForMajorTickCount.top
         width: 300
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.left: gaugeGrid.right
         from: 0
         to: 10
         Text{ text: "Minor Tick Count" }
@@ -95,7 +109,7 @@ Window {
         id: sliderForMinorInset
         anchors.bottom: sliderForMinorTickCount.top
         width: 300
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.left: gaugeGrid.right
         from: 20
         to: 80
         Text{ text: "Minor Inset" }
@@ -104,7 +118,7 @@ Window {
         id: sliderForMajorInset
         anchors.bottom: sliderForMinorInset.top
         width: 300
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.left: gaugeGrid.right
         from: 20
         to: 80
         Text{ text: "Major Inset" }
@@ -113,7 +127,7 @@ Window {
         id: sliderForlabelInset
         anchors.bottom: sliderForMajorInset.top
         width: 300
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.left: gaugeGrid.right
         from: 30
         to: 80
         Text{ text: "label Inset" }
@@ -122,7 +136,7 @@ Window {
         id: sliderForStartAngle
         anchors.bottom: sliderForlabelInset.top
         width: 300
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.left: gaugeGrid.right
         from: -180
         to: 0
         Text{ text: "Start Angle" }
@@ -132,7 +146,7 @@ Window {
         id: sliderForEndAngle
         anchors.bottom: sliderForStartAngle.top
         width: 300
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.left: gaugeGrid.right
         from: 0
         to: 180
         Text{ text: "End Angle" }
