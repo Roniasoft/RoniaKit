@@ -74,9 +74,9 @@ CircularGauge {
                       outerRadius,
                       outerRadius*0.9 - ctx.lineWidth / 2,
                       degreesToRadians(valueToAngle(control.value-control.rangeControl.minimumValue)
-                                       - control.rangeControl.startAngle *-1 - 91.5),
+                                       - control.rangeControl.startAngle *-1 - 92),
                       degreesToRadians(valueToAngle(control.rangeControl.maximumValue-control.rangeControl.minimumValue)
-                                       - control.rangeControl.endAngle - 89));
+                                       - control.rangeControl.endAngle - 88));
                 ctx.stroke();
             }
         }

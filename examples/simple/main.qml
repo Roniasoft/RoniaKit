@@ -95,6 +95,13 @@ Window {
             width: 400
             height: 500
             value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
+            rangeControl: CircularRangeControl{
+                majorTickCount: sliderForMajorTickCount.value
+                minorTickCount: sliderForMinorTickCount.value
+                tickmarkInset: sliderForMajorInset.value
+                minorTickmarkInset: sliderForMinorInset.value
+                labelInset: sliderForlabelInset.value
+            }
         }
     }
 
@@ -104,7 +111,7 @@ Window {
         anchors.left: gaugeGrid.right
         width: 300
         from: 70
-        to: 200
+        to: 150
         Text{ text: "Value Count" }
         value: 70
     }
