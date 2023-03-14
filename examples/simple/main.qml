@@ -103,10 +103,10 @@ Window {
         anchors.bottom: parent.bottom
         anchors.left: gaugeGrid.right
         width: 300
-        from: 0
+        from: 70
         to: 200
         Text{ text: "Value Count" }
-        value: 0
+        value: 70
     }
     Slider {
         id: sliderForMajorTickCount

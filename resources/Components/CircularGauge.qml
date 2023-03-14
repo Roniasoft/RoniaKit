@@ -196,7 +196,7 @@ RoniaControl {
                     text: Math.round((rangeControl.maximumValue
                                       - rangeControl.minimumValue)
                                       / (rangeControl.majorTickCount - 1)
-                                      * index)
+                                      * index + rangeControl.minimumValue)
                     color: "#c8c8c8"
                     antialiasing: true
                     horizontalAlignment: Text.AlignHCenter

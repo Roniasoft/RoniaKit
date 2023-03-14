@@ -28,10 +28,10 @@ QtObject {
      * ****************************************************************************************/
 
     //! Minimum
-    property double minimumValue:      0.0
+    property double minimumValue:      70.0
 
     //! Maximum
-    property double maximumValue:      100.0
+    property double maximumValue:      150.0
 
     //! Minor ticks visibility
     property bool   minorTickVisible:  true
