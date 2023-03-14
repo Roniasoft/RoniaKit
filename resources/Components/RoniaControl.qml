@@ -94,13 +94,7 @@ Item {
         anchors.centerIn: parent
         sourceComponent: background
     }
-    Loader {
-        id: foregroundLoader
-        width: outerRadius * 2
-        height: outerRadius * 2
-        anchors.centerIn: parent
-        sourceComponent: foreground
-    }
+
 
     /* Functions
      * ****************************************************************************************/

@@ -70,6 +70,7 @@ qt_add_qml_module(RoniaKit
         resources/Components/RangeControl.qml
         resources/Components/CircularRangeControl.qml
         resources/Components/AnalogGauge.qml
+        resources/Components/ModernGauge2.qml
 
 
     SOURCES
@@ -90,6 +91,8 @@ qt_add_qml_module(RoniaKit
         resources/Images/gauge/AnalougeGauge/middleRing.svg
         resources/Images/gauge/AnalougeGauge/outerRing.svg
         resources/Images/gauge/AnalougeGauge/topScreen.svg
+        resources/Images/gauge/Modern/blueLight.png
+        resources/Images/gauge/Modern/blueNeedle.png
 
 
 )

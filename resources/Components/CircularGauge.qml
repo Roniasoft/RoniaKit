@@ -252,7 +252,13 @@ RoniaControl {
         sourceComponent: needleKnob
         anchors.fill: parent
     }
-
+    Loader {
+        id: foregroundLoader
+        width: outerRadius * 2
+        height: outerRadius * 2
+        anchors.centerIn: parent
+        sourceComponent: foreground
+    }
     /* Functions
      * ****************************************************************************************/
 

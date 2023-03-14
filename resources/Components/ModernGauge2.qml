@@ -1,3 +1,22 @@
+/*
+ * Project: RoniaKit
+ * Version: 0.0.1
+ * License: Apache 2.0
+ *
+ * Copyright (c) 2023 Ronia AB
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import QtQuick
 
 /*! ***********************************************************************************************
@@ -5,8 +24,7 @@ import QtQuick
  * ************************************************************************************************/
 CircularGauge {
     id: control
-    property CircularRangeControl circularRangeControl: CircularRangeControl {}
-    rangeControl: circularRangeControl
+
     /* Font Loader
      * ****************************************************************************************/
     FontLoader {id: webFont; source: "qrc:/RoniaKit/resources/Fonts/FontsFree-Net-DS-DIGI-1.ttf" }
@@ -50,15 +68,15 @@ CircularGauge {
                 var ctx = getContext("2d");
                 ctx.reset();
                 ctx.beginPath();
-                ctx.strokeStyle = "#05053c";
+                ctx.strokeStyle = "#0d151b";
                 ctx.lineWidth = outerRadius * 0.75
                 ctx.arc(outerRadius,
                       outerRadius,
                       outerRadius*0.9 - ctx.lineWidth / 2,
                       degreesToRadians(valueToAngle(control.value)
-                                       - rangeControl.startAngle *-1 - 90),
-                      degreesToRadians(valueToAngle(rangeControl.maximumValue)
-                                       - rangeControl.endAngle - 90));
+                                       - control.rangeControl.startAngle *-1 - 91.5),
+                      degreesToRadians(valueToAngle(control.rangeControl.maximumValue)
+                                       - control.rangeControl.endAngle - 89));
                 ctx.stroke();
             }
         }
@@ -73,6 +91,7 @@ CircularGauge {
         }
 
     }
+
     foreground: Item {
         id: foregroundItem1;
         Rectangle{
@@ -92,14 +111,11 @@ CircularGauge {
             }
         }
     }
-    Component.onCompleted:{
-        console.log(rangeControl.endAngle)
-    }
 
     needleKnob: null
     digitalValueVisibility: false
     function valueToAngle (value1){
-        return value1 * Math.abs(rangeControl.endAngle - rangeControl.startAngle) /
-               Math.abs(rangeControl.maximumValue-rangeControl.minimumValue)
+        return value1 * Math.abs(control.rangeControl.endAngle - control.rangeControl.startAngle) /
+               Math.abs(control.rangeControl.maximumValue-control.rangeControl.minimumValue)
     }
 }

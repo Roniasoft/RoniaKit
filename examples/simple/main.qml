@@ -35,14 +35,14 @@ Window {
 
     Grid{
         id: gaugeGrid
-        columns: 2
+        columns: 3
         spacing: 2
 
         CircularGaugeSpeed {
             id: gauge
             width: 400
             height: 500
-            value: sliderForValue.value
+            value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
             rangeControl: CircularRangeControl{
                 labelInset: sliderForlabelInset.value + 35
                 majorTickCount: 7
@@ -53,7 +53,7 @@ Window {
             id: gauge1
             width: 400
             height: 500
-            value: sliderForValue.value
+            value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
             rangeControl: CircularRangeControl{
                 labelInset: sliderForlabelInset.value
             }
@@ -63,7 +63,7 @@ Window {
             width: 400
             height: 500
             x: 500
-            value: sliderForValue.value
+            value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
             rangeControl: CircularRangeControl{
                 majorTickCount: sliderForMajorTickCount.value
                 minorTickCount: sliderForMinorTickCount.value
@@ -80,7 +80,7 @@ Window {
             width: 400
             height: 500
             x: 1000
-            value: sliderForValue.value
+            value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
             rangeControl: CircularRangeControl{
                 majorTickCount: sliderForMajorTickCount.value
                 minorTickCount: sliderForMinorTickCount.value
@@ -91,6 +91,11 @@ Window {
                 endAngle: sliderForEndAngle.value
             }
         }
+        ModernGauge2 {
+            width: 400
+            height: 500
+            value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
+        }
     }
 
     Slider {
@@ -99,8 +104,9 @@ Window {
         anchors.left: gaugeGrid.right
         width: 300
         from: 0
-        to: 100
+        to: 200
         Text{ text: "Value Count" }
+        value: 0
     }
     Slider {
         id: sliderForMajorTickCount
@@ -172,5 +178,13 @@ Window {
         value: 135
     }
 
+    function boundControl(value,minimum,maximum){
+        if(value > maximum)
+            return maximum
+        else if(value < minimum)
+            return minimum
+        else
+            return value
+    }
 
 }
