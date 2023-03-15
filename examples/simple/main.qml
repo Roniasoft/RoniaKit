@@ -40,8 +40,8 @@ Window {
 
         CircularGaugeSpeed {
             id: gauge
-            width: 400
-            height: 500
+            width: 200
+            height: 300
             value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
             rangeControl: CircularRangeControl{
                 labelInset: sliderForlabelInset.value + 35
@@ -51,8 +51,8 @@ Window {
 
         AnalogGauge {
             id: gauge1
-            width: 400
-            height: 500
+            width: 200
+            height: 300
             value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
             rangeControl: CircularRangeControl{
                 labelInset: sliderForlabelInset.value
@@ -62,7 +62,6 @@ Window {
         CircularGaugeModern {
             width: 400
             height: 500
-            x: 500
             value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
             rangeControl: CircularRangeControl{
                 majorTickCount: sliderForMajorTickCount.value
@@ -79,7 +78,6 @@ Window {
             id:simpleGauge
             width: 400
             height: 500
-            x: 1000
             value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
             rangeControl: CircularRangeControl{
                 majorTickCount: sliderForMajorTickCount.value

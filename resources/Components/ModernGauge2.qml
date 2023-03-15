@@ -106,7 +106,7 @@ CircularGauge {
                 anchors.centerIn: parent
                 text: parseFloat(control.value.toFixed(rangeControl.decimalPoint))
                 font.family: webFont.name
-                font.pixelSize: 40
+                font.pixelSize: outerRadius * 0.2
                 color: "white"
             }
         }

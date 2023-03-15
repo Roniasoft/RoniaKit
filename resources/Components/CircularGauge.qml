@@ -222,10 +222,11 @@ RoniaControl {
     Text{
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: outerRadius/2 + outerRadius/5
+
+        anchors.bottomMargin: parent.height/2 - 5*Math.min(parent.height,parent.width)/16
         text: parseFloat(control.value.toFixed(rangeControl.decimalPoint))
         font.family: webFont.name
-        font.pixelSize: 40
+        font.pixelSize: outerRadius * 0.2
         color: "white"
         visible: digitalValueVisibility
     }
@@ -259,6 +260,7 @@ RoniaControl {
         anchors.centerIn: parent
         sourceComponent: foreground
     }
+
     /* Functions
      * ****************************************************************************************/
 

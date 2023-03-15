@@ -128,7 +128,7 @@ CircularGauge {
             text: control.value.toFixed(0);
             color: control.value > ((rangeControl.maximumValue-rangeControl.minimumValue) * 4 / 5)
                    ? "#ff5151" : "#3d62f4";
-            font.pixelSize: outerRadius * 0.35;
+            font.pixelSize: outerRadius * 0.4;
             antialiasing: true
             Behavior on color {ColorAnimation {duration: 200}}
         }
