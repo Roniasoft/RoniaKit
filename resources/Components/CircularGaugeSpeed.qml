@@ -59,5 +59,6 @@ CircularGauge {
     Component.onCompleted:{
         rangeControl.minorTickVisible = false
         rangeControl.majorTickVisible = false
+        rangeControl.labelVisible = false
     }
 }
