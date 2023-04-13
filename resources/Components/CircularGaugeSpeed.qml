@@ -25,6 +25,8 @@ import QtQuick
 CircularGauge {
     id: control
 
+    FontLoader {id: webFont; source: "qrc:/RoniaKit/resources/Fonts/FontsFree-Net-DS-DIGI-1.ttf" }
+
     /* Children
      * ****************************************************************************************/
     background: Rectangle {
@@ -42,6 +44,17 @@ CircularGauge {
                 width: width
             }
         }
+    }
+
+    //! Gauge Name
+    Text{
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: parent.top
+        anchors.topMargin: parent.height/2 - 4*Math.min(parent.height,parent.width)/16
+        text: control.name
+        font.family: webFont.name
+        font.pixelSize: outerRadius * 0.15
+        color: "white"
     }
 
     //! Needle

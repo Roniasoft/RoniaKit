@@ -29,6 +29,9 @@ Item {
     /* Property Declarations
      * ****************************************************************************************/
 
+    //! Name
+    property string name: "Name"
+
     //! Value
     property double value: 100.0
 
