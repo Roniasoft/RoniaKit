@@ -90,13 +90,7 @@ Item {
      * ****************************************************************************************/
 
     //! Background Loader
-    Loader {
-        id: backgroundLoader
-        width: outerRadius * 2
-        height: outerRadius * 2
-        anchors.centerIn: parent
-        sourceComponent: background
-    }
+
 
 
     /* Functions

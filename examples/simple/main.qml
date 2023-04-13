@@ -38,6 +38,12 @@ Window {
         columns: 3
         spacing: 2
 
+        LevelGauge{
+            id: levelgauge
+            width: 200
+            height: 300
+        }
+
         CircularGaugeSpeed {
             id: gauge
             width: 200
@@ -89,18 +95,18 @@ Window {
                 endAngle: sliderForEndAngle.value
             }
         }
-        ModernGauge2 {
-            width: 400
-            height: 500
-            value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
-            rangeControl: CircularRangeControl{
-                majorTickCount: sliderForMajorTickCount.value
-                minorTickCount: sliderForMinorTickCount.value
-                tickmarkInset: sliderForMajorInset.value
-                minorTickmarkInset: sliderForMinorInset.value
-                labelInset: sliderForlabelInset.value
-            }
-        }
+//        ModernGauge2 {
+//            width: 400
+//            height: 500
+//            value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
+//            rangeControl: CircularRangeControl{
+//                majorTickCount: sliderForMajorTickCount.value
+//                minorTickCount: sliderForMinorTickCount.value
+//                tickmarkInset: sliderForMajorInset.value
+//                minorTickmarkInset: sliderForMinorInset.value
+//                labelInset: sliderForlabelInset.value
+//            }
+//        }
     }
 
     Slider {

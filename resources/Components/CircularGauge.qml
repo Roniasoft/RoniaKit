@@ -82,6 +82,13 @@ RoniaControl {
         anchors.centerIn: parent
         radius: width / 2
     }
+    Loader {
+        id: backgroundLoader
+        width: outerRadius * 2
+        height: outerRadius * 2
+        anchors.centerIn: parent
+        sourceComponent: background
+    }
 
     needle : Item {
         implicitWidth: 0.08 * outerRadius
