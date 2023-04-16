@@ -110,15 +110,15 @@ RoniaControl {
                 id: handleId
                 x: (slider.width - width) / 2
                 y:  slider.visualPosition * (slider.height - height)
-                width: 15
-                height: 15
-                radius: 15
+                width: outerRadius/13
+                height: outerRadius/13
+                radius: outerRadius/13
                 color: "green"
             }
             background: Rectangle {
                 x: (slider.width - width) / 2
-                width: 5
-                radius: 5
+                width: outerRadius/40
+                radius: outerRadius/40
                 color: "white"
                 Rectangle {
                     width: parent.width
