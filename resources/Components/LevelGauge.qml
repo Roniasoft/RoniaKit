@@ -32,6 +32,8 @@ RoniaControl {
 
     property RangeControl rangeControl: RangeControl {}
 
+    readonly property real outerRadius: control.width
+
     /* Object Properties
      * ****************************************************************************************/
 
@@ -161,9 +163,6 @@ RoniaControl {
                 x: -20
                 y: control.height/2 - 8
                 sourceComponent: control.tickmark
-                Component.onCompleted: {
-                    console.log(tickmarkLoader.x,tickmarkLoader.y)
-                }
                 transform: [
                     Rotation{
                         angle: 90
