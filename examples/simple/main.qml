@@ -38,12 +38,6 @@ Window {
         columns: 3
         spacing: 2
 
-        LevelGauge{
-            id: levelgauge
-            width: 200
-            height: 300
-        }
-
         CircularGaugeSpeed {
             id: gauge
             width: 200
@@ -95,6 +89,13 @@ Window {
                 endAngle: sliderForEndAngle.value
             }
         }
+        LevelGauge{
+            id: levelgauge
+            value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
+            width: 200
+            height: 300
+        }
+
 //        ModernGauge2 {
 //            width: 400
 //            height: 500

@@ -19,33 +19,25 @@
 
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Shapes
 
 /*! ***********************************************************************************************
- * Base Circular Gauge
+ * Level Gauge
  * ************************************************************************************************/
 RoniaControl {
-    id: root1
+    id: control
 
     /* Property Declarations
      * ****************************************************************************************/
 
-    property RangeControl rangeControl
-
-    /*! The distance from the center of the gauge to the outer edge of the
-        gauge.
-
-        This property is useful for determining the size of the various
-        components of the style, in order to ensure that they are scaled
-        proportionately when the gauge is resized. */
-
-
-    readonly property real outerRadius: root1.width
+    property RangeControl rangeControl: RangeControl {}
 
     /* Object Properties
      * ****************************************************************************************/
 
     width: 250
     height: 250
+    value: slider.value
 
     /* Font Loader
      * ****************************************************************************************/
@@ -60,60 +52,84 @@ RoniaControl {
     }
 
     background: Rectangle {
+        id: background
         height: parent.height
         width: parent.width
         color: "transparent"
         anchors.centerIn: parent
+
+        property int startval: rangeControl.minimumValue
+        property int endval: rangeControl.maximumValue
+        property int sliderHeight: parent.height
+
+       implicitHeight:  sliderHeight
+       implicitWidth: slider.width
+       Slider {
+            id: slider
+            stepSize: 1
+            anchors.centerIn: parent
+            snapMode: Slider.SnapOnRelease
+            height: background.sliderHeight
+            from: background.startval
+            to: background.endval
+            orientation: Qt.Vertical
+            value: control.value
+            handle: Shape {
+                id: shape
+                x: (-slider.width+4)
+                y:  slider.visualPosition * (slider.height - height)
+                width: 15
+                height: 15
+                antialiasing: true
+                ShapePath {
+                    id: path
+                    strokeWidth: 1
+                    strokeColor: "grey"
+                    fillColor: "grey"
+                    startX: 0; startY: shape.height / 2
+                    PathLine { x: shape.width * 1; y: 0 }
+                    PathArc {
+                        x: shape.width * 1
+                        y: shape.height
+                        radiusX: shape.height;
+                        radiusY: shape.height
+                        useLargeArc: false
+                    }
+                    PathLine { x: 0; y: shape.height / 2 }
+                }
+            }
+            /*Rectangle {
+                id: handleId
+                x: (slider.width - width) / 2
+                y:  slider.visualPosition * (slider.height - height)
+                width: 15
+                height: 15
+                radius: 15
+                color: "gray"
+            */
+            background: Rectangle {
+                x: (slider.width - width) / 2
+                width: 4
+                radius: 2
+                color: "grey"
+                Rectangle {
+                    width: parent.width
+                    height: slider.visualPosition * parent.height
+                    color: "black"
+                    radius: 2
+                }
+            }
+        }
 
     }
     foreground: Rectangle {
-        id: root
+
         height: parent.height
         width: parent.width
         color: "transparent"
         anchors.centerIn: parent
-         property int startval: 0
-         property int endval: 0
-         property int sliderHeight: parent.height/2.0
 
-        implicitHeight:  sliderHeight
-        implicitWidth: control.width + label.width
-        Slider {
-                id: control
-                stepSize: 1
-                anchors.centerIn: parent
-                snapMode: Slider.SnapOnRelease
-                height: root.sliderHeight
-                from: root.startval
-                to: root.endval
-                orientation: Qt.Vertical
-                handle: Rectangle {
-                    id: handleId
-                    x: (control.width - width) / 2
-                    y:  control.visualPosition * (control.height - height)
-                    width: 15
-                    height: 15
-                    radius: 15
-                    color: "gray"
-                }
-
-                background: Rectangle {
-                    x: (control.width - width) / 2
-                    width: 4
-                    radius: 2
-                    color: "gray"
-
-                    Rectangle {
-                        width: parent.width
-                        height: control.visualPosition * parent.height
-                        color: "black"
-                        radius: 2
-                    }
-                }
-            }
     }
-
-
 
     Loader {
         id: backgroundLoader
@@ -122,6 +138,7 @@ RoniaControl {
         anchors.centerIn: parent
         sourceComponent: background
     }
+
     Loader {
         id: foregroundLoader
         width: parent.width
@@ -132,24 +149,93 @@ RoniaControl {
 
     Loader {
         id: majorTickLoader
-        active: rangeControl.majorTickVisible
-        width: root1.width
-        height: root1.height
+        active: control.rangeControl.majorTickVisible
         anchors.centerIn: parent
 
         sourceComponent: Repeater {
             id: tickmarkRepeater
-
-            model: rangeControl.majorTickCount
+            model: control.rangeControl.majorTickCount
             anchors.fill: parent
             delegate: Loader {
                 id: tickmarkLoader
-                y: tickmarkRepeater.height
-                       x: 250 / 2 + index * ((tickmarkRepeater.width - 250) / (tickmarkRepeater.count-1))
+                x: -20
+                y: control.height/2 - 8
                 sourceComponent: control.tickmark
-
-
+                Component.onCompleted: {
+                    console.log(tickmarkLoader.x,tickmarkLoader.y)
+                }
+                transform: [
+                    Rotation{
+                        angle: 90
+                    },
+                    Translate {
+                        y: index * -((control.height-12)/(control.rangeControl.majorTickCount-1))
+                    }
+                ]
             }
         }
     }
+
+    Loader {
+        active: rangeControl.minorTickVisible
+        anchors.centerIn: parent
+        sourceComponent: Repeater {
+            id: minortickmarkRepeater
+            model: (rangeControl.majorTickCount - 1) * rangeControl.minorTickCount + rangeControl.majorTickCount
+            anchors.fill: parent
+            delegate: Loader {
+                id: minorTickmarkLoader
+                x: -20
+                y: control.height/2 - 8
+                visible: !(index%(control.rangeControl.minorTickCount+1)===0)
+                sourceComponent: control.minorTickmark
+                transform: [
+                    Rotation{
+                        angle: 90
+                    },
+                    Translate {
+                        y: index * -((control.height-12)/
+                                     ((rangeControl.majorTickCount - 1) * rangeControl.minorTickCount + rangeControl.majorTickCount-1))
+                    }
+                ]
+            }
+        }
+    }
+
+    Loader {
+        active: true //rangeControl.labelVisible
+        anchors.centerIn: parent
+
+        sourceComponent: Repeater {
+            id: labelRepeater
+            model: rangeControl.majorTickCount
+            anchors.fill: parent
+
+            delegate: Loader {
+                id: labelLoader
+                x: -60
+                y: control.height/2 - 15
+
+                sourceComponent: Text{
+                    font.pixelSize: Math.max(6, 0.06 * control.width)
+                    text: Math.round((rangeControl.maximumValue
+                                      - rangeControl.minimumValue)
+                                      / (rangeControl.majorTickCount - 1)
+                                      * index + rangeControl.minimumValue)
+                    color: "#c8c8c8"
+                    antialiasing: true
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                }
+
+                transform: [
+                    Translate {
+                       y: index * -((control.height-12)/(control.rangeControl.majorTickCount-1))
+                    }
+                ]
+            }
+        }
+    }
+
+
 }

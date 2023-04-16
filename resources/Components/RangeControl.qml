@@ -61,6 +61,6 @@ QtObject {
     property real   labelInset:        30
 
     //! Num of decimal points for digital value displayer
-    property int decimalPoint: 2
+    property int    decimalPoint: 2
 
 }
