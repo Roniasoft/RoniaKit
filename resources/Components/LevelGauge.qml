@@ -53,6 +53,29 @@ RoniaControl {
         }
     }
 
+    Component.onCompleted: {
+        rangeControl.minorTickCount = 1
+        rangeControl.majorTickCount = 10
+    }
+
+    property Component tickmark: Rectangle {
+            implicitWidth: outerRadius * 0.01
+            antialiasing: true
+            implicitHeight: outerRadius * 0.06
+            color: "#c8c8c8"
+            visible: true
+            radius: 5
+        }
+
+    property Component minorTickmark: Rectangle {
+            implicitWidth: outerRadius * 0.01
+            antialiasing: true
+            implicitHeight: outerRadius * 0.03
+            color: "#c8c8c8"
+            visible: true
+            radius: 5
+    }
+
     background: Rectangle {
         id: background
         height: parent.height
@@ -76,49 +99,27 @@ RoniaControl {
             to: background.endval
             orientation: Qt.Vertical
             value: control.value
-            handle: Shape {
-                id: shape
-                x: (-slider.width+4)
-                y:  slider.visualPosition * (slider.height - height)
-                width: 15
-                height: 15
-                antialiasing: true
-                ShapePath {
-                    id: path
-                    strokeWidth: 1
-                    strokeColor: "grey"
-                    fillColor: "grey"
-                    startX: 0; startY: shape.height / 2
-                    PathLine { x: shape.width * 1; y: 0 }
-                    PathArc {
-                        x: shape.width * 1
-                        y: shape.height
-                        radiusX: shape.height;
-                        radiusY: shape.height
-                        useLargeArc: false
-                    }
-                    PathLine { x: 0; y: shape.height / 2 }
-                }
-            }
-            /*Rectangle {
+            handle:  Rectangle {
                 id: handleId
                 x: (slider.width - width) / 2
                 y:  slider.visualPosition * (slider.height - height)
                 width: 15
                 height: 15
                 radius: 15
-                color: "gray"
-            */
+                color: "green"
+            }
             background: Rectangle {
                 x: (slider.width - width) / 2
-                width: 4
-                radius: 2
-                color: "grey"
+                width: 5
+                radius: 5
+                color: "white"
                 Rectangle {
                     width: parent.width
                     height: slider.visualPosition * parent.height
                     color: "black"
-                    radius: 2
+                    border.color: "grey"
+                    border.width: 1
+                    radius: 5
                 }
             }
         }
@@ -221,7 +222,7 @@ RoniaControl {
                                       - rangeControl.minimumValue)
                                       / (rangeControl.majorTickCount - 1)
                                       * index + rangeControl.minimumValue)
-                    color: "#c8c8c8"
+                    color: "white"
                     antialiasing: true
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
