@@ -40,13 +40,6 @@ RoniaControl {
     width: 250
     height: width*3
 
-    onHeightChanged: {
-        width = height/3
-    }
-    onWidthChanged: {
-        height = width*3
-    }
-
     value: slider.value
     Rectangle{
         anchors.fill:parent
