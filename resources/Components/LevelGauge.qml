@@ -162,14 +162,14 @@ RoniaControl {
             delegate: Loader {
                 id: tickmarkLoader
                 x: -control.width/10
-                y: control.height/2 - 8
+                y: control.height/2 - control.height/37
                 sourceComponent: control.tickmark
                 transform: [
                     Rotation{
                         angle: 90
                     },
                     Translate {
-                        y: index * -((control.height-12)/(control.rangeControl.majorTickCount-1))
+                        y: index * -((control.height-control.height/25)/(control.rangeControl.majorTickCount-1))
                     }
                 ]
             }
@@ -186,7 +186,7 @@ RoniaControl {
             delegate: Loader {
                 id: minorTickmarkLoader
                 x: -(control.width/10)
-                y: control.height/2 - 8
+                y: control.height/2 - control.height/37
                 visible: !(index%(control.rangeControl.minorTickCount+1)===0)
                 sourceComponent: control.minorTickmark
                 transform: [
@@ -194,7 +194,7 @@ RoniaControl {
                         angle: 90
                     },
                     Translate {
-                        y: index * -((control.height-12)/
+                        y: index * -((control.height-control.height/25)/
                                      ((rangeControl.majorTickCount - 1) * rangeControl.minorTickCount + rangeControl.majorTickCount-1))
                     }
                 ]
@@ -214,7 +214,7 @@ RoniaControl {
             delegate: Loader {
                 id: labelLoader
                 x: -(control.width/10) * 3
-                y: control.height/2 - 15
+                y: control.height/2 - control.height/20
 
                 sourceComponent: Text{
                     font.pixelSize: Math.max(6, 0.06 * control.width)
@@ -230,7 +230,7 @@ RoniaControl {
 
                 transform: [
                     Translate {
-                       y: index * -((control.height-12)/(control.rangeControl.majorTickCount-1))
+                       y: index * -((control.height-control.height/25)/(control.rangeControl.majorTickCount-1))
                     }
                 ]
             }
