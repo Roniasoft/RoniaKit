@@ -32,7 +32,7 @@ RoniaControl {
 
     property RangeControl rangeControl: RangeControl {}
 
-    readonly property real outerRadius: control.width
+    readonly property real outerRadius: Math.min(control.width,control.height)
 
     /* Object Properties
      * ****************************************************************************************/
@@ -161,15 +161,15 @@ RoniaControl {
             anchors.fill: parent
             delegate: Loader {
                 id: tickmarkLoader
-                x: -control.width/10
-                y: control.height/2 - control.width/25
+                x: -outerRadius/10
+                y: control.height/2 - outerRadius/25
                 sourceComponent: control.tickmark
                 transform: [
                     Rotation{
                         angle: 90
                     },
                     Translate {
-                        y: index * -((control.height-control.width/16.5)/(control.rangeControl.majorTickCount-1))
+                        y: index * -((control.height-outerRadius/16.5)/(control.rangeControl.majorTickCount-1))
                     }
                 ]
             }
@@ -185,8 +185,8 @@ RoniaControl {
             anchors.fill: parent
             delegate: Loader {
                 id: minorTickmarkLoader
-                x: -(control.width/10)
-                y: control.height/2 - control.width/25
+                x: -(outerRadius/10)
+                y: control.height/2 - outerRadius/25
                 visible: !(index%(control.rangeControl.minorTickCount+1)===0)
                 sourceComponent: control.minorTickmark
                 transform: [
@@ -194,7 +194,7 @@ RoniaControl {
                         angle: 90
                     },
                     Translate {
-                        y: index * -((control.height-control.width/16.5)/
+                        y: index * -((control.height-outerRadius/16.5)/
                                      ((rangeControl.majorTickCount - 1) * rangeControl.minorTickCount + rangeControl.majorTickCount-1))
                     }
                 ]
@@ -213,11 +213,11 @@ RoniaControl {
 
             delegate: Loader {
                 id: labelLoader
-                x: -(control.width/10) * 3
-                y: control.height/2 - control.width/13
+                x: -(outerRadius/10) * 3
+                y: control.height/2 - outerRadius/13
 
                 sourceComponent: Text{
-                    font.pixelSize: Math.max(6, 0.05 * control.width)
+                    font.pixelSize: Math.max(6, 0.05 * control.outerRadius)
                     text: Math.round((rangeControl.maximumValue
                                       - rangeControl.minimumValue)
                                       / (rangeControl.majorTickCount - 1)
@@ -230,7 +230,7 @@ RoniaControl {
 
                 transform: [
                     Translate {
-                       y: index * -((control.height-control.width/16.5)/(control.rangeControl.majorTickCount-1))
+                       y: index * -((control.height-outerRadius/16.5)/(control.rangeControl.majorTickCount-1))
                     }
                 ]
             }
