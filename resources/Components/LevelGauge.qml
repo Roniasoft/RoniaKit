@@ -161,7 +161,7 @@ RoniaControl {
             anchors.fill: parent
             delegate: Loader {
                 id: tickmarkLoader
-                x: -20
+                x: -control.width/10
                 y: control.height/2 - 8
                 sourceComponent: control.tickmark
                 transform: [
@@ -185,7 +185,7 @@ RoniaControl {
             anchors.fill: parent
             delegate: Loader {
                 id: minorTickmarkLoader
-                x: -20
+                x: -(control.width/10)
                 y: control.height/2 - 8
                 visible: !(index%(control.rangeControl.minorTickCount+1)===0)
                 sourceComponent: control.minorTickmark
@@ -213,7 +213,7 @@ RoniaControl {
 
             delegate: Loader {
                 id: labelLoader
-                x: -60
+                x: -(control.width/10) * 3
                 y: control.height/2 - 15
 
                 sourceComponent: Text{
