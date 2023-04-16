@@ -34,19 +34,18 @@ RoniaControl {
 
     readonly property real outerRadius: Math.min(control.width,control.height)
 
+    property real tickmarkSpacing: outerRadius/10
+
+    property real labelSpacing: 3*outerRadius/10
+
     /* Object Properties
      * ****************************************************************************************/
 
     width: 250
-    height: width*3
+    height: 250
 
     value: slider.value
-    Rectangle{
-        anchors.fill:parent
-        color: "transparent"
-        border.color: "yellow"
-        border.width: 2
-    }
+
 
     /* Font Loader
      * ****************************************************************************************/
@@ -99,7 +98,8 @@ RoniaControl {
        Slider {
             id: slider
             stepSize: 1
-            anchors.centerIn: parent
+            anchors.left: parent.horizontalCenter
+            anchors.leftMargin: tickmarkSpacing
             snapMode: Slider.SnapOnRelease
             height: background.sliderHeight
             from: background.startval
@@ -168,7 +168,7 @@ RoniaControl {
             anchors.fill: parent
             delegate: Loader {
                 id: tickmarkLoader
-                x: -outerRadius/10
+                x: 0
                 y: control.height/2 - outerRadius/25
                 sourceComponent: control.tickmark
                 transform: [
@@ -192,7 +192,7 @@ RoniaControl {
             anchors.fill: parent
             delegate: Loader {
                 id: minorTickmarkLoader
-                x: -(outerRadius/10)
+                x: 0
                 y: control.height/2 - outerRadius/25
                 visible: !(index%(control.rangeControl.minorTickCount+1)===0)
                 sourceComponent: control.minorTickmark
@@ -220,7 +220,7 @@ RoniaControl {
 
             delegate: Loader {
                 id: labelLoader
-                x: -(outerRadius/10) * 3
+                x: (labelSpacing - tickmarkSpacing)*-1
                 y: control.height/2 - outerRadius/13
 
                 sourceComponent: Text{
