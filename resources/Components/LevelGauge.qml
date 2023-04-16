@@ -38,8 +38,22 @@ RoniaControl {
      * ****************************************************************************************/
 
     width: 250
-    height: 250
+    height: width*3
+
+    onHeightChanged: {
+        width = height/3
+    }
+    onWidthChanged: {
+        height = width*3
+    }
+
     value: slider.value
+    Rectangle{
+        anchors.fill:parent
+        color: "transparent"
+        border.color: "yellow"
+        border.width: 2
+    }
 
     /* Font Loader
      * ****************************************************************************************/

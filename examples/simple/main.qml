@@ -92,8 +92,8 @@ Window {
         LevelGauge{
             id: levelgauge
             value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
-            width: 600
-            height: 800
+            width: 100
+            height: 200
         }
 
 //        ModernGauge2 {
