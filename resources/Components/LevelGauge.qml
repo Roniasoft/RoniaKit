@@ -32,11 +32,11 @@ RoniaControl {
 
     property RangeControl rangeControl: RangeControl {}
 
-    readonly property real outerRadius: Math.min(control.width,control.height)
+    readonly property real outerRadius: Math.min(3*control.width,control.height)
 
-    property real tickmarkSpacing: outerRadius/10
+    property real tickmarkSpacing: outerRadius/20
 
-    property real labelSpacing: 3*outerRadius/10
+    property real labelSpacing: 3*outerRadius/14
 
     /* Object Properties
      * ****************************************************************************************/
@@ -176,7 +176,7 @@ RoniaControl {
                         angle: 90
                     },
                     Translate {
-                        y: index * -((control.height-outerRadius/16.5)/(control.rangeControl.majorTickCount-1))
+                        y: index * -((control.height-outerRadius/15)/(control.rangeControl.majorTickCount-1))
                     }
                 ]
             }
@@ -201,7 +201,7 @@ RoniaControl {
                         angle: 90
                     },
                     Translate {
-                        y: index * -((control.height-outerRadius/16.5)/
+                        y: index * -((control.height-outerRadius/15)/
                                      ((rangeControl.majorTickCount - 1) * rangeControl.minorTickCount + rangeControl.majorTickCount-1))
                     }
                 ]
@@ -221,10 +221,10 @@ RoniaControl {
             delegate: Loader {
                 id: labelLoader
                 x: (labelSpacing - tickmarkSpacing)*-1
-                y: control.height/2 - outerRadius/13
+                y: control.height/2 - outerRadius/15
 
                 sourceComponent: Text{
-                    font.pixelSize: Math.max(6, 0.05 * control.outerRadius)
+                    font.pixelSize: Math.max(6, 0.04 * control.outerRadius)
                     text: Math.round((rangeControl.maximumValue
                                       - rangeControl.minimumValue)
                                       / (rangeControl.majorTickCount - 1)
@@ -237,7 +237,7 @@ RoniaControl {
 
                 transform: [
                     Translate {
-                       y: index * -((control.height-outerRadius/16.5)/(control.rangeControl.majorTickCount-1))
+                       y: index * -((control.height-outerRadius/15)/(control.rangeControl.majorTickCount-1))
                     }
                 ]
             }
