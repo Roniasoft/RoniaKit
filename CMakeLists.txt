@@ -72,6 +72,9 @@ qt_add_qml_module(RoniaKit
         resources/Components/AnalogGauge.qml
         resources/Components/ModernGauge2.qml
         resources/Components/LevelGauge.qml
+        resources/Components/Style/RoniaControlStyle.qml
+        resources/Components/Style/LevelGaugeStyle.qml
+        resources/Components/Style/CircularGaugeStyle.qml
 
 
     SOURCES
