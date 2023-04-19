@@ -20,37 +20,32 @@
 import QtQuick
 import QtQuick.Controls
 import RoniaKit
+
 /*! ***********************************************************************************************
- * Analog Circular Gauge
+ * Circular Gauge
  * ************************************************************************************************/
-CircularGauge {
+RoniaControl {
     id: control
 
-    property CircularRangeControl circularRangeControl: CircularRangeControl {}
+    /* Property Declarations
+     * ****************************************************************************************/
+    property          CircularRangeControl circularRangeControl: CircularRangeControl {}
 
-    readonly property real outerRadius: Math.min(control.width, control.height) * 0.5
+    readonly property real                 outerRadius:          Math.min(control.width, control.height) * 0.5
 
-    property string theme;
-
-
-    rangeControl: circularRangeControl
-
+    property          string               theme;
 
     /* Object Properties
      * ****************************************************************************************/
-
+    rangeControl: circularRangeControl
     width: 250
     height: 250
 
-    /* Children
-     * ****************************************************************************************/
-
-
-    AnalogGaugeStyle {
-        anchors.fill: parent
+    style: CircularGaugeStyle {
         rangeControl: control.rangeControl
         outerRadius: control.outerRadius
         theme: control.theme
         value: control.value
     }
+
 }

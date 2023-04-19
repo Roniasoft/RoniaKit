@@ -23,6 +23,7 @@ import QtQuick.Controls
 import QtQuick.Controls.Material
 
 Window {
+
     id: window
     width: 1680
     height: 960
@@ -40,6 +41,7 @@ Window {
         anchors.top: parent.top
         anchors.right: middleLine.left
         anchors.left: parent.left
+
         Rectangle {
             id: textRec1
             width: 100
@@ -86,7 +88,7 @@ Window {
                 }
             }
 
-            BasicCircularGauge {
+            CircularBasicGauge {
                 width: 200
                 height:200
                 value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
@@ -102,7 +104,7 @@ Window {
                 }
             }
 
-            CircularGaugeModern {
+            CircularModernGauge1 {
                 width: 200
                 height:200
                 value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
@@ -118,7 +120,7 @@ Window {
                 }
             }
 
-            CircularGaugeSpeed {
+            CircularSpeedGauge {
                 width: 200
                 height:200
                 value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
@@ -134,7 +136,7 @@ Window {
                 }
             }
 
-            AnalogGauge {
+            CircularAnalogGauge {
                 width: 200
                 height: 200
                 value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
@@ -144,7 +146,7 @@ Window {
                 }
             }
 
-            ModernGauge2 {
+            CircularModernGauge2 {
                 width: 200
                 height: 200
                 value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
@@ -222,7 +224,7 @@ Window {
                 }
             }
 
-            BasicCircularGauge {
+            CircularBasicGauge {
                 width: 200
                 height:200
                 value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
@@ -238,7 +240,7 @@ Window {
                 }
             }
 
-            CircularGaugeModern {
+            CircularModernGauge1 {
                 width: 200
                 height:200
                 value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
@@ -254,7 +256,7 @@ Window {
                 }
             }
 
-            CircularGaugeSpeed {
+            CircularSpeedGauge {
                 width: 200
                 height:200
                 value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
@@ -270,7 +272,7 @@ Window {
                 }
             }
 
-            AnalogGauge {
+            CircularAnalogGauge {
                 width: 200
                 height: 200
                 value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
@@ -279,7 +281,7 @@ Window {
                     labelInset: sliderForlabelInset.value
                 }
             }
-            ModernGauge2 {
+            CircularModernGauge2 {
                 width: 200
                 height: 200
                 value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)

@@ -5,7 +5,6 @@ import RoniaKit
 /*! ***********************************************************************************************
  * Level Gauge Style
  * ************************************************************************************************/
-
 RoniaControlStyle {
     id: control
 
@@ -20,7 +19,6 @@ RoniaControlStyle {
     /* Font Loader
      * ****************************************************************************************/
     FontLoader {id: webFont; source: "qrc:/RoniaKit/resources/Fonts/FontsFree-Net-DS-DIGI-1.ttf" }
-
 
     Component.onCompleted: {
         backgroundMap["Light"] = "#dce2e2"

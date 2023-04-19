@@ -24,7 +24,7 @@ Item {
 
     property  var            needleKnobMap:            ({})
 
-    property string          theme;
+    property  string          theme;
 
     required property double value
 
@@ -37,7 +37,6 @@ Item {
 
     /* Children
      * ****************************************************************************************/
-
     property Component background: Rectangle {
         implicitHeight: root.height
         implicitWidth: root.width

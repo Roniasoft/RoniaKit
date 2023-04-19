@@ -21,45 +21,35 @@ import QtQuick
 import RoniaKit
 
 /*! ***********************************************************************************************
- * This is the abstract type of all gauges definitions
- *
+ * Modern Circular Gauge
  * ************************************************************************************************/
-Item {
-    id: root
+CircularGauge {
 
-    /* Property Declarations
-     * ****************************************************************************************/
+    id: control
 
-    //! Name
-    property string name: "Name"
+    property CircularRangeControl circularRangeControl: CircularRangeControl {}
 
-    //! Value
-    property double value: 100.0
+    readonly property real outerRadius: Math.min(control.width, control.height) * 0.5
 
-    //! Range Control
-    property RangeControl rangeControl: RangeControl{}
+    property string theme;
 
-    //! Style
-    property Component style: null
+
+    rangeControl: circularRangeControl
 
 
     /* Object Properties
      * ****************************************************************************************/
-
+    width: 250
+    height: 250
 
     /* Children
      * ****************************************************************************************/
-    Loader {
+    style: CircularModernGauge1Style {
         anchors.fill: parent
-        sourceComponent: style
+        rangeControl: control.rangeControl
+        outerRadius: control.outerRadius
+        name: control.name
+        theme: control.theme
+        value: control.value
     }
-
-    //! Background Loader
-
-
-
-    /* Functions
-     * ****************************************************************************************/
-
-
 }

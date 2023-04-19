@@ -18,41 +18,45 @@
  */
 
 import QtQuick
+import QtQuick.Controls
+import QtQuick.Shapes
 import RoniaKit
 
 /*! ***********************************************************************************************
- * Speed Circular Gauge
+ * Level Gauge
  * ************************************************************************************************/
-CircularGauge {
+RoniaControl {
     id: control
+    /* Property Declarations
+     * ****************************************************************************************/
 
-    property CircularRangeControl circularRangeControl: CircularRangeControl {}
+    property          RangeControl rangeControl: RangeControl {}
 
-    readonly property real outerRadius: Math.min(control.width, control.height) * 0.5
+    readonly property real         outerRadius:  Math.min(3*control.width,control.height)
 
-    property string theme;
-
-
-    rangeControl: circularRangeControl
+    property          string       theme;
 
 
     /* Object Properties
      * ****************************************************************************************/
-
     width: 250
     height: 250
 
-        /* Children
-         * ****************************************************************************************/
+    Component.onCompleted: {
+        rangeControl.minorTickCount = 1
+        rangeControl.majorTickCount = 10
+    }
 
-
-    CircularGaugeSpeedStyle {
+    /* Children
+     * ****************************************************************************************/
+    style: LevelGaugeStyle {
+        id: levelGauge
         anchors.fill: parent
         rangeControl: control.rangeControl
         outerRadius: control.outerRadius
-        name: control.name
         theme: control.theme
         value: control.value
     }
+
 
 }

@@ -3,19 +3,30 @@ import QtQuick.Controls
 import RoniaKit
 
 /*! ***********************************************************************************************
- * Circular Gauge Modern Style
+ * Circular Modern Gauge 2 Style
  * ************************************************************************************************/
 CircularGaugeStyle {
     id: control
 
+    /* Property Declarations
+     * ****************************************************************************************/
     property string name;
 
+    /* Object Properties
+     * ****************************************************************************************/
+    needleKnob: null
+    digitalValueVisibility: false
+
+    /* Font Loader
+     * ****************************************************************************************/
     FontLoader {id: webFont; source: "qrc:/RoniaKit/resources/Fonts/FontsFree-Net-DS-DIGI-1.ttf" }
 
     Component.onCompleted: {
         theme = "Dark"
     }
 
+    /* Children
+     * ****************************************************************************************/
     background: Rectangle {
         implicitHeight: control.outerRadius * 2
         implicitWidth: control.outerRadius * 2
@@ -66,6 +77,7 @@ CircularGaugeStyle {
             }
         }
     }
+
     needle: Item {
         implicitWidth: 0.15 * outerRadius
         implicitHeight: 0.8 * outerRadius
@@ -97,8 +109,8 @@ CircularGaugeStyle {
         }
     }
 
-    needleKnob: null
-    digitalValueVisibility: false
+    /* functions
+     * ****************************************************************************************/
     function valueToAngle (value1){
         return value1 * Math.abs(control.rangeControl.endAngle - control.rangeControl.startAngle) /
                Math.abs(control.rangeControl.maximumValue-control.rangeControl.minimumValue)

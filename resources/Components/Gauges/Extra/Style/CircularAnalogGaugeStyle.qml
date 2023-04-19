@@ -3,21 +3,23 @@ import QtQuick.Controls
 import RoniaKit
 
 /*! ***********************************************************************************************
- * Analog Gauge Style
+ * Circular Analog Gauge Style
  * ************************************************************************************************/
 CircularGaugeStyle {
     id: control
 
+    /* Property Declarations
+     * ****************************************************************************************/
     property string name;
 
+    /* Font Loader
+     * ****************************************************************************************/
     FontLoader {id: webFont; source: "qrc:/RoniaKit/resources/Fonts/FontsFree-Net-DS-DIGI-1.ttf" }
 
     /* Object Properties
      * ****************************************************************************************/
     needleKnob: null
     needle: null
-
-
 
     /* Children
      * ****************************************************************************************/

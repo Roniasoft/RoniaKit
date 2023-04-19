@@ -21,36 +21,34 @@ import QtQuick
 import RoniaKit
 
 /*! ***********************************************************************************************
- * Modern Circular Gauge
+ * Circular Speed Gauge
  * ************************************************************************************************/
 CircularGauge {
     id: control
 
-    property CircularRangeControl circularRangeControl: CircularRangeControl {}
+    /* Property Declarations
+     * ****************************************************************************************/
+    property          CircularRangeControl circularRangeControl: CircularRangeControl {}
 
-    readonly property real outerRadius: Math.min(control.width, control.height) * 0.5
+    readonly property real                 outerRadius:          Math.min(control.width, control.height) * 0.5
 
-    property string theme;
-
-
-    rangeControl: circularRangeControl
-
+    property          string               theme;
 
     /* Object Properties
      * ****************************************************************************************/
-
+    rangeControl: circularRangeControl
     width: 250
     height: 250
 
     /* Children
      * ****************************************************************************************/
-
-
-    ModernGauge2Style {
+    style: CircularSpeedGaugeStyle {
         anchors.fill: parent
         rangeControl: control.rangeControl
         outerRadius: control.outerRadius
+        name: control.name
         theme: control.theme
         value: control.value
     }
+
 }
