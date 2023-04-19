@@ -44,8 +44,8 @@ RoniaControl {
     width: 250
     height: 250
 
-    CircularGaugeStyle {
-        anchors.fill: parent
+    style: CircularGaugeStyle {
+//        anchors.fill: parent
         rangeControl: control.rangeControl
         outerRadius: control.outerRadius
         theme: control.theme

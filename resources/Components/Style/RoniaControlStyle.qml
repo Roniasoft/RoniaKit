@@ -5,7 +5,6 @@ import RoniaKit
 /*! ***********************************************************************************************
  * Ronia Control Style
  * ************************************************************************************************/
-
 Item {
     id: root
 
@@ -21,15 +20,15 @@ Item {
 
     property  var            labelMap:                 ({})
 
-    property  var            needleMap:                   ({})
+    property  var            needleMap:                ({})
 
-    property  var            needleKnobMap:               ({})
+    property  var            needleKnobMap:            ({})
 
-    property string theme;
+    property string          theme;
 
     required property double value
 
-    property real outerRadius
+    property real            outerRadius
 
     /* Font Loader
      * ****************************************************************************************/

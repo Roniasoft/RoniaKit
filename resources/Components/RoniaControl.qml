@@ -40,7 +40,7 @@ Item {
     property RangeControl rangeControl: RangeControl{}
 
     //! Style
-    property RoniaControlStyle style1: null
+    property Component style: null
 
 
     /* Object Properties
@@ -49,6 +49,10 @@ Item {
 
     /* Children
      * ****************************************************************************************/
+    Loader {
+        anchors.fill: parent
+        sourceComponent: style
+    }
 
     //! Background Loader
 

@@ -205,7 +205,7 @@ RoniaControlStyle {
                                       - rangeControl.minimumValue)
                                       / (rangeControl.majorTickCount - 1)
                                       * index + rangeControl.minimumValue)
-                    color: labelMap[theme]
+                    color: labelMap[theme] ?? "white"
                     antialiasing: true
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
