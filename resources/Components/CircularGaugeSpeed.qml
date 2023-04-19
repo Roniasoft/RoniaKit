@@ -18,6 +18,7 @@
  */
 
 import QtQuick
+import RoniaKit
 
 /*! ***********************************************************************************************
  * Speed Circular Gauge
@@ -25,53 +26,33 @@ import QtQuick
 CircularGauge {
     id: control
 
-    FontLoader {id: webFont; source: "qrc:/RoniaKit/resources/Fonts/FontsFree-Net-DS-DIGI-1.ttf" }
+    property CircularRangeControl circularRangeControl: CircularRangeControl {}
 
-    /* Children
+    readonly property real outerRadius: Math.min(control.width, control.height) * 0.5
+
+    property string theme;
+
+
+    rangeControl: circularRangeControl
+
+
+    /* Object Properties
      * ****************************************************************************************/
-    background: Rectangle {
-        implicitHeight: control.outerRadius * 2
-        implicitWidth: control.outerRadius * 2
-        color: "transparent"
-        anchors.centerIn: parent
-        radius: width / 2
 
-        Image {
-            anchors.fill: parent
-            source: "qrc:/RoniaKit/resources/Images/gauge/Speed/backOn.png"
-            asynchronous: true
-            sourceSize {
-                width: width
-            }
-        }
+    width: 250
+    height: 250
+
+        /* Children
+         * ****************************************************************************************/
+
+
+    CircularGaugeSpeedStyle {
+        anchors.fill: parent
+        rangeControl: control.rangeControl
+        outerRadius: control.outerRadius
+        name: control.name
+        theme: control.theme
+        value: control.value
     }
 
-    //! Gauge Name
-    Text{
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: parent.top
-        anchors.topMargin: parent.height/2 - 4*Math.min(parent.height,parent.width)/16
-        text: control.name
-        font.family: webFont.name
-        font.pixelSize: outerRadius * 0.15
-        color: "white"
-    }
-
-    //! Needle
-    needle: Item {
-        implicitWidth: 0.15 * outerRadius
-        implicitHeight: 0.8 * outerRadius
-
-        Image {
-            anchors.fill: parent
-            source: "qrc:/RoniaKit/resources/Images/gauge/Speed/needle-on.png"
-        }
-    }
-
-    //!Custome gauges don't need tickmarks
-    Component.onCompleted:{
-        rangeControl.minorTickVisible = false
-        rangeControl.majorTickVisible = false
-        rangeControl.labelVisible = false
-    }
 }

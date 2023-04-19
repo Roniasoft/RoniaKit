@@ -2,17 +2,27 @@ import QtQuick 2.15
 import QtQuick.Controls
 import RoniaKit
 
+/*! ***********************************************************************************************
+ * Level Gauge Style
+ * ************************************************************************************************/
 
 RoniaControlStyle {
     id: control
+
+    /* Property Declarations
+     * ****************************************************************************************/
     required property RangeControl rangeControl;
 
+    property          real         tickmarkSpacing: outerRadius/20
 
-    property real tickmarkSpacing: outerRadius/20
-    property real labelSpacing: 3*outerRadius/14
+    property          real         labelSpacing:    3*outerRadius/14
+
+    /* Font Loader
+     * ****************************************************************************************/
+    FontLoader {id: webFont; source: "qrc:/RoniaKit/resources/Fonts/FontsFree-Net-DS-DIGI-1.ttf" }
+
 
     Component.onCompleted: {
-
         backgroundMap["Light"] = "#dce2e2"
         backgroundMap["Dark"] = "white"
         labelMap["Light"] = "black"
@@ -25,11 +35,10 @@ RoniaControlStyle {
         majorTickmarkMapChanged();
         minorTickmarkMapChanged();
         labelMapChanged();
-
     }
 
-    //#eeeff1
-
+    /* Children
+     * ****************************************************************************************/
     tickmark: Rectangle {
             implicitWidth: outerRadius * 0.01
             antialiasing: true

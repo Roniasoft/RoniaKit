@@ -33,188 +33,343 @@ Window {
     Material.theme: Material.Dark
     Material.accent: Material.Purple
 
-    Grid{
-        id: gaugeGrid
-        columns: 4
+    Item {
+        id: leftHalf
+        width: parent.width / 2 - 2
+        height: parent.height * 0.8
+        anchors.top: parent.top
+        anchors.right: middleLine.left
+        anchors.left: parent.left
+        Rectangle {
+            id: textRec1
+            width: 100
+            height: 100
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: parent.top
+            color: "transparent"
+            border.color: "white"
+            border.width: 2
+            Text {
+                anchors.centerIn: parent
+                text: "Light"
+                font.pixelSize: 15
+                color: "white"
+            }
+        }
+        Grid {
+            id: lightGauge
+            anchors.top: textRec1.bottom
+            columns: 3
+            spacing: 2
+            anchors.horizontalCenter: parent.horizontalCenter
+            LevelGauge{
+                id: levelgauge
+                value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
+                width: 100
+                height: 200
+                theme: "Light"
+            }
+
+            CircularGauge {
+                width: 200
+                height:200
+                value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
+                theme: "Light"
+                rangeControl: CircularRangeControl{
+                    majorTickCount: sliderForMajorTickCount.value
+                    minorTickCount: sliderForMinorTickCount.value
+                    tickmarkInset: sliderForMajorInset.value
+                    minorTickmarkInset: sliderForMinorInset.value
+                    labelInset: sliderForlabelInset.value
+                    startAngle: sliderForStartAngle.value
+                    endAngle: sliderForEndAngle.value
+                }
+            }
+
+            BasicCircularGauge {
+                width: 200
+                height:200
+                value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
+                theme: "Light"
+                rangeControl: CircularRangeControl{
+                    majorTickCount: sliderForMajorTickCount.value
+                    minorTickCount: sliderForMinorTickCount.value
+                    tickmarkInset: sliderForMajorInset.value
+                    minorTickmarkInset: sliderForMinorInset.value
+                    labelInset: sliderForlabelInset.value
+                    startAngle: sliderForStartAngle.value
+                    endAngle: sliderForEndAngle.value
+                }
+            }
+
+            CircularGaugeModern {
+                width: 200
+                height:200
+                value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
+                theme: "Light"
+                rangeControl: CircularRangeControl{
+                    majorTickCount: sliderForMajorTickCount.value
+                    minorTickCount: sliderForMinorTickCount.value
+                    tickmarkInset: sliderForMajorInset.value
+                    minorTickmarkInset: sliderForMinorInset.value
+                    labelInset: sliderForlabelInset.value
+                    startAngle: sliderForStartAngle.value
+                    endAngle: sliderForEndAngle.value
+                }
+            }
+
+            CircularGaugeSpeed {
+                width: 200
+                height:200
+                value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
+                theme: "Light"
+                rangeControl: CircularRangeControl{
+                    majorTickCount: sliderForMajorTickCount.value
+                    minorTickCount: sliderForMinorTickCount.value
+                    tickmarkInset: sliderForMajorInset.value
+                    minorTickmarkInset: sliderForMinorInset.value
+                    labelInset: sliderForlabelInset.value
+                    startAngle: sliderForStartAngle.value
+                    endAngle: sliderForEndAngle.value
+                }
+            }
+
+            AnalogGauge {
+                width: 200
+                height: 200
+                value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
+                theme: "Light"
+                rangeControl: CircularRangeControl{
+                    labelInset: sliderForlabelInset.value
+                }
+            }
+
+            ModernGauge2 {
+                width: 200
+                height: 200
+                value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
+                theme: "Light"
+                rangeControl: CircularRangeControl{
+                    majorTickCount: sliderForMajorTickCount.value
+                    minorTickCount: sliderForMinorTickCount.value
+                    tickmarkInset: sliderForMajorInset.value
+                    minorTickmarkInset: sliderForMinorInset.value
+                    labelInset: sliderForlabelInset.value
+                }
+            }
+
+        }
+    }
+
+
+    Rectangle {
+        id: middleLine
+        width: 4
+        height: parent.height * 0.8
+        anchors.right: rightHalf.left
+        anchors.top: parent.top
+
+        color: "white"
+    }
+
+    Item {
+        id: rightHalf
+        width: parent.width / 2 - 2
+        height: parent.height * 0.8
+        anchors.top: parent.top
+        anchors.right: parent.right
+        Rectangle  {
+            id: textRec2
+            width: 100
+            height: 100
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: parent.top
+            color: "transparent"
+            border.color: "white"
+            border.width: 2
+            Text {
+                anchors.centerIn: parent
+                text: "Dark"
+                font.pixelSize: 15
+                color: "white"
+            }
+        }
+        Grid {
+            id: darkGauge
+            anchors.top: textRec2.bottom
+            columns: 3
+            spacing: 2
+            anchors.horizontalCenter: parent.horizontalCenter
+            LevelGauge{
+                value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
+                width: 100
+                height: 200
+                theme: "Dark"
+            }
+            CircularGauge {
+                width: 200
+                height:200
+                value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
+                theme: "Dark"
+                rangeControl: CircularRangeControl{
+                    majorTickCount: sliderForMajorTickCount.value
+                    minorTickCount: sliderForMinorTickCount.value
+                    tickmarkInset: sliderForMajorInset.value
+                    minorTickmarkInset: sliderForMinorInset.value
+                    labelInset: sliderForlabelInset.value
+                    startAngle: sliderForStartAngle.value
+                    endAngle: sliderForEndAngle.value
+                }
+            }
+
+            BasicCircularGauge {
+                width: 200
+                height:200
+                value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
+                theme: "Dark"
+                rangeControl: CircularRangeControl{
+                    majorTickCount: sliderForMajorTickCount.value
+                    minorTickCount: sliderForMinorTickCount.value
+                    tickmarkInset: sliderForMajorInset.value
+                    minorTickmarkInset: sliderForMinorInset.value
+                    labelInset: sliderForlabelInset.value
+                    startAngle: sliderForStartAngle.value
+                    endAngle: sliderForEndAngle.value
+                }
+            }
+
+            CircularGaugeModern {
+                width: 200
+                height:200
+                value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
+                theme: "Dark"
+                rangeControl: CircularRangeControl{
+                    majorTickCount: sliderForMajorTickCount.value
+                    minorTickCount: sliderForMinorTickCount.value
+                    tickmarkInset: sliderForMajorInset.value
+                    minorTickmarkInset: sliderForMinorInset.value
+                    labelInset: sliderForlabelInset.value
+                    startAngle: sliderForStartAngle.value
+                    endAngle: sliderForEndAngle.value
+                }
+            }
+
+            CircularGaugeSpeed {
+                width: 200
+                height:200
+                value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
+                theme: "Dark"
+                rangeControl: CircularRangeControl{
+                    majorTickCount: sliderForMajorTickCount.value
+                    minorTickCount: sliderForMinorTickCount.value
+                    tickmarkInset: sliderForMajorInset.value
+                    minorTickmarkInset: sliderForMinorInset.value
+                    labelInset: sliderForlabelInset.value
+                    startAngle: sliderForStartAngle.value
+                    endAngle: sliderForEndAngle.value
+                }
+            }
+
+            AnalogGauge {
+                width: 200
+                height: 200
+                value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
+                theme: "Dark"
+                rangeControl: CircularRangeControl{
+                    labelInset: sliderForlabelInset.value
+                }
+            }
+            ModernGauge2 {
+                width: 200
+                height: 200
+                value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
+                theme: "Dark"
+                rangeControl: CircularRangeControl{
+                    majorTickCount: sliderForMajorTickCount.value
+                    minorTickCount: sliderForMinorTickCount.value
+                    tickmarkInset: sliderForMajorInset.value
+                    minorTickmarkInset: sliderForMinorInset.value
+                    labelInset: sliderForlabelInset.value
+                }
+            }
+
+        }
+    }
+
+
+    Grid {
+        id: slideGrid
+
+        columns: 3
         spacing: 2
 
-//        CircularGaugeSpeed {
-//            id: gauge
-//            width: 200
-//            height: 300
-//            value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
-//            rangeControl: CircularRangeControl{
-//                labelInset: sliderForlabelInset.value + 35
-//                majorTickCount: 7
-//            }
-//        }
-
-//        AnalogGauge {
-//            id: gauge1
-//            width: 200
-//            height: 300
-//            value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
-//            rangeControl: CircularRangeControl{
-//                labelInset: sliderForlabelInset.value
-//            }
-//        }
-
-
-
-//        CircularGauge {
-//            id:simpleGauge
-//            width: 400
-//            height: 500
-//            value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
-//            rangeControl: CircularRangeControl{
-//                majorTickCount: sliderForMajorTickCount.value
-//                minorTickCount: sliderForMinorTickCount.value
-//                tickmarkInset: sliderForMajorInset.value
-//                minorTickmarkInset: sliderForMinorInset.value
-//                labelInset: sliderForlabelInset.value
-//                startAngle: sliderForStartAngle.value
-//                endAngle: sliderForEndAngle.value
-//            }
-//        }
-        LevelGauge{
-            id: levelgauge
-            value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
-            width: 200
-            height: 600
-            theme: "Light"
-        }
-
-        LevelGauge{
-            id: levelgauge2
-            value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
-            width: 200
-            height: 600
-            theme: "Dark"
-        }
-
-        CircularGauge {
-            width: 300
-            height:300
-            value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
-            theme: "Light"
-            rangeControl: CircularRangeControl{
-                majorTickCount: sliderForMajorTickCount.value
-                minorTickCount: sliderForMinorTickCount.value
-                tickmarkInset: sliderForMajorInset.value
-                minorTickmarkInset: sliderForMinorInset.value
-                labelInset: sliderForlabelInset.value
-                startAngle: sliderForStartAngle.value
-                endAngle: sliderForEndAngle.value
-            }
-        }
-        CircularGauge {
-            width: 300
-            height:300
-            value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
-            theme: "Dark"
-            rangeControl: CircularRangeControl{
-                majorTickCount: sliderForMajorTickCount.value
-                minorTickCount: sliderForMinorTickCount.value
-                tickmarkInset: sliderForMajorInset.value
-                minorTickmarkInset: sliderForMinorInset.value
-                labelInset: sliderForlabelInset.value
-                startAngle: sliderForStartAngle.value
-                endAngle: sliderForEndAngle.value
-            }
-        }
-
-//        ModernGauge2 {
-//            width: 400
-//            height: 500
-//            value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
-//            rangeControl: CircularRangeControl{
-//                majorTickCount: sliderForMajorTickCount.value
-//                minorTickCount: sliderForMinorTickCount.value
-//                tickmarkInset: sliderForMajorInset.value
-//                minorTickmarkInset: sliderForMinorInset.value
-//                labelInset: sliderForlabelInset.value
-//            }
-//        }
-    }
-
-    Slider {
-        id: sliderForValue
         anchors.bottom: parent.bottom
-        anchors.left: gaugeGrid.right
-        width: 300
-        from: 70
-        to: 150
-        Text{ text: "Value Count" }
-        value: 70
-    }
-    Slider {
-        id: sliderForMajorTickCount
-        anchors.bottom: sliderForValue.top
-        width: 300
-        anchors.left: gaugeGrid.right
-        from: 3
-        to: 10
-        Text{ text: "Major Tick Count" }
-        value: 6
-    }
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: middleLine.bottom
+        Slider {
+            id: sliderForValue
+            width: 300
+            from: 70
+            to: 150
+            Text{ text: "Value Count" }
+            value: 70
+        }
+        Slider {
+            id: sliderForMajorTickCount
+            width: 300
+            from: 3
+            to: 10
+            Text{ text: "Major Tick Count" }
+            value: 6
+        }
 
-    Slider {
-        id: sliderForMinorTickCount
-        anchors.bottom: sliderForMajorTickCount.top
-        width: 300
-        anchors.left: gaugeGrid.right
-        from: 0
-        to: 10
-        Text{ text: "Minor Tick Count" }
-        value: 3
+        Slider {
+            id: sliderForMinorTickCount
+            width: 300
+            from: 0
+            to: 10
+            Text{ text: "Minor Tick Count" }
+            value: 3
 
-    }
-    Slider {
-        id: sliderForMinorInset
-        anchors.bottom: sliderForMinorTickCount.top
-        width: 300
-        anchors.left: gaugeGrid.right
-        from: 20
-        to: 80
-        Text{ text: "Minor Inset" }
-    }
-    Slider {
-        id: sliderForMajorInset
-        anchors.bottom: sliderForMinorInset.top
-        width: 300
-        anchors.left: gaugeGrid.right
-        from: 20
-        to: 80
-        Text{ text: "Major Inset" }
-    }
-    Slider {
-        id: sliderForlabelInset
-        anchors.bottom: sliderForMajorInset.top
-        width: 300
-        anchors.left: gaugeGrid.right
-        from: 30
-        to: 80
-        Text{ text: "label Inset" }
-    }
-    Slider {
-        id: sliderForStartAngle
-        anchors.bottom: sliderForlabelInset.top
-        width: 300
-        anchors.left: gaugeGrid.right
-        from: -180
-        to: 0
-        Text{ text: "Start Angle" }
-        value: -135
-    }
-    Slider {
-        id: sliderForEndAngle
-        anchors.bottom: sliderForStartAngle.top
-        width: 300
-        anchors.left: gaugeGrid.right
-        from: 0
-        to: 180
-        Text{ text: "End Angle" }
-        value: 135
+        }
+        Slider {
+            id: sliderForMinorInset
+            width: 300
+            from: 20
+            to: 80
+            Text{ text: "Minor Inset" }
+        }
+        Slider {
+            id: sliderForMajorInset
+            width: 300
+            from: 20
+            to: 80
+            Text{ text: "Major Inset" }
+        }
+        Slider {
+            id: sliderForlabelInset
+            width: 300
+            from: 30
+            to: 80
+            Text{ text: "label Inset" }
+        }
+        Slider {
+            id: sliderForStartAngle
+            width: 300
+            from: -180
+            to: 0
+            Text{ text: "Start Angle" }
+            value: -135
+        }
+        Slider {
+            id: sliderForEndAngle
+            width: 300
+            from: 0
+            to: 180
+            Text{ text: "End Angle" }
+            value: 135
+        }
+
     }
 
     function boundControl(value,minimum,maximum){
@@ -225,5 +380,44 @@ Window {
         else
             return value
     }
+
+    //        CircularGaugeSpeed {
+    //            id: gauge
+    //            width: 200
+    //            height: 300
+    //            value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
+    //            rangeControl: CircularRangeControl{
+    //                labelInset: sliderForlabelInset.value + 35
+    //                majorTickCount: 7
+    //            }
+    //        }
+
+    //        AnalogGauge {
+    //            id: gauge1
+    //            width: 200
+    //            height: 300
+    //            value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
+    //            rangeControl: CircularRangeControl{
+    //                labelInset: sliderForlabelInset.value
+    //            }
+    //        }
+
+
+
+    //        CircularGauge {
+    //            id:simpleGauge
+    //            width: 400
+    //            height: 500
+    //            value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
+    //            rangeControl: CircularRangeControl{
+    //                majorTickCount: sliderForMajorTickCount.value
+    //                minorTickCount: sliderForMinorTickCount.value
+    //                tickmarkInset: sliderForMajorInset.value
+    //                minorTickmarkInset: sliderForMinorInset.value
+    //                labelInset: sliderForlabelInset.value
+    //                startAngle: sliderForStartAngle.value
+    //                endAngle: sliderForEndAngle.value
+    //            }
+    //        }
 
 }

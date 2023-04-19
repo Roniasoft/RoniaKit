@@ -44,20 +44,16 @@ RoniaControl {
     width: 250
     height: 250
 
-//    value: slider.value
-
-
-    /* Font Loader
-     * ****************************************************************************************/
-
-
-
     Component.onCompleted: {
         rangeControl.minorTickCount = 1
         rangeControl.majorTickCount = 10
     }
 
+    /* Children
+     * ****************************************************************************************/
+
     LevelGaugeStyle {
+        id: levelGauge
         anchors.fill: parent
         rangeControl: control.rangeControl
         outerRadius: control.outerRadius

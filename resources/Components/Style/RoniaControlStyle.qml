@@ -2,30 +2,43 @@ import QtQuick 2.15
 import QtQuick.Controls
 import RoniaKit
 
+/*! ***********************************************************************************************
+ * Ronia Control Style
+ * ************************************************************************************************/
+
 Item {
     id: root
 
+    /* Property Declarations
+     * ****************************************************************************************/
     property  var            backgroundMap:            ({})
 
-    property  var            foregroundMap:           ({})
+    property  var            foregroundMap:            ({})
 
-    property  var            majorTickmarkMap:          ({})
+    property  var            majorTickmarkMap:         ({})
 
-    property  var            minorTickmarkMap:          ({})
+    property  var            minorTickmarkMap:         ({})
 
-    property  var            labelMap:          ({})
+    property  var            labelMap:                 ({})
+
+    property  var            needleMap:                   ({})
+
+    property  var            needleKnobMap:               ({})
 
     property string theme;
-    required property double value
-//    Component.onCompleted: {
-//        backgroundMap["Light"] = "red"
-//        backgroundMap["Darkt"] = "white"
-////        console.log(backgroundMap[theme])
-//    }
 
+    required property double value
 
     property real outerRadius
-    //! Background
+
+    /* Font Loader
+     * ****************************************************************************************/
+    FontLoader {id: webFont; source: "qrc:/RoniaKit/resources/Fonts/FontsFree-Net-DS-DIGI-1.ttf" }
+
+
+    /* Children
+     * ****************************************************************************************/
+
     property Component background: Rectangle {
         implicitHeight: root.height
         implicitWidth: root.width

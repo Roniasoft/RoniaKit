@@ -75,6 +75,12 @@ qt_add_qml_module(RoniaKit
         resources/Components/Style/RoniaControlStyle.qml
         resources/Components/Style/LevelGaugeStyle.qml
         resources/Components/Style/CircularGaugeStyle.qml
+        resources/Components/BasicCircularGauge.qml
+        resources/Components/Style/BasicCircularGaugeStyle.qml
+        resources/Components/Style/CircularGaugeModernStyle.qml
+        resources/Components/Style/CircularGaugeSpeedStyle.qml
+        resources/Components/Style/AnalogGaugeStyle.qml
+        resources/Components/Style/ModernGauge2Style.qml
 
 
     SOURCES
@@ -97,6 +103,8 @@ qt_add_qml_module(RoniaKit
         resources/Images/gauge/AnalougeGauge/topScreen.svg
         resources/Images/gauge/Modern/blueLight.png
         resources/Images/gauge/Modern/blueNeedle.png
+        resources/Images/gauge/redNeedle2.png
+        resources/Images/gauge/redNeedle3.png
 
 
 )
