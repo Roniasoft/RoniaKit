@@ -86,11 +86,17 @@ Linux
 -----
 
 git clone git@github.com:Roniasoft/RoniaKit.git
+
 cd RoniaKit
+
 mkdir build
+
 cd build
+
 cmake ..
+
 make -j && make install
+
 make -j && make install
 
 Qt Creator
