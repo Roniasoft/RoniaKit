@@ -40,14 +40,14 @@ RoniaControlStyle {
     FontLoader {id: webFont; source: "qrc:/RoniaKit/resources/Fonts/FontsFree-Net-DS-DIGI-1.ttf" }
 
     Component.onCompleted: {
-        backgroundMap["Light"] = "#dce2e2"
-        backgroundMap["Dark"] = "white"
-        labelMap["Light"] = "black"
-        labelMap["Dark"] = "white"
-        majorTickmarkMap["Dark"] = "#dce2e2"
-        majorTickmarkMap["Light"] = "#cccccc"
-        minorTickmarkMap["Dark"] = "#dce2e2"
-        minorTickmarkMap["Light"] = "#cccccc"
+        backgroundMap[RoniaControl.Theme.Light] = "#dce2e2"
+        backgroundMap[RoniaControl.Theme.Dark] = "white"
+        labelMap[RoniaControl.Theme.Light] = "black"
+        labelMap[RoniaControl.Theme.Dark] = "white"
+        majorTickmarkMap[RoniaControl.Theme.Dark] = "#dce2e2"
+        majorTickmarkMap[RoniaControl.Theme.Light] = "#cccccc"
+        minorTickmarkMap[RoniaControl.Theme.Dark] = "#dce2e2"
+        minorTickmarkMap[RoniaControl.Theme.Light] = "#cccccc"
         backgroundMapChanged();
         majorTickmarkMapChanged();
         minorTickmarkMapChanged();

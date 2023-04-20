@@ -27,10 +27,6 @@ import RoniaKit
 CircularGaugeStyle {
     id: control
 
-    /* Property Declarations
-     * ****************************************************************************************/
-    property string name;
-
     /* Object Properties
      * ****************************************************************************************/
     needleKnob: null

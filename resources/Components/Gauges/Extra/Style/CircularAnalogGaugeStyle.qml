@@ -27,20 +27,22 @@ import RoniaKit
 CircularGaugeStyle {
     id: control
 
-    /* Property Declarations
-     * ****************************************************************************************/
-    property string name;
-
     /* Font Loader
      * ****************************************************************************************/
     FontLoader {id: webFont; source: "qrc:/RoniaKit/resources/Fonts/FontsFree-Net-DS-DIGI-1.ttf" }
+
+    Component.onCompleted: {
+        rangeControl.minorTickVisible = false
+        rangeControl.majorTickVisible = false
+        rangeControl.labelVisible = false
+        theme = RoniaControl.Theme.Dark
+    }
 
     /* Object Properties
      * ****************************************************************************************/
     needleKnob: null
     needle: null
     digitalValueVisibility: false
-    theme: RoniaControl.Theme.Dark
 
     /* Children
      * ****************************************************************************************/
@@ -140,13 +142,6 @@ CircularGaugeStyle {
             antialiasing: true
             Behavior on color {ColorAnimation {duration: 200}}
         }
-    }
-    Loader {
-        id: tickMarkLabel
-        width: outerRadius * 2
-        height: outerRadius * 2
-        anchors.centerIn: parent
-        sourceComponent: tickmarkLabel
     }
 
     /* Functions

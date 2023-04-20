@@ -35,7 +35,6 @@ CircularGaugeStyle {
      * ****************************************************************************************/
     theme: RoniaControl.Theme.Dark
 
-
     /* Font Loader
      * ****************************************************************************************/
     FontLoader {id: webFont; source: "qrc:/RoniaKit/resources/Fonts/FontsFree-Net-DS-DIGI-1.ttf" }

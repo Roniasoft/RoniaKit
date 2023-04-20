@@ -70,6 +70,10 @@ Window {
                 width: 100
                 height: 200
                 theme: RoniaControl.Theme.Light
+                rangeControl {
+                    minimumValue: sliderForMinVal.value
+                    maximumValue: sliderForMaxVal.value
+                }
             }
 
             CircularGauge {
@@ -85,6 +89,8 @@ Window {
                     labelInset: sliderForlabelInset.value
                     startAngle: sliderForStartAngle.value
                     endAngle: sliderForEndAngle.value
+                    minimumValue: sliderForMinVal.value
+                    maximumValue: sliderForMaxVal.value
                 }
             }
 
@@ -101,6 +107,8 @@ Window {
                     labelInset: sliderForlabelInset.value
                     startAngle: sliderForStartAngle.value
                     endAngle: sliderForEndAngle.value
+                    minimumValue: sliderForMinVal.value
+                    maximumValue: sliderForMaxVal.value
                 }
             }
 
@@ -117,6 +125,8 @@ Window {
                     labelInset: sliderForlabelInset.value
                     startAngle: sliderForStartAngle.value
                     endAngle: sliderForEndAngle.value
+                    minimumValue: sliderForMinVal.value
+                    maximumValue: sliderForMaxVal.value
                 }
             }
 
@@ -133,6 +143,8 @@ Window {
                     labelInset: sliderForlabelInset.value
                     startAngle: sliderForStartAngle.value
                     endAngle: sliderForEndAngle.value
+                    minimumValue: sliderForMinVal.value
+                    maximumValue: sliderForMaxVal.value
                 }
             }
 
@@ -143,6 +155,8 @@ Window {
                 theme: RoniaControl.Theme.Dark
                 rangeControl: CircularRangeControl{
                     labelInset: sliderForlabelInset.value
+                    minimumValue: sliderForMinVal.value
+                    maximumValue: sliderForMaxVal.value
                 }
             }
 
@@ -157,6 +171,8 @@ Window {
                     tickmarkInset: sliderForMajorInset.value
                     minorTickmarkInset: sliderForMinorInset.value
                     labelInset: sliderForlabelInset.value
+                    minimumValue: sliderForMinVal.value
+                    maximumValue: sliderForMaxVal.value
                 }
             }
 
@@ -207,6 +223,10 @@ Window {
                 width: 100
                 height: 200
                 theme: RoniaControl.Theme.Dark
+                rangeControl {
+                    minimumValue: sliderForMinVal.value
+                    maximumValue: sliderForMaxVal.value
+                }
             }
             CircularGauge {
                 width: 200
@@ -221,6 +241,8 @@ Window {
                     labelInset: sliderForlabelInset.value
                     startAngle: sliderForStartAngle.value
                     endAngle: sliderForEndAngle.value
+                    minimumValue: sliderForMinVal.value
+                    maximumValue: sliderForMaxVal.value
                 }
             }
 
@@ -237,6 +259,8 @@ Window {
                     labelInset: sliderForlabelInset.value
                     startAngle: sliderForStartAngle.value
                     endAngle: sliderForEndAngle.value
+                    minimumValue: sliderForMinVal.value
+                    maximumValue: sliderForMaxVal.value
                 }
             }
 
@@ -253,6 +277,8 @@ Window {
                     labelInset: sliderForlabelInset.value
                     startAngle: sliderForStartAngle.value
                     endAngle: sliderForEndAngle.value
+                    minimumValue: sliderForMinVal.value
+                    maximumValue: sliderForMaxVal.value
                 }
             }
 
@@ -269,6 +295,8 @@ Window {
                     labelInset: sliderForlabelInset.value
                     startAngle: sliderForStartAngle.value
                     endAngle: sliderForEndAngle.value
+                    minimumValue: sliderForMinVal.value
+                    maximumValue: sliderForMaxVal.value
                 }
             }
 
@@ -279,6 +307,8 @@ Window {
                 theme: RoniaControl.Theme.Dark
                 rangeControl: CircularRangeControl{
                     labelInset: sliderForlabelInset.value
+                    minimumValue: sliderForMinVal.value
+                    maximumValue: sliderForMaxVal.value
                 }
             }
             CircularModernGauge2 {
@@ -292,6 +322,8 @@ Window {
                     tickmarkInset: sliderForMajorInset.value
                     minorTickmarkInset: sliderForMinorInset.value
                     labelInset: sliderForlabelInset.value
+                    minimumValue: sliderForMinVal.value
+                    maximumValue: sliderForMaxVal.value
                 }
             }
 
@@ -311,8 +343,8 @@ Window {
         Slider {
             id: sliderForValue
             width: 300
-            from: 70
-            to: 150
+            from: 0
+            to: 300
             Text{ text: "Value Count" }
             value: 70
         }
@@ -370,6 +402,22 @@ Window {
             to: 180
             Text{ text: "End Angle" }
             value: 135
+        }
+        Slider {
+            id: sliderForMinVal
+            width: 300
+            from: 0
+            to: 180
+            Text{ text: "Min val" }
+            value: 70
+        }
+        Slider {
+            id: sliderForMaxVal
+            width: 300
+            from: 50
+            to: 200
+            Text{ text: "Max Val" }
+            value: 150
         }
 
     }

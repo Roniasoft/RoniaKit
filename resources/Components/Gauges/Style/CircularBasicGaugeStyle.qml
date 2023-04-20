@@ -56,18 +56,18 @@ RoniaControlStyle {
     FontLoader {id: webFont; source: "qrc:/RoniaKit/resources/Fonts/FontsFree-Net-DS-DIGI-1.ttf" }
 
     Component.onCompleted: {
-        backgroundMap["Light"] = "#ffffff"
-        backgroundMap["Dark"] = "#333333"
-        labelMap["Light"] = "black"
-        labelMap["Dark"] = "white"
-        majorTickmarkMap["Dark"] = "#e5e5e5"
-        majorTickmarkMap["Light"] = "#c8d0d0"
-        minorTickmarkMap["Dark"] = "#e5e5e5"
-        minorTickmarkMap["Light"] = "#c8d0d0"
-        needleMap["Dark"] =  "qrc:/RoniaKit/resources/Images/gauge/redNeedle2.png"
-        needleMap["Light"] = "qrc:/RoniaKit/resources/Images/gauge/redNeedle3.png"
-        needleKnobMap["Dark"] =  "#ff2c2c"
-        needleKnobMap["Light"] = "#ff6861"
+        backgroundMap[RoniaControl.Theme.Light] = "#ffffff"
+        backgroundMap[RoniaControl.Theme.Dark] = "#333333"
+        labelMap[RoniaControl.Theme.Light] = "black"
+        labelMap[RoniaControl.Theme.Dark] = "white"
+        majorTickmarkMap[RoniaControl.Theme.Dark] = "#e5e5e5"
+        majorTickmarkMap[RoniaControl.Theme.Light] = "#c8d0d0"
+        minorTickmarkMap[RoniaControl.Theme.Dark] = "#e5e5e5"
+        minorTickmarkMap[RoniaControl.Theme.Light] = "#c8d0d0"
+        needleMap[RoniaControl.Theme.Dark] =  "qrc:/RoniaKit/resources/Images/gauge/redNeedle2.png"
+        needleMap[RoniaControl.Theme.Light] = "qrc:/RoniaKit/resources/Images/gauge/redNeedle3.png"
+        needleKnobMap[RoniaControl.Theme.Dark] =  "#ff2c2c"
+        needleKnobMap[RoniaControl.Theme.Light] = "#ff6861"
         backgroundMapChanged();
         majorTickmarkMapChanged();
         minorTickmarkMapChanged();
@@ -237,7 +237,7 @@ RoniaControlStyle {
                                       - rangeControl.minimumValue)
                                       / (rangeControl.majorTickCount - 1)
                                       * index + rangeControl.minimumValue)
-                    color: labelMap[theme]
+                    color: labelMap[theme] ?? "white"
                     antialiasing: true
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter

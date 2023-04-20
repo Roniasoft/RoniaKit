@@ -29,10 +29,7 @@ CircularGauge {
 
     /* Property Declarations
      * ****************************************************************************************/
-    property CircularRangeControl circularRangeControl: CircularRangeControl {
-        minorTickVisible: false
-        majorTickVisible: false
-    }
+    property CircularRangeControl circularRangeControl: CircularRangeControl {}
 
 
     /* Object Properties

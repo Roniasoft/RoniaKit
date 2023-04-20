@@ -214,7 +214,7 @@ RoniaControlStyle {
                                       - rangeControl.minimumValue)
                                       / (rangeControl.majorTickCount - 1)
                                       * index + rangeControl.minimumValue)
-                    color: labelMap[theme]
+                    color: labelMap[theme] ?? "white"
                     antialiasing: true
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
@@ -239,7 +239,6 @@ RoniaControlStyle {
     Text{
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
-
         anchors.bottomMargin: parent.height/2 - 5*Math.min(parent.height,parent.width)/16
         text: parseFloat(control.value.toFixed(rangeControl.decimalPoint))
         font.family: webFont.name
