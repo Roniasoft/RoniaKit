@@ -42,7 +42,7 @@ CircularGauge {
      * ****************************************************************************************/
     style: CircularSpeedGaugeStyle {
         anchors.fill: parent
-        rangeControl: circularRangeControl
+        rangeControl: control.rangeControl
         outerRadius: control.outerRadius
         name: control.name
         theme: control.theme
