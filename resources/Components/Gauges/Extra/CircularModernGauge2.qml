@@ -1,6 +1,6 @@
 /*
  * Project: RoniaKit
- * Version: 0.0.1
+ * Version: 1.0.0
  * License: Apache 2.0
  *
  * Copyright (c) 2023 Ronia AB
