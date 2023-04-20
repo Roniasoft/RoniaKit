@@ -37,7 +37,7 @@ RoniaControlStyle {
 
     property real                 labelInsetRadius:        outerRadius - rangeControl.labelInset
 
-    property bool                  digitalValueVisibility: true
+    property bool                 digitalValueVisibility: true
 
     property real needleRotation: {
         var percentage = (control.value - rangeControl.minimumValue) /
@@ -115,6 +115,8 @@ RoniaControlStyle {
     }
 
     needleKnob : Item {
+        implicitWidth: 0.05 * outerRadius
+        implicitHeight: 0.05 * outerRadius
         Image {
             source: "qrc:/RoniaKit/resources/Images/gauge/knob.png"
             anchors.centerIn: parent
