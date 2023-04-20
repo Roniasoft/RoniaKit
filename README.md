@@ -85,13 +85,13 @@ Building
 Linux
 -----
 
-  git clone git@github.com:Roniasoft/RoniaKit.git
-  cd RoniaKit
-  mkdir build
-  cd build
-  cmake ..
-  make -j && make install
-  make -j && make install
+git clone git@github.com:Roniasoft/RoniaKit.git
+cd RoniaKit
+mkdir build
+cd build
+cmake ..
+make -j && make install
+make -j && make install
 
 Qt Creator
 ----------
@@ -129,9 +129,7 @@ Contribution
 Citing
 ======
 
-::
-
-    RONIA AB, RoniaKit, (2023), GitHub repository, https://github.com/Roniasoft/RoniaKit
+RONIA AB, RoniaKit, (2023), GitHub repository, https://github.com/Roniasoft/RoniaKit
 
 BibTeX::
 
