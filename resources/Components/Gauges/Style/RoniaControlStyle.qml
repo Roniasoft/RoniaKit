@@ -43,7 +43,7 @@ Item {
 
     property  var            needleKnobMap:            ({})
 
-    property  string          theme;
+    property  int            theme;
 
     required property double value
 

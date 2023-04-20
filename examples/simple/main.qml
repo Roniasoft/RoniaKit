@@ -64,19 +64,19 @@ Window {
             columns: 3
             spacing: 2
             anchors.horizontalCenter: parent.horizontalCenter
-            LevelGauge{
+            LevelGauge {
                 id: levelgauge
                 value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
                 width: 100
                 height: 200
-                theme: "Light"
+                theme: RoniaControl.Theme.Light
             }
 
             CircularGauge {
                 width: 200
                 height:200
                 value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
-                theme: "Light"
+                theme: RoniaControl.Theme.Light
                 rangeControl: CircularRangeControl{
                     majorTickCount: sliderForMajorTickCount.value
                     minorTickCount: sliderForMinorTickCount.value
@@ -92,7 +92,7 @@ Window {
                 width: 200
                 height:200
                 value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
-                theme: "Light"
+                theme: RoniaControl.Theme.Light
                 rangeControl: CircularRangeControl{
                     majorTickCount: sliderForMajorTickCount.value
                     minorTickCount: sliderForMinorTickCount.value
@@ -108,7 +108,7 @@ Window {
                 width: 200
                 height:200
                 value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
-                theme: "Light"
+                theme: RoniaControl.Theme.Dark
                 rangeControl: CircularRangeControl{
                     majorTickCount: sliderForMajorTickCount.value
                     minorTickCount: sliderForMinorTickCount.value
@@ -124,7 +124,7 @@ Window {
                 width: 200
                 height:200
                 value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
-                theme: "Light"
+                theme: RoniaControl.Theme.Dark
                 rangeControl: CircularRangeControl{
                     majorTickCount: sliderForMajorTickCount.value
                     minorTickCount: sliderForMinorTickCount.value
@@ -140,7 +140,7 @@ Window {
                 width: 200
                 height: 200
                 value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
-                theme: "Light"
+                theme: RoniaControl.Theme.Dark
                 rangeControl: CircularRangeControl{
                     labelInset: sliderForlabelInset.value
                 }
@@ -150,7 +150,7 @@ Window {
                 width: 200
                 height: 200
                 value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
-                theme: "Light"
+                theme: RoniaControl.Theme.Dark
                 rangeControl: CircularRangeControl{
                     majorTickCount: sliderForMajorTickCount.value
                     minorTickCount: sliderForMinorTickCount.value
@@ -206,13 +206,13 @@ Window {
                 value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
                 width: 100
                 height: 200
-                theme: "Dark"
+                theme: RoniaControl.Theme.Dark
             }
             CircularGauge {
                 width: 200
                 height:200
                 value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
-                theme: "Dark"
+                theme: RoniaControl.Theme.Dark
                 rangeControl: CircularRangeControl{
                     majorTickCount: sliderForMajorTickCount.value
                     minorTickCount: sliderForMinorTickCount.value
@@ -228,7 +228,7 @@ Window {
                 width: 200
                 height:200
                 value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
-                theme: "Dark"
+                theme: RoniaControl.Theme.Dark
                 rangeControl: CircularRangeControl{
                     majorTickCount: sliderForMajorTickCount.value
                     minorTickCount: sliderForMinorTickCount.value
@@ -244,7 +244,7 @@ Window {
                 width: 200
                 height:200
                 value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
-                theme: "Dark"
+                theme: RoniaControl.Theme.Dark
                 rangeControl: CircularRangeControl{
                     majorTickCount: sliderForMajorTickCount.value
                     minorTickCount: sliderForMinorTickCount.value
@@ -260,7 +260,7 @@ Window {
                 width: 200
                 height:200
                 value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
-                theme: "Dark"
+                theme: RoniaControl.Theme.Dark
                 rangeControl: CircularRangeControl{
                     majorTickCount: sliderForMajorTickCount.value
                     minorTickCount: sliderForMinorTickCount.value
@@ -276,7 +276,7 @@ Window {
                 width: 200
                 height: 200
                 value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
-                theme: "Dark"
+                theme: RoniaControl.Theme.Dark
                 rangeControl: CircularRangeControl{
                     labelInset: sliderForlabelInset.value
                 }
@@ -285,7 +285,7 @@ Window {
                 width: 200
                 height: 200
                 value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
-                theme: "Dark"
+                theme: RoniaControl.Theme.Dark
                 rangeControl: CircularRangeControl{
                     majorTickCount: sliderForMajorTickCount.value
                     minorTickCount: sliderForMinorTickCount.value
@@ -382,44 +382,4 @@ Window {
         else
             return value
     }
-
-    //        CircularGaugeSpeed {
-    //            id: gauge
-    //            width: 200
-    //            height: 300
-    //            value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
-    //            rangeControl: CircularRangeControl{
-    //                labelInset: sliderForlabelInset.value + 35
-    //                majorTickCount: 7
-    //            }
-    //        }
-
-    //        AnalogGauge {
-    //            id: gauge1
-    //            width: 200
-    //            height: 300
-    //            value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
-    //            rangeControl: CircularRangeControl{
-    //                labelInset: sliderForlabelInset.value
-    //            }
-    //        }
-
-
-
-    //        CircularGauge {
-    //            id:simpleGauge
-    //            width: 400
-    //            height: 500
-    //            value: boundControl(sliderForValue.value,rangeControl.minimumValue,rangeControl.maximumValue)
-    //            rangeControl: CircularRangeControl{
-    //                majorTickCount: sliderForMajorTickCount.value
-    //                minorTickCount: sliderForMinorTickCount.value
-    //                tickmarkInset: sliderForMajorInset.value
-    //                minorTickmarkInset: sliderForMinorInset.value
-    //                labelInset: sliderForlabelInset.value
-    //                startAngle: sliderForStartAngle.value
-    //                endAngle: sliderForEndAngle.value
-    //            }
-    //        }
-
 }

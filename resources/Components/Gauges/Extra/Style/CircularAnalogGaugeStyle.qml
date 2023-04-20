@@ -39,6 +39,8 @@ CircularGaugeStyle {
      * ****************************************************************************************/
     needleKnob: null
     needle: null
+    digitalValueVisibility: false
+    theme: RoniaControl.Theme.Dark
 
     /* Children
      * ****************************************************************************************/
@@ -145,13 +147,6 @@ CircularGaugeStyle {
         height: outerRadius * 2
         anchors.centerIn: parent
         sourceComponent: tickmarkLabel
-    }
-
-    Component.onCompleted:{
-        rangeControl.minorTickVisible = false
-        rangeControl.majorTickVisible = false
-        control.digitalValueVisibility = false
-        theme = "Dark"
     }
 
     /* Functions

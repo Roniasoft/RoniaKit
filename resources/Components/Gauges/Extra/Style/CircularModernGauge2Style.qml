@@ -34,15 +34,13 @@ CircularGaugeStyle {
     /* Object Properties
      * ****************************************************************************************/
     needleKnob: null
+    theme: RoniaControl.Theme.Dark
     digitalValueVisibility: false
 
     /* Font Loader
      * ****************************************************************************************/
     FontLoader {id: webFont; source: "qrc:/RoniaKit/resources/Fonts/FontsFree-Net-DS-DIGI-1.ttf" }
 
-    Component.onCompleted: {
-        theme = "Dark"
-    }
 
     /* Children
      * ****************************************************************************************/

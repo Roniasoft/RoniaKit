@@ -28,14 +28,12 @@ CircularGauge {
 
     /* Property Declarations
      * ****************************************************************************************/
-    property          CircularRangeControl circularRangeControl: CircularRangeControl {}
+    property CircularRangeControl circularRangeControl: CircularRangeControl {}
 
-    readonly property real                 outerRadius:          Math.min(control.width, control.height) * 0.5
-
-    property          string               theme;
 
     /* Object Properties
      * ****************************************************************************************/
+    outerRadius: Math.min(control.width, control.height) * 0.5
     rangeControl: circularRangeControl
     width: 250
     height: 250

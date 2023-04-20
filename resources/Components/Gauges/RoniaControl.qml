@@ -30,17 +30,29 @@ Item {
      * ****************************************************************************************/
 
     //! Name
-    property string       name: "Name"
+    property string       name:         "Name"
 
     //! Value
-    property double       value: 100.0
+    property double       value:        100.0
+
+    //! Outer radius
+    property real         outerRadius:  0.0
+
+    //! Theme
+    property int          theme:        RoniaControl.Theme.Light
 
     //! Range Control
-    property RangeControl rangeControl: RangeControl{}
+    property RangeControl rangeControl: RangeControl {}
 
     //! Style
-    property Component    style: null
+    property Component    style:        null
 
+
+    //! Theme Definitions
+    enum Theme {
+        Light = 0,
+        Dark  = 1
+    }
 
     /* Object Properties
      * ****************************************************************************************/

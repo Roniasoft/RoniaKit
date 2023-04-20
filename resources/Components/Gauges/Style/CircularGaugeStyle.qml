@@ -56,14 +56,14 @@ RoniaControlStyle {
     height: 250
 
     Component.onCompleted: {
-        backgroundMap["Light"] = "#ffffff"
-        backgroundMap["Dark"] = "#333333"
-        labelMap["Light"] = "black"
-        labelMap["Dark"] = "white"
-        majorTickmarkMap["Dark"] = "#e5e5e5"
-        majorTickmarkMap["Light"] = "#c8d0d0"
-        minorTickmarkMap["Dark"] = "#e5e5e5"
-        minorTickmarkMap["Light"] = "#c8d0d0"
+        backgroundMap[RoniaControl.Theme.Light] = "#ffffff"
+        backgroundMap[RoniaControl.Theme.Dark] = "#333333"
+        labelMap[RoniaControl.Theme.Light] = "black"
+        labelMap[RoniaControl.Theme.Dark] = "white"
+        majorTickmarkMap[RoniaControl.Theme.Dark] = "#e5e5e5"
+        majorTickmarkMap[RoniaControl.Theme.Light] = "#c8d0d0"
+        minorTickmarkMap[RoniaControl.Theme.Dark] = "#e5e5e5"
+        minorTickmarkMap[RoniaControl.Theme.Light] = "#c8d0d0"
         backgroundMapChanged();
         majorTickmarkMapChanged();
         minorTickmarkMapChanged();
@@ -208,7 +208,7 @@ RoniaControlStyle {
                 x: control.labelInsetRadius
                 y: control.labelInsetRadius
 
-                sourceComponent: Text{
+                sourceComponent: Text {
                     font.pixelSize: Math.max(6, 0.12 * outerRadius)
                     text: Math.round((rangeControl.maximumValue
                                       - rangeControl.minimumValue)

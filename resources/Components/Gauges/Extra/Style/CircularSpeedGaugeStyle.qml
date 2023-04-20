@@ -31,16 +31,18 @@ CircularGaugeStyle {
      * ****************************************************************************************/
     property string name;
 
+    /* Object Properties
+     * ****************************************************************************************/
+    rangeControl.minorTickVisible: false
+    rangeControl.majorTickVisible: false
+    rangeControl.labelVisible: false
+    theme: RoniaControl.Theme.Dark
+
+
     /* Font Loader
      * ****************************************************************************************/
     FontLoader {id: webFont; source: "qrc:/RoniaKit/resources/Fonts/FontsFree-Net-DS-DIGI-1.ttf" }
 
-    Component.onCompleted:{
-        rangeControl.minorTickVisible = false
-        rangeControl.majorTickVisible = false
-        rangeControl.labelVisible = false
-        theme = "Dark"
-    }
     /* Children
      * ****************************************************************************************/
     background: Rectangle {

@@ -27,25 +27,19 @@ import RoniaKit
  * ************************************************************************************************/
 RoniaControl {
     id: control
+
     /* Property Declarations
      * ****************************************************************************************/
-
-    property          RangeControl rangeControl: RangeControl {}
-
-    readonly property real         outerRadius:  Math.min(3*control.width,control.height)
-
-    property          string       theme;
-
+    property RangeControl rangeControl: RangeControl {
+        minorTickCount: 1
+        majorTickCount: 10
+    }
 
     /* Object Properties
      * ****************************************************************************************/
+    outerRadius: Math.min(3 * control.width,control.height)
     width: 250
     height: 250
-
-    Component.onCompleted: {
-        rangeControl.minorTickCount = 1
-        rangeControl.majorTickCount = 10
-    }
 
     /* Children
      * ****************************************************************************************/
