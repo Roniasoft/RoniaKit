@@ -61,6 +61,12 @@ QtObject {
     property real   labelInset:        30
 
     //! Num of decimal points for digital value displayer
-    property int    decimalPoint: 2
+    property int    decimalPoint:       2
+
+    //! Start angle
+    property real   startAngle:         -135
+
+    //! End angle
+    property real   endAngle:           135
 
 }

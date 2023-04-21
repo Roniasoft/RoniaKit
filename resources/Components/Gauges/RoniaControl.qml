@@ -60,16 +60,21 @@ Item {
     //! Gauge Types
     enum GaugeType {
         UNDEFINED      = 0,
+
+        // Basic Types
         CircularBasic  = 1,
         Circular       = 2,
         Level          = 3,
         Thermometer    = 4,
 
 
+        // Extra Types
+        CircularAnalog = 50,
+        CircularModern1= 51,
+        CircularModern2= 52,
+        CircularSpeed  = 53,
 
-
-
-
+        // User Types
         UserGauge     = 99
     }
 

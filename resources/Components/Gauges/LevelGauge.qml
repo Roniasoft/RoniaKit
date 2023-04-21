@@ -38,7 +38,7 @@ RoniaControl {
     /* Object Properties
      * ****************************************************************************************/
     outerRadius: Math.min(3 * control.width,control.height)
-    type: RoniaControl.GaugeType.LevelGauge
+    type: RoniaControl.GaugeType.Level
     width: 250
     height: 250
 
