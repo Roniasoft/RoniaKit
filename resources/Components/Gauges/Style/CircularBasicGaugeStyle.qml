@@ -1,26 +1,44 @@
-import QtQuick
+/*
+ * Project: RoniaKit
+ * Version: 1.0.0
+ * License: Apache 2.0
+ *
+ * Copyright (c) 2023 Ronia AB
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import QtQuick 2.15
 import QtQuick.Controls
+import RoniaKit
 
 /*! ***********************************************************************************************
- * Base Circular Gauge
+ * Circular basic Gauge Style
  * ************************************************************************************************/
-RoniaControl {
+RoniaControlStyle {
     id: control
 
     /* Property Declarations
-     * ****************************************************************************************/
+     * ****************************************************************************************/    
+    property real                 minorInsetRadius:        outerRadius - rangeControl.minorTickmarkInset
 
-    property CircularRangeControl circularRangeControl: CircularRangeControl {}
+    property real                 majorInsetRadius:        outerRadius - rangeControl.tickmarkInset
 
-    /*! The distance from the center of the gauge to the outer edge of the
-        gauge.
+    property real                 labelInsetRadius:        outerRadius - rangeControl.labelInset
 
-        This property is useful for determining the size of the various
-        components of the style, in order to ensure that they are scaled
-        proportionately when the gauge is resized. */
-    readonly property real outerRadius: Math.min(control.width, control.height) * 0.5
+    property bool                 digitalValueVisibility : true
 
-    //! This property holds the rotation of the needle in degrees.
+    property RangeControl         rangeControl;
+
     property real needleRotation: {
         var percentage = (control.value - rangeControl.minimumValue) /
                          ( rangeControl.maximumValue -  rangeControl.minimumValue);
@@ -28,17 +46,8 @@ RoniaControl {
                 Math.abs(rangeControl.endAngle -  rangeControl.startAngle);
     }
 
-    property real minorInsetRadius: outerRadius - rangeControl.minorTickmarkInset
-
-    property real majorInsetRadius: outerRadius - rangeControl.tickmarkInset
-
-    property real labelInsetRadius: outerRadius - rangeControl.labelInset
-
-    property bool digitalValueVisibility : true
-
     /* Object Properties
      * ****************************************************************************************/
-    rangeControl: circularRangeControl
     width: 250
     height: 250
 
@@ -46,45 +55,94 @@ RoniaControl {
      * ****************************************************************************************/
     FontLoader {id: webFont; source: "qrc:/RoniaKit/resources/Fonts/FontsFree-Net-DS-DIGI-1.ttf" }
 
-    Behavior on value {
-        NumberAnimation {
-            easing.overshoot: 1.2
-            duration: 800
-            easing.type: Easing.OutBack
-        }
+    Component.onCompleted: {
+        backgroundMap[RoniaControl.Theme.Light] = "#ffffff"
+        backgroundMap[RoniaControl.Theme.Dark] = "#333333"
+        labelMap[RoniaControl.Theme.Light] = "black"
+        labelMap[RoniaControl.Theme.Dark] = "white"
+        majorTickmarkMap[RoniaControl.Theme.Dark] = "#e5e5e5"
+        majorTickmarkMap[RoniaControl.Theme.Light] = "#c8d0d0"
+        minorTickmarkMap[RoniaControl.Theme.Dark] = "#e5e5e5"
+        minorTickmarkMap[RoniaControl.Theme.Light] = "#c8d0d0"
+        needleMap[RoniaControl.Theme.Dark] =  "qrc:/RoniaKit/resources/Images/gauge/redNeedle2.png"
+        needleMap[RoniaControl.Theme.Light] = "qrc:/RoniaKit/resources/Images/gauge/redNeedle3.png"
+        needleKnobMap[RoniaControl.Theme.Dark] =  "#ff2c2c"
+        needleKnobMap[RoniaControl.Theme.Light] = "#ff6861"
+        backgroundMapChanged();
+        majorTickmarkMapChanged();
+        minorTickmarkMapChanged();
+        labelMapChanged();
+        needleMapChanged();
+        needleKnobMapChanged();
     }
 
     /* Children
      * ****************************************************************************************/
+    tickmark: Rectangle {
+        implicitWidth: outerRadius * 0.02
+        antialiasing: true
+        implicitHeight: outerRadius * 0.06
+        color: majorTickmarkMap[theme]
+        visible: true
+    }
+
+    //! Minor Tickmars
+    minorTickmark: Rectangle {
+        implicitWidth: outerRadius * 0.01
+        antialiasing: true
+        implicitHeight: outerRadius * 0.03
+        color: minorTickmarkMap[theme]
+        visible: true
+    }
+
     background: Rectangle {
         implicitHeight: parent.height
         implicitWidth: parent.width
-        color: "#1e1e1e"
+        color: "transparent"
         anchors.centerIn: parent
         radius: width / 2
+        Rectangle {
+            implicitHeight: parent.height/2
+            implicitWidth: parent.width/2
+            color: "transparent"
+            anchors.centerIn: parent
+            radius: width / 2
+            border.color: majorTickmarkMap[theme]
+            border.width: 1
+
+            Rectangle {
+                implicitHeight: parent.height/ 3
+                implicitWidth: parent.width/3
+                color: majorTickmarkMap[theme]
+                anchors.centerIn: parent
+                radius: width / 2
+                Rectangle {
+                    implicitHeight: parent.height / 3
+                    implicitWidth: parent.width / 3
+                    color: needleKnobMap[theme]
+                    anchors.centerIn: parent
+                    radius: width / 2
+                }
+            }
+        }
+    }
+    Loader {
+        id: backgroundLoader
+        width: outerRadius * 2
+        height: outerRadius * 2
+        anchors.centerIn: parent
+        sourceComponent: background
     }
 
     needle : Item {
         implicitWidth: 0.08 * outerRadius
-        implicitHeight: 0.9 * outerRadius
+        implicitHeight: 0.8 * outerRadius
 
         Image {
             anchors.fill: parent
-            source: "qrc:/RoniaKit/resources/Images/gauge/needle.png"
+            source: needleMap[theme]
         }
     }
-
-//    tickmarkLabel: Text{
-//        text: labelLoader.index
-//    }
-
-    needleKnob : Item {
-        Image {
-            source: "qrc:/RoniaKit/resources/Images/gauge/knob.png"
-            anchors.centerIn: parent
-        }
-    }
-
 
     //! Major TickMark Loader
     Loader {
@@ -154,6 +212,7 @@ RoniaControl {
         }
     }
 
+    //! Label Loader
     Loader {
         active: rangeControl.labelVisible
         width: control.labelInsetRadius * 2
@@ -173,12 +232,12 @@ RoniaControl {
                 y: control.labelInsetRadius
 
                 sourceComponent: Text{
-                    font.pixelSize: Math.max(6, 0.12 * outerRadius)
+                    font.pixelSize: Math.max(6, 0.1 * outerRadius)
                     text: Math.round((rangeControl.maximumValue
                                       - rangeControl.minimumValue)
                                       / (rangeControl.majorTickCount - 1)
-                                      * index)
-                    color: "#c8c8c8"
+                                      * index + rangeControl.minimumValue)
+                    color: labelMap[theme] ?? "white"
                     antialiasing: true
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
@@ -199,18 +258,6 @@ RoniaControl {
         }
     }
 
-    //! Digital Value
-    Text{
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: outerRadius/2 + outerRadius/5
-        text: parseFloat(control.value.toFixed(rangeControl.decimalPoint))
-        font.family: webFont.name
-        font.pixelSize: 40
-        color: "white"
-        visible: digitalValueVisibility
-    }
-
     //! Needle Loader
     Loader {
         id: needleLoader
@@ -228,13 +275,14 @@ RoniaControl {
         ]
     }
 
-    //! Needle Knob
+    //! Foreground loader
     Loader {
-        sourceComponent: needleKnob
-        anchors.fill: parent
+        id: foregroundLoader
+        width: outerRadius * 2
+        height: outerRadius * 2
+        anchors.centerIn: parent
+        sourceComponent: foreground
     }
 
-    /* Functions
-     * ****************************************************************************************/
 
 }

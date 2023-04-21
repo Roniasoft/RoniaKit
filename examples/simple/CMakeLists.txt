@@ -21,7 +21,17 @@ qt_add_qml_module(simple
     VERSION 1.0
 
    QML_FILES
-    main.qml
+        main.qml
+        CentralWidget.qml
+
+        # Model files
+        Model/ViewModel.qml
+        Model/GaugeFactory.qml
+
+        # View files
+        View/SettingsWidget.qml
+        View/SettingsControl.qml
+        View/GaugesPreview.qml
 
    SOURCES
 

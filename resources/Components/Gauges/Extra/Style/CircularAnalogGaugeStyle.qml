@@ -1,19 +1,48 @@
-import QtQuick
+/*
+ * Project: RoniaKit
+ * Version: 1.0.0
+ * License: Apache 2.0
+ *
+ * Copyright (c) 2023 Ronia AB
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import QtQuick 2.15
 import QtQuick.Controls
+import RoniaKit
+
 /*! ***********************************************************************************************
- * Analog Circular Gauge
+ * Circular Analog Gauge Style
  * ************************************************************************************************/
-CircularGauge {
+CircularGaugeStyle {
     id: control
+
+    /* Font Loader
+     * ****************************************************************************************/
+    FontLoader {id: webFont; source: "qrc:/RoniaKit/resources/Fonts/FontsFree-Net-DS-DIGI-1.ttf" }
+
+    Component.onCompleted: {
+        rangeControl.minorTickVisible = false
+        rangeControl.majorTickVisible = false
+        rangeControl.labelVisible = false
+        theme = RoniaControl.Theme.Dark
+    }
 
     /* Object Properties
      * ****************************************************************************************/
     needleKnob: null
     needle: null
-
-    /* Font Loader
-     * ****************************************************************************************/
-    FontLoader {id: webFont; source: "qrc:/RoniaKit/resources/Fonts/FontsFree-Net-DS-DIGI-1.ttf" }
+    digitalValueVisibility: false
 
     /* Children
      * ****************************************************************************************/
@@ -73,8 +102,8 @@ CircularGauge {
                 ctx.arc(outerRadius,
                       outerRadius,
                       outerRadius*0.644 - ctx.lineWidth / 2,
-                      degreesToRadians(valueToAngle(control.value) - 215.0),
-                      degreesToRadians(valueToAngle(rangeControl.maximumValue) - 208.0 ));
+                      degreesToRadians(valueToAngle(control.value-control.rangeControl.minimumValue) - 215.0),
+                      degreesToRadians(valueToAngle(rangeControl.maximumValue-control.rangeControl.minimumValue) - 208.0 ));
                 ctx.stroke();
             }
         }
@@ -109,23 +138,10 @@ CircularGauge {
             text: control.value.toFixed(0);
             color: control.value > ((rangeControl.maximumValue-rangeControl.minimumValue) * 4 / 5)
                    ? "#ff5151" : "#3d62f4";
-            font.pixelSize: outerRadius * 0.35;
+            font.pixelSize: outerRadius * 0.4;
             antialiasing: true
             Behavior on color {ColorAnimation {duration: 200}}
         }
-    }
-    Loader {
-        id: tickMarkLabel
-        width: outerRadius * 2
-        height: outerRadius * 2
-        anchors.centerIn: parent
-        sourceComponent: tickmarkLabel
-    }
-
-    Component.onCompleted:{
-        rangeControl.minorTickVisible = false
-        rangeControl.majorTickVisible = false
-        control.digitalValueVisibility = false
     }
 
     /* Functions
@@ -134,4 +150,6 @@ CircularGauge {
         return value1 * 260.0 /
                Math.abs(rangeControl.maximumValue-rangeControl.minimumValue)
     }
+
 }
+

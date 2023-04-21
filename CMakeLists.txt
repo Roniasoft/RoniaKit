@@ -60,16 +60,26 @@ qt_add_qml_module(RoniaKit
     VERSION 1.0
 
     QML_FILES
-        resources/Components/HalfDial.qml
-        resources/Components/Thermometer.qml
-        resources/Components/RoniaControl.qml
-        resources/Components/CircularGauge.qml
-        resources/Components/CircularGaugeSpeed.qml
-        resources/Components/CircularGaugeModern.qml
-        resources/Components/FuelGauge.qml
-        resources/Components/RangeControl.qml
-        resources/Components/CircularRangeControl.qml
-        resources/Components/AnalogGauge.qml
+        resources/Components/Gauges/HalfDial.qml
+        resources/Components/Gauges/Thermometer.qml
+        resources/Components/Gauges/RoniaControl.qml
+        resources/Components/Gauges/CircularGauge.qml
+        resources/Components/Gauges/FuelGauge.qml
+        resources/Components/Gauges/RangeControl.qml
+        resources/Components/Gauges/LevelGauge.qml
+        resources/Components/Gauges/CircularBasicGauge.qml
+        resources/Components/Gauges/Style/CircularGaugeStyle.qml
+        resources/Components/Gauges/Style/RoniaControlStyle.qml
+        resources/Components/Gauges/Style/LevelGaugeStyle.qml
+        resources/Components/Gauges/Style/CircularBasicGaugeStyle.qml
+        resources/Components/Gauges/Extra/CircularModernGauge1.qml
+        resources/Components/Gauges/Extra/Style/CircularModernGauge1Style.qml
+        resources/Components/Gauges/Extra/CircularSpeedGauge.qml
+        resources/Components/Gauges/Extra/Style/CircularSpeedGaugeStyle.qml
+        resources/Components/Gauges/Extra/CircularAnalogGauge.qml
+        resources/Components/Gauges/Extra/Style/CircularAnalogGaugeStyle.qml
+        resources/Components/Gauges/Extra/CircularModernGauge2.qml
+        resources/Components/Gauges/Extra/Style/CircularModernGauge2Style.qml
 
 
     SOURCES
@@ -90,8 +100,10 @@ qt_add_qml_module(RoniaKit
         resources/Images/gauge/AnalougeGauge/middleRing.svg
         resources/Images/gauge/AnalougeGauge/outerRing.svg
         resources/Images/gauge/AnalougeGauge/topScreen.svg
-
-
+        resources/Images/gauge/Modern/blueLight.png
+        resources/Images/gauge/Modern/blueNeedle.png
+        resources/Images/gauge/redNeedle2.png
+        resources/Images/gauge/redNeedle3.png
 )
 	
 #Add a library to the project using the specified source file
