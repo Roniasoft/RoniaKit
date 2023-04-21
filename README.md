@@ -146,5 +146,11 @@ BibTeX::
 
 Showcase
 ========
+RONIA Kit Example (Light Theme):
+![image](https://user-images.githubusercontent.com/53909162/233635754-87d08df4-5b11-4010-bf6a-479cbb1c0a8f.png)
+
+RONIA Kit Example (Dark Theme):
+![image](https://user-images.githubusercontent.com/53909162/233635891-a4e3a6ce-2577-4e82-98ab-ed94d9fa9fbb.png)
+
 
 
