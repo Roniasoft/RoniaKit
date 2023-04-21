@@ -37,7 +37,7 @@ RoniaControlStyle {
 
     property bool                 digitalValueVisibility : true
 
-    property CircularRangeControl rangeControl;
+    property RangeControl         rangeControl;
 
     property real needleRotation: {
         var percentage = (control.value - rangeControl.minimumValue) /

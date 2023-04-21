@@ -66,7 +66,6 @@ qt_add_qml_module(RoniaKit
         resources/Components/Gauges/CircularGauge.qml
         resources/Components/Gauges/FuelGauge.qml
         resources/Components/Gauges/RangeControl.qml
-        resources/Components/Gauges/CircularRangeControl.qml
         resources/Components/Gauges/LevelGauge.qml
         resources/Components/Gauges/CircularBasicGauge.qml
         resources/Components/Gauges/Style/CircularGaugeStyle.qml

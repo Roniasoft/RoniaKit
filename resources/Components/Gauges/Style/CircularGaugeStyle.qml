@@ -29,7 +29,7 @@ RoniaControlStyle {
 
     /* Property Declarations
      * ****************************************************************************************/
-    property CircularRangeControl rangeControl
+    property RangeControl         rangeControl
 
     property real                 minorInsetRadius:        outerRadius - rangeControl.minorTickmarkInset
 

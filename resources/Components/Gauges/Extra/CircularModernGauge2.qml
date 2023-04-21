@@ -28,14 +28,12 @@ CircularGauge {
 
     /* Property Declarations
      * ****************************************************************************************/
-//    property CircularRangeControl circularRangeControl: CircularRangeControl {}
 
 
     /* Object Properties
      * ****************************************************************************************/
     outerRadius: Math.min(control.width, control.height) * 0.5
     type: RoniaControl.GaugeType.CircularModern2
-//    rangeControl: circularRangeControl
     width: 250
     height: 250
 
