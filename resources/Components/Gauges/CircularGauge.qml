@@ -36,6 +36,7 @@ RoniaControl {
      * ****************************************************************************************/
     outerRadius: Math.min(control.width, control.height) * 0.5
     rangeControl: circularRangeControl
+    type: RoniaControl.GaugeType.Circular
     width: 250
     height: 250
 

@@ -41,6 +41,9 @@ Item {
     //! Theme
     property int          theme:        RoniaControl.Theme.Light
 
+    //! Gauge Type
+    property int type:    RoniaControl.GaugeType.UNDEFINED
+
     //! Range Control
     property RangeControl rangeControl: RangeControl {}
 
@@ -52,6 +55,22 @@ Item {
     enum Theme {
         Light = 0,
         Dark  = 1
+    }
+
+    //! Gauge Types
+    enum GaugeType {
+        UNDEFINED      = 0,
+        CircularBasic  = 1,
+        Circular       = 2,
+        Level          = 3,
+        Thermometer    = 4,
+
+
+
+
+
+
+        UserGauge     = 99
     }
 
     /* Object Properties
