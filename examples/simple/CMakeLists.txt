@@ -22,12 +22,16 @@ qt_add_qml_module(simple
 
    QML_FILES
         main.qml
-        ViewModel.qml
-        SettingsWidget.qml
-        GaugeFactory.qml
-        SettingsControl.qml
         CentralWidget.qml
-        GaugesPreview.qml
+
+        # Model files
+        Model/ViewModel.qml
+        Model/GaugeFactory.qml
+
+        # View files
+        View/SettingsWidget.qml
+        View/SettingsControl.qml
+        View/GaugesPreview.qml
 
    SOURCES
 
