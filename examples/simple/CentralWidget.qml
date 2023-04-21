@@ -22,6 +22,10 @@ import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
 
+/*! ***********************************************************************************************
+ * Central widget (Display selected gauge)
+ *
+ * ************************************************************************************************/
 Item {
     id: centralWidget
 
@@ -31,6 +35,8 @@ Item {
 
     property RoniaControl   centerObject : null
 
+    /* Children
+     * ****************************************************************************************/
     Connections {
         target: viewModel
         function onSelectedGaugeChanged() {

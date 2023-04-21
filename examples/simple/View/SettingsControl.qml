@@ -20,13 +20,21 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 
+/*! ***********************************************************************************************
+ * SettingsControl (slider column component)
+ *
+ * ************************************************************************************************/
 ColumnLayout {
     id: root
 
-    property alias slider: slider
+    /* Property Declarations
+     * ****************************************************************************************/
+    property alias  slider: slider
 
-    property string text: "name: "
+    property string text:   "name: "
 
+    /* Children
+     * ****************************************************************************************/
     Text {
         color: "#A9A9A9"
         text: root.text

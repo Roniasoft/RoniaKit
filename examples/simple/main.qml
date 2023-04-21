@@ -22,18 +22,22 @@ import RoniaKit
 import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
+import simple
 
-Window {
+ApplicationWindow {
     id: window
 
     /* Property Declarations
      * ****************************************************************************************/
+    //! View model
     property ViewModel      viewModel:          ViewModel {}
 
+    //! Gauges factory
     property GaugeFactory   gaugeFactory:       GaugeFactory {
         viewModel: window.viewModel
     }
 
+    //! Preview gauges
     property var            gauges:             []
 
 
@@ -43,9 +47,8 @@ Window {
     height: 960
     visible: true
     title: qsTr("Simple RoniaKit Example")
-    color: "#3E3E3E"
 
-    Material.theme: Material.Dark
+    Material.theme: viewModel.theme === RoniaControl.Theme.Light ? Material.Light : Material.Dark
     Material.accent: Material.BlueGrey
 
 
@@ -85,7 +88,7 @@ Window {
     //! Settings Widget
     Rectangle {
         id: settings
-        color: "#2e2f30"
+        color: Qt.darker(Material.background, 1.05)
         anchors.right: parent.right
         anchors.top: parent.top
         width: parent.width / 6

@@ -104,8 +104,6 @@ qt_add_qml_module(RoniaKit
         resources/Images/gauge/Modern/blueNeedle.png
         resources/Images/gauge/redNeedle2.png
         resources/Images/gauge/redNeedle3.png
-
-
 )
 	
 #Add a library to the project using the specified source file

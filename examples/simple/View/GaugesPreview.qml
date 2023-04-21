@@ -23,17 +23,28 @@ import QtQuick.Layouts
 import RoniaKit
 import simple
 
+/*! ***********************************************************************************************
+ * A list view to display all gauges preview
+ *
+ * ************************************************************************************************/
 Rectangle {
-    id: gaugePreview
+    id: root
 
-    property var gauges: []
+    /* Property Declarations
+     * ****************************************************************************************/
+    property var        gauges:     []
 
     property ViewModel viewModel
 
-    color: "#303030"
+    /* Object Properties
+     * ****************************************************************************************/
+    color: Qt.darker(Material.background, 1.2) // use the default background color
 
+
+    /* Children
+     * ****************************************************************************************/
     ListView {
-        model: window.gauges
+        model: root.gauges
         anchors.fill: parent
         orientation: ListView.Horizontal
         spacing: 10
