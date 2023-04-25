@@ -55,14 +55,15 @@ ApplicationWindow {
     /* Constructor
      * ****************************************************************************************/
     Component.onCompleted: {
-        var gauge1 = gaugeFactory.createGauge(RoniaControl.GaugeType.CircularBasic,     null);
-        var gauge2 = gaugeFactory.createGauge(RoniaControl.GaugeType.Circular,          null);
-        var gauge3 = gaugeFactory.createGauge(RoniaControl.GaugeType.Level,             null);
-        var gauge4 = gaugeFactory.createGauge(RoniaControl.GaugeType.CircularAnalog,    null);
-        var gauge5 = gaugeFactory.createGauge(RoniaControl.GaugeType.CircularModern1,   null);
-        var gauge6 = gaugeFactory.createGauge(RoniaControl.GaugeType.CircularModern2,   null);
-        var gauge7 = gaugeFactory.createGauge(RoniaControl.GaugeType.CircularSpeed,     null);
-        var gauge8 = gaugeFactory.createGauge(RoniaControl.GaugeType.Thermometer,     null);
+        var gauge1 = gaugeFactory.createGauge(RoniaControl.GaugeType.CircularBasic,      null);
+        var gauge2 = gaugeFactory.createGauge(RoniaControl.GaugeType.Circular,           null);
+        var gauge3 = gaugeFactory.createGauge(RoniaControl.GaugeType.Level,              null);
+        var gauge4 = gaugeFactory.createGauge(RoniaControl.GaugeType.CircularAnalog,     null);
+        var gauge5 = gaugeFactory.createGauge(RoniaControl.GaugeType.CircularModern1,    null);
+        var gauge6 = gaugeFactory.createGauge(RoniaControl.GaugeType.CircularModern2,    null);
+        var gauge7 = gaugeFactory.createGauge(RoniaControl.GaugeType.CircularSpeed,      null);
+        var gauge8 = gaugeFactory.createGauge(RoniaControl.GaugeType.Thermometer,        null);
+        var gauge9 = gaugeFactory.createGauge(RoniaControl.GaugeType.CircularThermometer,null);
 
         gauges.push(gauge1);
         gauges.push(gauge2);
@@ -72,6 +73,7 @@ ApplicationWindow {
         gauges.push(gauge6);
         gauges.push(gauge7);
         gauges.push(gauge8);
+        gauges.push(gauge9);
 
         gaugesChanged();
     }

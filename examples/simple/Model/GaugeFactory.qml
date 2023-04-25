@@ -63,6 +63,9 @@ QtObject {
             case RoniaControl.GaugeType.Thermometer: {
                 component = Qt.createComponent("qrc:/RoniaKit/resources/Components/Gauges/Thermometer.qml");
             } break;
+            case RoniaControl.GaugeType.CircularThermometer: {
+                component = Qt.createComponent("qrc:/RoniaKit/resources/Components/Gauges/CircularThermometer.qml");
+            } break;
         }
 
         var obj = null;

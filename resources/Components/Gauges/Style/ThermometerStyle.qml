@@ -22,7 +22,7 @@ import QtQuick.Controls
 import RoniaKit
 
 /*! ***********************************************************************************************
- * Level Gauge Style
+ * Thermometer Style
  * ************************************************************************************************/
 RoniaControlStyle {
     id: control
@@ -191,8 +191,8 @@ RoniaControlStyle {
             source: foregroundMap[theme]
             asynchronous: true
             smooth: true;
-            x: control.width/2 + control.outerRadius * 0.4
-            y: (p > control.height * 0.7 ) ? - control.height/2 : p
+            x: control.width/2 + control.outerRadius * 0.3 + control.rangeControl.labelInset
+            y: p
             antialiasing: true;
             sourceSize {
                 width: control.outerRadius * 0.4

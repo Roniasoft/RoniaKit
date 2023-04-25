@@ -68,11 +68,13 @@ qt_add_qml_module(RoniaKit
         resources/Components/Gauges/RangeControl.qml
         resources/Components/Gauges/LevelGauge.qml
         resources/Components/Gauges/CircularBasicGauge.qml
+        resources/Components/Gauges/CircularThermometer.qml
         resources/Components/Gauges/Style/CircularGaugeStyle.qml
         resources/Components/Gauges/Style/RoniaControlStyle.qml
         resources/Components/Gauges/Style/LevelGaugeStyle.qml
         resources/Components/Gauges/Style/CircularBasicGaugeStyle.qml
         resources/Components/Gauges/Style/ThermometerStyle.qml
+        resources/Components/Gauges/Style/CircularThermometerStyle.qml
         resources/Components/Gauges/Extra/CircularModernGauge1.qml
         resources/Components/Gauges/Extra/Style/CircularModernGauge1Style.qml
         resources/Components/Gauges/Extra/CircularSpeedGauge.qml
