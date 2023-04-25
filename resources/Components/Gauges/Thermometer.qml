@@ -18,7 +18,38 @@
  */
 
 import QtQuick
+import QtQuick.Controls
+import QtQuick.Shapes
+import RoniaKit
 
-Item {
+/*! ***********************************************************************************************
+ * Level Gauge
+ * ************************************************************************************************/
+RoniaControl {
+    id: control
 
+    /* Property Declarations
+     * ****************************************************************************************/
+    property RangeControl rangeControl: RangeControl {
+        minorTickCount: 1
+        majorTickCount: 10
+    }
+
+    /* Object Properties
+     * ****************************************************************************************/
+    outerRadius: Math.min(3 * control.width,control.height)
+    type: RoniaControl.GaugeType.Thermometer
+    width: 250
+    height: 250
+
+    /* Children
+     * ****************************************************************************************/
+    style: ThermometerStyle {
+        id: thermometer
+        anchors.fill: parent
+        rangeControl: control.rangeControl
+        outerRadius: control.outerRadius
+        theme: control.theme
+        value: control.value
+    }
 }

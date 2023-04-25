@@ -72,6 +72,7 @@ qt_add_qml_module(RoniaKit
         resources/Components/Gauges/Style/RoniaControlStyle.qml
         resources/Components/Gauges/Style/LevelGaugeStyle.qml
         resources/Components/Gauges/Style/CircularBasicGaugeStyle.qml
+        resources/Components/Gauges/Style/ThermometerStyle.qml
         resources/Components/Gauges/Extra/CircularModernGauge1.qml
         resources/Components/Gauges/Extra/Style/CircularModernGauge1Style.qml
         resources/Components/Gauges/Extra/CircularSpeedGauge.qml
@@ -104,6 +105,10 @@ qt_add_qml_module(RoniaKit
         resources/Images/gauge/Modern/blueNeedle.png
         resources/Images/gauge/redNeedle2.png
         resources/Images/gauge/redNeedle3.png
+        resources/Images/gauge/Thermometer/dark/thermometerDarkInner.png
+        resources/Images/gauge/Thermometer/dark/thermometerDarkInnerFilled.png
+        resources/Images/gauge/Thermometer/dark/thermometerDarkLabel.png
+        resources/Images/gauge/Thermometer/dark/thermometerDarkOuter.png
 )
 	
 #Add a library to the project using the specified source file
