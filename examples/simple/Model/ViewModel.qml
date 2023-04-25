@@ -52,7 +52,7 @@ QtObject {
     property int    endAngle:           135
 
     //! Theme (light, dark)
-    property int    theme:              RoniaControl.Theme.Light
+    property int    theme:              RoniaControl.Theme.Dark
 
     //! Minimum value of the gauge
     property double minimumValue:       0.0

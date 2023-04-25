@@ -31,16 +31,25 @@ RoniaControlStyle {
      * ****************************************************************************************/
     required property RangeControl rangeControl;
 
-    property          real         tickmarkSpacing: outerRadius/20
+    property          real         tickmarkSpacing:          outerRadius/20
 
-    property          real         labelSpacing:    3*outerRadius/14
+    property          real         labelSpacing:             3*outerRadius/14
+
+    property          var          thermometerOuterMap:      ({})
+
+    property          var          thermometerInnerMap:      ({})
+
+    property          var          thermometerInnerFilledMap:({})
+
+    property          var          thermometerBackgroundMap: ({})
+
 
     /* Font Loader
      * ****************************************************************************************/
     FontLoader {id: webFont; source: "qrc:/RoniaKit/resources/Fonts/FontsFree-Net-DS-DIGI-1.ttf" }
 
     Component.onCompleted: {
-        backgroundMap[RoniaControl.Theme.Light] = "#dce2e2"
+        backgroundMap[RoniaControl.Theme.Light] = "#dddddd"
         backgroundMap[RoniaControl.Theme.Dark] = "white"
         labelMap[RoniaControl.Theme.Light] = "black"
         labelMap[RoniaControl.Theme.Dark] = "white"
@@ -48,10 +57,25 @@ RoniaControlStyle {
         majorTickmarkMap[RoniaControl.Theme.Light] = "#cccccc"
         minorTickmarkMap[RoniaControl.Theme.Dark] = "#dce2e2"
         minorTickmarkMap[RoniaControl.Theme.Light] = "#cccccc"
+        thermometerBackgroundMap[RoniaControl.Theme.Dark] = "#303030"
+        thermometerBackgroundMap[RoniaControl.Theme.Light] = "#fafafa"
+        thermometerOuterMap[RoniaControl.Theme.Dark] = "qrc:/RoniaKit/resources/Images/gauge/Thermometer/dark/thermometerDarkOuter.png"
+        thermometerOuterMap[RoniaControl.Theme.Light] = "qrc:/RoniaKit/resources/Images/gauge/Thermometer/light/thermometerLightOuter.png"
+        thermometerInnerMap[RoniaControl.Theme.Dark] = "qrc:/RoniaKit/resources/Images/gauge/Thermometer/dark/thermometerDarkInner.png"
+        thermometerInnerMap[RoniaControl.Theme.Light] = "qrc:/RoniaKit/resources/Images/gauge/Thermometer/light/thermometerLightInner.png"
+        thermometerInnerFilledMap[RoniaControl.Theme.Dark] = "qrc:/RoniaKit/resources/Images/gauge/Thermometer/dark/thermometerDarkInnerFilled.png"
+        thermometerInnerFilledMap[RoniaControl.Theme.Light] = "qrc:/RoniaKit/resources/Images/gauge/Thermometer/light/thermometerLightInnerFilled.png"
+        foregroundMap[RoniaControl.Theme.Dark] = "qrc:/RoniaKit/resources/Images/gauge/Thermometer/dark/thermometerDarkValue.png"
+        foregroundMap[RoniaControl.Theme.Light] = "qrc:/RoniaKit/resources/Images/gauge/Thermometer/light/thermometerLightValue.png"
         backgroundMapChanged();
         majorTickmarkMapChanged();
         minorTickmarkMapChanged();
         labelMapChanged();
+        thermometerBackgroundMapChanged();
+        thermometerOuterMapChanged();
+        thermometerInnerMapChanged();
+        thermometerInnerFilledMapChanged();
+        foregroundMapChanged();
     }
 
     /* Children
@@ -85,7 +109,7 @@ RoniaControlStyle {
         Image {
             id: outer
             anchors.centerIn : background
-            source: "qrc:/RoniaKit/resources/Images/gauge/Thermometer/dark/thermometerDarkOuter.png";
+            source: thermometerOuterMap[theme]
             asynchronous: true
             smooth: true;
             antialiasing: true;
@@ -97,7 +121,7 @@ RoniaControlStyle {
         }
         Image {
             id: inner
-            source: "qrc:/RoniaKit/resources/Images/gauge/Thermometer/dark/thermometerDarkInner.png";
+            source: thermometerInnerMap[theme]
             anchors.bottom: outer.bottom
             anchors.horizontalCenter: outer.horizontalCenter
             anchors.bottomMargin: outer.height * 0.08
@@ -106,23 +130,20 @@ RoniaControlStyle {
             antialiasing: true;
             sourceSize {
                 width: outer.width
-                height: outer.height
+                height: outer.height * 0.95
             }
             Image {
                 id: innerFilled
-                source: "qrc:/RoniaKit/resources/Images/gauge/Thermometer/dark/thermometerDarkInnerFilled.png";
+                source: thermometerInnerFilledMap[theme]
                 anchors.fill: parent
                 asynchronous: true
                 smooth: true;
                 antialiasing: true;
                 clip: true
-                Component.onCompleted: {
-                    console.log(innerFilled.height * 0.7,rangeControl.minimumValue,rangeControl.maximumValue)
-                }
             }
             Rectangle {
                 id: thermometer
-                width: innerFilled.width* 0.38
+                width: innerFilled.width* 0.37
                 height: innerFilled.height * 0.7 - ( control.value * innerFilled.height * 0.7 /
                                                    ( rangeControl.maximumValue - rangeControl.minimumValue)
                                                     )
@@ -130,7 +151,7 @@ RoniaControlStyle {
                 anchors.top: innerFilled.top
                 anchors.topMargin: 2
                 radius: innerFilled.width/6
-                color: "#303030"
+                color: thermometerBackgroundMap[theme]
                 visible: !(control.value === rangeControl.maximumValue)
             }
 
@@ -144,7 +165,7 @@ RoniaControlStyle {
             }
             Rectangle {
               id: squareRect
-              color: "#303030"
+              color: thermometerBackgroundMap[theme]
               height: thermometer.radius + 1
               anchors.bottom : thermometer.bottom
               anchors.bottomMargin: -1
@@ -155,16 +176,41 @@ RoniaControlStyle {
             }
         }
 
-
-
-
     }
-    foreground: Rectangle {
 
+    foreground: Rectangle {
+        id: foreground
         height: parent.height
         width: parent.width
         color: "transparent"
         anchors.centerIn: parent
+
+        Image {
+            property real p: control.height/2 - ( control.value * foreground.height * 0.6 /
+                             ( rangeControl.maximumValue - rangeControl.minimumValue))
+            source: foregroundMap[theme]
+            asynchronous: true
+            smooth: true;
+            x: control.width/2 + control.outerRadius * 0.4
+            y: (p > control.height * 0.7 ) ? - control.height/2 : p
+            antialiasing: true;
+            sourceSize {
+                width: control.outerRadius * 0.4
+                height: control.outerRadius  * 0.2
+            }
+            Text {
+                id: speedLabel
+                font.family: webFont.name
+                anchors.centerIn: parent
+                text: control.value.toFixed(0) + " C";
+                color: labelMap[theme]
+                font.pixelSize: outerRadius * 0.1;
+                antialiasing: true
+                Behavior on color {ColorAnimation {duration: 200}}
+            }
+
+
+        }
 
     }
 
@@ -191,84 +237,84 @@ RoniaControlStyle {
 
         sourceComponent: Repeater {
             id: tickmarkRepeater
-            model: 2
+            model: control.rangeControl.majorTickCount
             anchors.fill: parent
             delegate: Loader {
                 id: tickmarkLoader
-                x: control.outerRadius * 0.18
-                y: 0
+                x: control.outerRadius * 0.19 + control.rangeControl.tickmarkInset
+                y: control.height * 0.1
                 sourceComponent: control.tickmark
                 transform: [
                     Rotation{
                         angle: 90
                     },
                     Translate {
-//                        y: index * -((control.height-outerRadius/15)/(control.rangeControl.majorTickCount-1))
+                        y: index * -(((control.height*0.7)-outerRadius/10)/(control.rangeControl.majorTickCount-1))
                     }
                 ]
             }
         }
     }
 
-//    Loader {
-//        active: rangeControl.minorTickVisible
-//        anchors.centerIn: parent
-//        sourceComponent: Repeater {
-//            id: minortickmarkRepeater
-//            model: (rangeControl.majorTickCount - 1) * rangeControl.minorTickCount + rangeControl.majorTickCount
-//            anchors.fill: parent
-//            delegate: Loader {
-//                id: minorTickmarkLoader
-//                x: 0
-//                y: control.height/2 - outerRadius/25
-//                visible: !(index%(control.rangeControl.minorTickCount+1)===0)
-//                sourceComponent: control.minorTickmark
-//                transform: [
-//                    Rotation{
-//                        angle: 90
-//                    },
-//                    Translate {
-//                        y: index * -((control.height-outerRadius/15)/
-//                                     ((rangeControl.majorTickCount - 1) * rangeControl.minorTickCount + rangeControl.majorTickCount-1))
-//                    }
-//                ]
-//            }
-//        }
-//    }
+    Loader {
+        active: rangeControl.minorTickVisible
+        anchors.centerIn: parent
+        sourceComponent: Repeater {
+            id: minortickmarkRepeater
+            model: (rangeControl.majorTickCount - 1) * rangeControl.minorTickCount + rangeControl.majorTickCount
+            anchors.fill: parent
+            delegate: Loader {
+                id: minorTickmarkLoader
+                x: control.outerRadius * 0.16 + control.rangeControl.minorTickmarkInset
+                y: control.height * 0.1
+                visible: !(index%(control.rangeControl.minorTickCount+1)===0)
+                sourceComponent: control.minorTickmark
+                transform: [
+                    Rotation{
+                        angle: 90
+                    },
+                    Translate {
+                        y: index * -(((control.height*0.7)-outerRadius/10)/
+                                     ((rangeControl.majorTickCount - 1) * rangeControl.minorTickCount + rangeControl.majorTickCount-1))
+                    }
+                ]
+            }
+        }
+    }
 
-//    Loader {
-//        active: true //rangeControl.labelVisible
-//        anchors.centerIn: parent
+    Loader {
+        active: true //rangeControl.labelVisible
+        anchors.centerIn: parent
 
-//        sourceComponent: Repeater {
-//            id: labelRepeater
-//            model: rangeControl.majorTickCount
-//            anchors.fill: parent
+        sourceComponent: Repeater {
+            id: labelRepeater
+            model: rangeControl.majorTickCount
+            anchors.fill: parent
 
-//            delegate: Loader {
-//                id: labelLoader
-//                x: (labelSpacing - tickmarkSpacing)*-1
-//                y: control.height/2 - outerRadius/15
+            delegate: Loader {
+                id: labelLoader
+                x: control.outerRadius * 0.16 + outerRadius / 20 + control.rangeControl.labelInset
+                y: control.height * 0.075
 
-//                sourceComponent: Text{
-//                    font.pixelSize: Math.max(6, 0.04 * control.outerRadius)
-//                    text: Math.round((rangeControl.maximumValue
-//                                      - rangeControl.minimumValue)
-//                                      / (rangeControl.majorTickCount - 1)
-//                                      * index + rangeControl.minimumValue)
-//                    color: labelMap[theme] ?? "white"
-//                    antialiasing: true
-//                    horizontalAlignment: Text.AlignHCenter
-//                    verticalAlignment: Text.AlignVCenter
+                sourceComponent: Text{
+                    font.pixelSize: Math.max(6, 0.04 * control.outerRadius)
+                    text: Math.round((rangeControl.maximumValue
+                                      - rangeControl.minimumValue)
+                                      / (rangeControl.majorTickCount - 1)
+                                      * index + rangeControl.minimumValue)
+                    color: labelMap[theme] ?? "white"
+                    antialiasing: true
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
 
-//                }
+                }
 
-//                transform: [
-//                    Translate {
-//                       y: index * -((control.height-outerRadius/15)/(control.rangeControl.majorTickCount-1))
-//                    }
-//                ]
-//            }
-//        }
-//    }
+                transform: [
+                    Translate {
+                       y: index * -(((control.height*0.7)-outerRadius/10)/(control.rangeControl.majorTickCount-1))
+                    }
+                ]
+            }
+        }
+    }
 }

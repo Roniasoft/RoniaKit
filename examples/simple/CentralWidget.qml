@@ -46,7 +46,7 @@ Item {
 
             centralWidget.centerObject = gaugeFactory.createGauge(viewModel.selectedGauge, centralWidget);
             centralWidget.centerObject.anchors.fill = centralWidget
-            centralWidget.centerObject.anchors.margins = 50
+            centralWidget.centerObject.anchors.margins = 200
         }
     }
 }

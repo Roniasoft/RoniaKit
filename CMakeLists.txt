@@ -109,6 +109,13 @@ qt_add_qml_module(RoniaKit
         resources/Images/gauge/Thermometer/dark/thermometerDarkInnerFilled.png
         resources/Images/gauge/Thermometer/dark/thermometerDarkLabel.png
         resources/Images/gauge/Thermometer/dark/thermometerDarkOuter.png
+        resources/Images/gauge/Thermometer/dark/thermometerDarkValue.png
+        resources/Images/gauge/Thermometer/light/thermometerLightInner.png
+        resources/Images/gauge/Thermometer/light/thermometerLightInnerFilled.png
+        resources/Images/gauge/Thermometer/light/thermometerLightLabel.png
+        resources/Images/gauge/Thermometer/light/thermometerLightOuter.png
+        resources/Images/gauge/Thermometer/light/thermometerLightValue.png
+
 )
 	
 #Add a library to the project using the specified source file
