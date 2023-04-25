@@ -162,6 +162,16 @@ RoniaControlStyle {
                 height: parent.width
                 radius: parent.width/2
                 color: backgroundMap[theme]
+                Text {
+                    id: speedLabel
+                    font.family: webFont.name
+                    anchors.centerIn: parent
+                    text: control.value.toFixed(0) + " C";
+                    color: "black"
+                    font.pixelSize: outerRadius * 0.1;
+                    antialiasing: true
+                    Behavior on color {ColorAnimation {duration: 200}}
+                }
             }
             Rectangle {
               id: squareRect
@@ -184,33 +194,6 @@ RoniaControlStyle {
         width: parent.width
         color: "transparent"
         anchors.centerIn: parent
-
-        Image {
-            property real p: control.height/2 - ( control.value * foreground.height * 0.6 /
-                             ( rangeControl.maximumValue - rangeControl.minimumValue))
-            source: foregroundMap[theme]
-            asynchronous: true
-            smooth: true;
-            x: control.width/2 + control.outerRadius * 0.3 + control.rangeControl.labelInset
-            y: p
-            antialiasing: true;
-            sourceSize {
-                width: control.outerRadius * 0.4
-                height: control.outerRadius  * 0.2
-            }
-            Text {
-                id: speedLabel
-                font.family: webFont.name
-                anchors.centerIn: parent
-                text: control.value.toFixed(0) + " C";
-                color: labelMap[theme]
-                font.pixelSize: outerRadius * 0.1;
-                antialiasing: true
-                Behavior on color {ColorAnimation {duration: 200}}
-            }
-
-
-        }
 
     }
 

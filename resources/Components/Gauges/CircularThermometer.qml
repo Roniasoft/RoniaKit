@@ -33,7 +33,7 @@ RoniaControl {
     /* Object Properties
      * ****************************************************************************************/
     outerRadius: Math.min(control.width, control.height) * 0.5
-    type: RoniaControl.GaugeType.CircularBasic
+    type: RoniaControl.GaugeType.CircularThermometer
     width: 250
     height: 250
 

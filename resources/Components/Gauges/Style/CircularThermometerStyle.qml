@@ -20,6 +20,7 @@
 import QtQuick 2.15
 import QtQuick.Controls
 import RoniaKit
+import QtQuick.Shapes
 
 /*! ***********************************************************************************************
  * Circular basic Gauge Style
@@ -101,6 +102,37 @@ RoniaControlStyle {
         color: "transparent"
         anchors.centerIn: parent
         radius: width / 2
+        Component.onCompleted: {
+            console.log(control.rangeControl.startAngle,control.rangeControl.endAngle)
+        }
+
+        Canvas {
+            id: canvas
+            property real greenStart: control.rangeControl.startAngle*-1*Math.PI/180
+            property real greenEnd: greenStart + ((control.rangeControl.endAngle-control.rangeControl.startAngle)
+                                                  /(control.rangeControl.maximumValue-control.rangeControl.minimumValue)) * (control.value+1)
+            height: parent.height
+            width: parent.width
+
+            onPaint: {
+                var ctx = getContext("2d");
+                ctx.clearRect(0, 0, width, height);
+
+                // Draw green arc
+                ctx.beginPath();
+                ctx.strokeStyle = "green";
+                ctx.arc(width/2, height/2, width/2, greenStart,
+                        greenEnd, false);
+                ctx.stroke();
+
+                // Draw red arc
+                ctx.beginPath();
+                ctx.strokeStyle = "red";
+                ctx.arc(width/2, height/2, width/8, 0, Math.PI*2 * 1/3);
+                ctx.stroke();
+            }
+        }
+
         Rectangle {
             implicitHeight: parent.height/2
             implicitWidth: parent.width/2
@@ -109,6 +141,7 @@ RoniaControlStyle {
             radius: width / 2
             border.color: "blue"
             border.width: 1
+
 
             Rectangle {
                 implicitHeight: parent.height/3
