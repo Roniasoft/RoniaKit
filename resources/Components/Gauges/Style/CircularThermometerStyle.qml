@@ -123,9 +123,11 @@ RoniaControlStyle {
         }
         Canvas {
             id: canvas
-            property real greenStart: (360+(control.rangeControl.startAngle-90))*Math.PI/180
-            property real greenEnd: greenStart + ((((control.rangeControl.endAngle-control.rangeControl.startAngle)
-                                                  /(control.rangeControl.maximumValue-control.rangeControl.minimumValue)) * (control.value))*Math.PI/180)
+            property real greenStart:(360+(control.rangeControl.startAngle-90))*Math.PI/180
+            property real greenEnd:  (control.value>=control.rangeControl.minimumValue) ? (greenStart + ((((control.rangeControl.endAngle-control.rangeControl.startAngle)
+                                                  /(control.rangeControl.maximumValue-control.rangeControl.minimumValue)) * (control.value))*Math.PI/180))
+                                                        : (greenStart + ((((control.rangeControl.endAngle-control.rangeControl.startAngle)
+                                                                           /(control.rangeControl.maximumValue-control.rangeControl.minimumValue)) * (0))*Math.PI/180))
             property real whiteEnd: ((control.rangeControl.endAngle-90) * Math.PI/180)
             height: parent.height
             width: parent.width
@@ -137,13 +139,13 @@ RoniaControlStyle {
                 ctx.lineWidth = 2
                 ctx.beginPath();
                 ctx.strokeStyle = "green";
-                ctx.arc(width/2, height/2, width/2, greenStart,
+                ctx.arc(width/2, height/2, width/2-2, greenStart,
                         greenEnd+Math.PI*0.05/180, false);
                 ctx.stroke();
 
                 ctx.beginPath();
                 ctx.strokeStyle = majorTickmarkMap[theme];
-                ctx.arc(width/2, height/2, width/2, greenEnd+Math.PI*0.05/180, whiteEnd);
+                ctx.arc(width/2, height/2, width/2-2, greenEnd+Math.PI*0.05/180, whiteEnd);
                 ctx.stroke();
             }
         }
@@ -169,7 +171,7 @@ RoniaControlStyle {
                     font.family: webFont.name
                     anchors.centerIn: parent
                     text: control.value.toFixed(0) + " C";
-                    color: "black"
+                    color: "grey"
                     font.pixelSize: parent.width * 0.4;
                     antialiasing: true
                     Behavior on color {ColorAnimation {duration: 200}}
