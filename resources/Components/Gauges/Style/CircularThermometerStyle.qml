@@ -57,8 +57,10 @@ RoniaControlStyle {
     FontLoader {id: webFont; source: "qrc:/RoniaKit/resources/Fonts/FontsFree-Net-DS-DIGI-1.ttf" }
 
     Component.onCompleted: {
-        backgroundMap[RoniaControl.Theme.Light] = "#ffffff"
-        backgroundMap[RoniaControl.Theme.Dark] = "#333333"
+        backgroundMap[RoniaControl.Theme.Light] = "#dddddd"
+        backgroundMap[RoniaControl.Theme.Dark] = "white"
+//        backgroundMap[RoniaControl.Theme.Light] = "#ffffff"
+//        backgroundMap[RoniaControl.Theme.Dark] = "#333333"
         labelMap[RoniaControl.Theme.Light] = "black"
         labelMap[RoniaControl.Theme.Dark] = "white"
         majorTickmarkMap[RoniaControl.Theme.Dark] = "#e5e5e5"
@@ -152,7 +154,7 @@ RoniaControlStyle {
             color: "transparent"
             anchors.centerIn: parent
             radius: width / 2
-            border.color: majorTickmarkMap[theme]
+            border.color: backgroundMap[theme]
             border.width: 1
 
             Rectangle {
@@ -161,7 +163,7 @@ RoniaControlStyle {
                 width: parent.width * 0.7
                 height: parent.width * 0.7
                 radius: parent.width/2
-                color: majorTickmarkMap[theme]
+                color: backgroundMap[theme]
                 Text {
                     id: speedLabel
                     font.family: webFont.name
