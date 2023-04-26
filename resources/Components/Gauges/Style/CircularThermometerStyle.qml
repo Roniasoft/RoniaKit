@@ -23,7 +23,7 @@ import RoniaKit
 import QtQuick.Shapes
 
 /*! ***********************************************************************************************
- * Circular basic Gauge Style
+ * Circular Thermometer Style
  * ************************************************************************************************/
 RoniaControlStyle {
     id: control
@@ -105,12 +105,26 @@ RoniaControlStyle {
         Component.onCompleted: {
             console.log(control.rangeControl.startAngle,control.rangeControl.endAngle)
         }
-
+        onDrawPointChanged: canvas.requestPaint()
+        property real value: control.value
+        property var drawPoint: null
+        property real startA: control.rangeControl.startAngle
+        property real endA: control.rangeControl.endAngle
+        onValueChanged: {
+            drawPoint = !drawPoint
+        }
+        onStartAChanged: {
+            drawPoint = !drawPoint
+        }
+        onEndAChanged: {
+            drawPoint = !drawPoint
+        }
         Canvas {
             id: canvas
-            property real greenStart: control.rangeControl.startAngle*-1*Math.PI/180
-            property real greenEnd: greenStart + ((control.rangeControl.endAngle-control.rangeControl.startAngle)
-                                                  /(control.rangeControl.maximumValue-control.rangeControl.minimumValue)) * (control.value+1)
+            property real greenStart: (360+(control.rangeControl.startAngle-90))*Math.PI/180
+            property real greenEnd: greenStart + ((((control.rangeControl.endAngle-control.rangeControl.startAngle)
+                                                  /(control.rangeControl.maximumValue-control.rangeControl.minimumValue)) * (control.value))*Math.PI/180)
+            property real whiteEnd: ((control.rangeControl.endAngle-90) * Math.PI/180)
             height: parent.height
             width: parent.width
 
@@ -118,17 +132,16 @@ RoniaControlStyle {
                 var ctx = getContext("2d");
                 ctx.clearRect(0, 0, width, height);
 
-                // Draw green arc
+                ctx.lineWidth = 2
                 ctx.beginPath();
                 ctx.strokeStyle = "green";
                 ctx.arc(width/2, height/2, width/2, greenStart,
-                        greenEnd, false);
+                        greenEnd+Math.PI*0.05/180, false);
                 ctx.stroke();
 
-                // Draw red arc
                 ctx.beginPath();
-                ctx.strokeStyle = "red";
-                ctx.arc(width/2, height/2, width/8, 0, Math.PI*2 * 1/3);
+                ctx.strokeStyle = majorTickmarkMap[theme];
+                ctx.arc(width/2, height/2, width/2, greenEnd+Math.PI*0.05/180, whiteEnd);
                 ctx.stroke();
             }
         }
@@ -139,52 +152,36 @@ RoniaControlStyle {
             color: "transparent"
             anchors.centerIn: parent
             radius: width / 2
-            border.color: "blue"
+            border.color: majorTickmarkMap[theme]
             border.width: 1
 
-
             Rectangle {
-                implicitHeight: parent.height/3
-                implicitWidth: parent.width/3
-                color: "transparent"
+                id: filledCircle
                 anchors.centerIn: parent
-                radius: width / 2
-                border.color: majorTickmarkMap[theme]
-                border.width: 1
-
-                Rectangle {
-                    implicitHeight: parent.height/ 4
-                    implicitWidth: parent.width/4
-                    color: majorTickmarkMap[theme]
+                width: parent.width * 0.7
+                height: parent.width * 0.7
+                radius: parent.width/2
+                color: majorTickmarkMap[theme]
+                Text {
+                    id: speedLabel
+                    font.family: webFont.name
                     anchors.centerIn: parent
-                    radius: width / 2
-                    Rectangle {
-                        implicitHeight: parent.height / 3
-                        implicitWidth: parent.width / 3
-                        color: needleKnobMap[theme]
-                        anchors.centerIn: parent
-                        radius: width / 2
-                    }
+                    text: control.value.toFixed(0) + " C";
+                    color: "black"
+                    font.pixelSize: parent.width * 0.4;
+                    antialiasing: true
+                    Behavior on color {ColorAnimation {duration: 200}}
                 }
             }
         }
     }
+
     Loader {
         id: backgroundLoader
         width: outerRadius * 2
         height: outerRadius * 2
         anchors.centerIn: parent
         sourceComponent: background
-    }
-
-    needle : Item {
-        implicitWidth: 0.08 * outerRadius
-        implicitHeight: 0.8 * outerRadius
-
-        Image {
-            anchors.fill: parent
-            source: needleMap[theme]
-        }
     }
 
     //! Major TickMark Loader
@@ -255,23 +252,50 @@ RoniaControlStyle {
         }
     }
 
-
-
-    //! Needle Loader
+    //! Lablel Loader
     Loader {
-        id: needleLoader
-        sourceComponent: control.needle
-        transform: [
-            Rotation {
-                angle: needleRotation
-                origin.x: needleLoader.width / 2
-                origin.y: needleLoader.height
-            },
-            Translate {
-                x: control.width / 2 - needleLoader.width / 2
-                y: control.height / 2 - needleLoader.height
+        active: rangeControl.labelVisible
+        width: control.labelInsetRadius * 2
+        height: control.labelInsetRadius * 2
+        anchors.centerIn: parent
+
+        sourceComponent: Repeater {
+            id: labelRepeater
+            property real p: Math.abs(rangeControl.endAngle  - rangeControl.startAngle)
+                             / (labelRepeater.model - 1)
+            model: rangeControl.majorTickCount
+            anchors.fill: parent
+
+            delegate: Loader {
+                id: labelLoader
+                x: control.labelInsetRadius
+                y: control.labelInsetRadius
+
+                sourceComponent: Text{
+                    font.pixelSize: Math.max(6, 0.1 * outerRadius)
+                    text: Math.round((rangeControl.maximumValue
+                                      - rangeControl.minimumValue)
+                                      / (rangeControl.majorTickCount - 1)
+                                      * index + rangeControl.minimumValue)
+                    color: labelMap[theme] ?? "white"
+                    antialiasing: true
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                }
+
+                transform: [
+                    Rotation{
+                        angle: (rangeControl.startAngle - 3 + 360 + (index * p))
+                    },
+                    Translate {
+                        x: Math.sin((rangeControl.startAngle - 3 + 180 + index * p)
+                                    * (Math.PI/180)) * control.labelInsetRadius * -1
+                        y: Math.cos((rangeControl.startAngle - 3 + 180 + index * p )
+                                    * (Math.PI/180)) * control.labelInsetRadius
+                    }
+                ]
             }
-        ]
+        }
     }
 
     //! Foreground loader
