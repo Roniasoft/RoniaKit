@@ -99,19 +99,16 @@ RoniaControlStyle {
     }
 
     background: Rectangle {
+        property real value: control.value
+        property var drawPoint: null
+        property real startA: control.rangeControl.startAngle
+        property real endA: control.rangeControl.endAngle
         implicitHeight: parent.height
         implicitWidth: parent.width
         color: "transparent"
         anchors.centerIn: parent
         radius: width / 2
-        Component.onCompleted: {
-            console.log(control.rangeControl.startAngle,control.rangeControl.endAngle)
-        }
         onDrawPointChanged: canvas.requestPaint()
-        property real value: control.value
-        property var drawPoint: null
-        property real startA: control.rangeControl.startAngle
-        property real endA: control.rangeControl.endAngle
         onValueChanged: {
             drawPoint = !drawPoint
         }

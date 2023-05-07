@@ -43,6 +43,8 @@ RoniaControlStyle {
 
     property          var          thermometerBackgroundMap: ({})
 
+    property          real         value:                    control.value
+
 
     /* Font Loader
      * ****************************************************************************************/
@@ -104,10 +106,11 @@ RoniaControlStyle {
         width: parent.width
         color: "transparent"
         anchors.centerIn: parent
-        property real outerWidth: outer.width;
+        property real test: 5
 
         Image {
             id: outer
+
             anchors.centerIn : background
             source: thermometerOuterMap[theme]
             asynchronous: true
@@ -168,7 +171,7 @@ RoniaControlStyle {
                     anchors.centerIn: parent
                     text: control.value.toFixed(0) + " C";
                     color: "black"
-                    font.pixelSize: outerRadius * 0.1;
+                    font.pixelSize: parent.width * 0.4;
                     antialiasing: true
                     Behavior on color {ColorAnimation {duration: 200}}
                 }
