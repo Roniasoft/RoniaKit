@@ -45,6 +45,8 @@ Item {
 
     property  int            theme;
 
+    property  double         _value:                   root.value
+
     required property double value
 
     property real            outerRadius
@@ -99,7 +101,7 @@ Item {
     //! Foreground
     property Component foreground:  null
 
-    Behavior on value {
+    Behavior on _value {
         NumberAnimation {
             easing.overshoot: 1.2
             duration: 800

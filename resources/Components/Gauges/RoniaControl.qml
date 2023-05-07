@@ -42,7 +42,7 @@ Item {
     property int          theme:        RoniaControl.Theme.Light
 
     //! Gauge Type
-    property int type:    RoniaControl.GaugeType.UNDEFINED
+    property int          type:         RoniaControl.GaugeType.UNDEFINED
 
     //! Range Control
     property RangeControl rangeControl: RangeControl {}
@@ -92,6 +92,5 @@ Item {
 
     /* Functions
      * ****************************************************************************************/
-
 
 }
