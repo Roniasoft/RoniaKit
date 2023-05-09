@@ -35,7 +35,6 @@ CircularGaugeStyle {
         rangeControl.minorTickVisible = false
         rangeControl.majorTickVisible = false
         rangeControl.labelVisible = false
-        theme = RoniaControl.Theme.Dark
     }
 
     /* Object Properties
@@ -43,6 +42,7 @@ CircularGaugeStyle {
     needleKnob: null
     needle: null
     digitalValueVisibility: false
+    theme: RoniaControl.Theme.Dark
 
     /* Children
      * ****************************************************************************************/

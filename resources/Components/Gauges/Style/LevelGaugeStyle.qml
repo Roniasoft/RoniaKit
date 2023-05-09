@@ -37,20 +37,11 @@ RoniaControlStyle {
      * ****************************************************************************************/
     FontLoader {id: webFont; source: "qrc:/RoniaKit/resources/Fonts/FontsFree-Net-DS-DIGI-1.ttf" }
 
-    Component.onCompleted: {
-        backgroundMap[RoniaControl.Theme.Light] = "#dce2e2"
-        backgroundMap[RoniaControl.Theme.Dark] = "white"
-        labelMap[RoniaControl.Theme.Light] = "black"
-        labelMap[RoniaControl.Theme.Dark] = "white"
-        majorTickmarkMap[RoniaControl.Theme.Dark] = "#dce2e2"
-        majorTickmarkMap[RoniaControl.Theme.Light] = "#cccccc"
-        minorTickmarkMap[RoniaControl.Theme.Dark] = "#dce2e2"
-        minorTickmarkMap[RoniaControl.Theme.Light] = "#cccccc"
-        backgroundMapChanged();
-        majorTickmarkMapChanged();
-        minorTickmarkMapChanged();
-        labelMapChanged();
-    }
+    backgroundMap:      {0: "#dce2e2"   , 1: "white"}
+    labelMap:           {0: "black"     , 1: "white"}
+    majorTickmarkMap:   {0: "#dce2e2"   , 1: "#cccccc"}
+    minorTickmarkMap:   {0: "#dce2e2"   , 1: "#cccccc"}
+
 
     /* Children
      * ****************************************************************************************/

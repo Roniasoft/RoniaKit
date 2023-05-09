@@ -48,30 +48,16 @@ RoniaControlStyle {
     width: 250
     height: 250
 
+    backgroundMap:      {0: "#ffffff"   , 1: "#333333"}
+    labelMap:           {0: "black"     , 1: "white"}
+    majorTickmarkMap:   {0: "#c8d0d0"   , 1: "#e5e5e5"}
+    minorTickmarkMap:   {0: "#c8d0d0"   , 1: "#e5e5e5"}
+    needleMap:          {0: "qrc:/RoniaKit/resources/Images/gauge/redNeedle3.png",
+                         1: "qrc:/RoniaKit/resources/Images/gauge/redNeedle2.png"}
+    needleKnobMap:      {0: "#ff6861"   , 1: "#ff2c2c"}
     /* Font Loader
      * ****************************************************************************************/
     FontLoader {id: webFont; source: "qrc:/RoniaKit/resources/Fonts/FontsFree-Net-DS-DIGI-1.ttf" }
-
-    Component.onCompleted: {
-        backgroundMap[RoniaControl.Theme.Light] = "#ffffff"
-        backgroundMap[RoniaControl.Theme.Dark] = "#333333"
-        labelMap[RoniaControl.Theme.Light] = "black"
-        labelMap[RoniaControl.Theme.Dark] = "white"
-        majorTickmarkMap[RoniaControl.Theme.Dark] = "#e5e5e5"
-        majorTickmarkMap[RoniaControl.Theme.Light] = "#c8d0d0"
-        minorTickmarkMap[RoniaControl.Theme.Dark] = "#e5e5e5"
-        minorTickmarkMap[RoniaControl.Theme.Light] = "#c8d0d0"
-        needleMap[RoniaControl.Theme.Dark] =  "qrc:/RoniaKit/resources/Images/gauge/redNeedle2.png"
-        needleMap[RoniaControl.Theme.Light] = "qrc:/RoniaKit/resources/Images/gauge/redNeedle3.png"
-        needleKnobMap[RoniaControl.Theme.Dark] =  "#ff2c2c"
-        needleKnobMap[RoniaControl.Theme.Light] = "#ff6861"
-        backgroundMapChanged();
-        majorTickmarkMapChanged();
-        minorTickmarkMapChanged();
-        labelMapChanged();
-        needleMapChanged();
-        needleKnobMapChanged();
-    }
 
     /* Children
      * ****************************************************************************************/

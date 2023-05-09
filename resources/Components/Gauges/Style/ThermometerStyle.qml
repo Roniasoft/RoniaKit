@@ -30,17 +30,18 @@ RoniaControlStyle {
     /* Property Declarations
      * ****************************************************************************************/
 
-    property          real         tickmarkSpacing:          outerRadius/20
+    property          real         tickmarkSpacing:          outerRadius / 20
 
-    property          real         labelSpacing:             3*outerRadius/14
+    property          real         labelSpacing:             3 * outerRadius / 14
 
-    property          var          thermometerOuterMap:      ({})
+    property          var          thermometerOuterMap:     {0: "qrc:/RoniaKit/resources/Images/gauge/Thermometer/light/thermometerLightOuter.png",
+                                                              1: "qrc:/RoniaKit/resources/Images/gauge/Thermometer/dark/thermometerDarkOuter.png"}
+    property          var          thermometerInnerMap:     {0: "qrc:/RoniaKit/resources/Images/gauge/Thermometer/light/thermometerLightInner.png",
+                                                                1: "qrc:/RoniaKit/resources/Images/gauge/Thermometer/dark/thermometerDarkInner.png"}
+    property          var          thermometerInnerFilledMap: {0: "qrc:/RoniaKit/resources/Images/gauge/Thermometer/light/thermometerLightInnerFilled.png",
+                                                                1: "qrc:/RoniaKit/resources/Images/gauge/Thermometer/dark/thermometerDarkInnerFilled.png"}
 
-    property          var          thermometerInnerMap:      ({})
-
-    property          var          thermometerInnerFilledMap:({})
-
-    property          var          thermometerBackgroundMap: ({})
+    property          var          thermometerBackgroundMap: {0: "#fafafa"   , 1: "#303030"}
 
     property          real         value:                    control.value
 
@@ -49,35 +50,12 @@ RoniaControlStyle {
      * ****************************************************************************************/
     FontLoader {id: webFont; source: "qrc:/RoniaKit/resources/Fonts/FontsFree-Net-DS-DIGI-1.ttf" }
 
-    Component.onCompleted: {
-        backgroundMap[RoniaControl.Theme.Light] = "#dddddd"
-        backgroundMap[RoniaControl.Theme.Dark] = "white"
-        labelMap[RoniaControl.Theme.Light] = "black"
-        labelMap[RoniaControl.Theme.Dark] = "white"
-        majorTickmarkMap[RoniaControl.Theme.Dark] = "#dce2e2"
-        majorTickmarkMap[RoniaControl.Theme.Light] = "#cccccc"
-        minorTickmarkMap[RoniaControl.Theme.Dark] = "#dce2e2"
-        minorTickmarkMap[RoniaControl.Theme.Light] = "#cccccc"
-        thermometerBackgroundMap[RoniaControl.Theme.Dark] = "#303030"
-        thermometerBackgroundMap[RoniaControl.Theme.Light] = "#fafafa"
-        thermometerOuterMap[RoniaControl.Theme.Dark] = "qrc:/RoniaKit/resources/Images/gauge/Thermometer/dark/thermometerDarkOuter.png"
-        thermometerOuterMap[RoniaControl.Theme.Light] = "qrc:/RoniaKit/resources/Images/gauge/Thermometer/light/thermometerLightOuter.png"
-        thermometerInnerMap[RoniaControl.Theme.Dark] = "qrc:/RoniaKit/resources/Images/gauge/Thermometer/dark/thermometerDarkInner.png"
-        thermometerInnerMap[RoniaControl.Theme.Light] = "qrc:/RoniaKit/resources/Images/gauge/Thermometer/light/thermometerLightInner.png"
-        thermometerInnerFilledMap[RoniaControl.Theme.Dark] = "qrc:/RoniaKit/resources/Images/gauge/Thermometer/dark/thermometerDarkInnerFilled.png"
-        thermometerInnerFilledMap[RoniaControl.Theme.Light] = "qrc:/RoniaKit/resources/Images/gauge/Thermometer/light/thermometerLightInnerFilled.png"
-        foregroundMap[RoniaControl.Theme.Dark] = "qrc:/RoniaKit/resources/Images/gauge/Thermometer/dark/thermometerDarkValue.png"
-        foregroundMap[RoniaControl.Theme.Light] = "qrc:/RoniaKit/resources/Images/gauge/Thermometer/light/thermometerLightValue.png"
-        backgroundMapChanged();
-        majorTickmarkMapChanged();
-        minorTickmarkMapChanged();
-        labelMapChanged();
-        thermometerBackgroundMapChanged();
-        thermometerOuterMapChanged();
-        thermometerInnerMapChanged();
-        thermometerInnerFilledMapChanged();
-        foregroundMapChanged();
-    }
+    backgroundMap:                  {0: "#dddddd"   , 1: "white"}
+    labelMap:                       {0: "black"     , 1: "white"}
+    majorTickmarkMap:               {0: "#cccccc"   , 1: "#dce2e2"}
+    minorTickmarkMap:               {0: "#cccccc"   , 1: "#dce2e2"}
+    foregroundMap:                  {0: "qrc:/RoniaKit/resources/Images/gauge/Thermometer/light/thermometerLightValue.png",
+                                     1: "qrc:/RoniaKit/resources/Images/gauge/Thermometer/dark/thermometerDarkValue.png"}
 
     /* Children
      * ****************************************************************************************/

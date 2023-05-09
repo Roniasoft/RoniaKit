@@ -53,21 +53,10 @@ RoniaControlStyle {
      * ****************************************************************************************/
     width: 250
     height: 250
-
-    Component.onCompleted: {
-        backgroundMap[RoniaControl.Theme.Light] = "#ffffff"
-        backgroundMap[RoniaControl.Theme.Dark] = "#333333"
-        labelMap[RoniaControl.Theme.Light] = "black"
-        labelMap[RoniaControl.Theme.Dark] = "white"
-        majorTickmarkMap[RoniaControl.Theme.Dark] = "#e5e5e5"
-        majorTickmarkMap[RoniaControl.Theme.Light] = "#c8d0d0"
-        minorTickmarkMap[RoniaControl.Theme.Dark] = "#e5e5e5"
-        minorTickmarkMap[RoniaControl.Theme.Light] = "#c8d0d0"
-        backgroundMapChanged();
-        majorTickmarkMapChanged();
-        minorTickmarkMapChanged();
-        labelMapChanged();
-    }
+    backgroundMap:      {0: "#ffffff"   , 1: "#333333"}
+    labelMap:           {0: "black"     , 1: "white"}
+    majorTickmarkMap:   {0: "#c8d0d0"   , 1: "#e5e5e5"}
+    minorTickmarkMap:   {0: "#c8d0d0"   , 1: "#e5e5e5"}
 
     /* Children
      * ****************************************************************************************/
