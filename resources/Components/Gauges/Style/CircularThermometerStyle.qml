@@ -38,25 +38,12 @@ RoniaControlStyle {
 
     property bool                 digitalValueVisibility : true
 
-    property RangeControl         rangeControl;
-
     property real needleRotation: {
-        if (control._value < rangeControl.minimumValue)
-            control._value = rangeControl.minimumValue
-        else
-            control._value = control.value
-        if (control._value > rangeControl.maximumValue)
-            control._value = rangeControl.maximumValue
-        else
-            control._value = control.value
         var percentage = (control._value - rangeControl.minimumValue) /
                          ( rangeControl.maximumValue -  rangeControl.minimumValue);
         rangeControl.startAngle + percentage *
                 Math.abs(rangeControl.endAngle -  rangeControl.startAngle);
     }
-
-    PropertyAnimation { id: animationOne; target: valueText;alwaysRunToEnd: true; property: "color"; from:"white"; to: "red"; loops: Animation.Infinite; duration: 500}
-    PropertyAnimation { id: animationTwo; target: valueText;alwaysRunToEnd: true; property: "color"; from:"red"; to: "white";loops:  Animation.Infinite; duration: 500}
 
     /* Object Properties
      * ****************************************************************************************/
@@ -88,17 +75,6 @@ RoniaControlStyle {
         labelMapChanged();
         needleMapChanged();
         needleKnobMapChanged();
-    }
-
-    onValueChanged: {
-        if (control.value > rangeControl.maximumValue){
-            animationOne.start()
-            animationTwo.start()
-        }
-        else {
-            animationOne.stop()
-            animationTwo.stop()
-        }
     }
 
     /* Children
@@ -185,6 +161,8 @@ RoniaControlStyle {
                 height: parent.width * 0.7
                 radius: parent.width/2
                 color: backgroundMap[theme]
+
+                //! \todo: encapsulate the label component
                 Text {
                     id: speedLabel
                     font.family: webFont.name
@@ -194,6 +172,17 @@ RoniaControlStyle {
                     font.pixelSize: parent.width * 0.4;
                     antialiasing: true
                     Behavior on color {ColorAnimation {duration: 200}}
+
+                    ColorAnimation on color {
+                        id: blinkAnimation
+                        from: "grey"
+                        to: "red"
+                        duration: 1000
+                        easing.type: Easing.OutQuad
+                        loops: Animation.Infinite
+                        running: (value > rangeControl.maximumValue || value < rangeControl.minimumValue)
+                        onStopped: speedLabel.color = "grey"
+                    }
                 }
             }
         }

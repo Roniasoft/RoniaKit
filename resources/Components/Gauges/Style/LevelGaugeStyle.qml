@@ -29,8 +29,6 @@ RoniaControlStyle {
 
     /* Property Declarations
      * ****************************************************************************************/
-    required property RangeControl rangeControl;
-
     property          real         tickmarkSpacing: outerRadius/20
 
     property          real         labelSpacing:    3*outerRadius/14

@@ -37,17 +37,7 @@ RoniaControlStyle {
 
     property bool                 digitalValueVisibility : true
 
-    property RangeControl         rangeControl;
-
     property real needleRotation: {
-//        if (control._value < rangeControl.minimumValue)
-//            control._value = rangeControl.minimumValue
-//        else
-//            control._value = control.value
-//        if (control._value > rangeControl.maximumValue)
-//            control._value = rangeControl.maximumValue
-//        else
-//            control._value = control.value
         var percentage = (control._value - rangeControl.minimumValue) /
                          ( rangeControl.maximumValue -  rangeControl.minimumValue);
         rangeControl.startAngle + percentage *

@@ -43,13 +43,22 @@ Item {
 
     property  var            needleKnobMap:            ({})
 
-    property  int            theme;
+    property  int            theme
 
-    property  double         _value:                   root.value
+    property  double         _value:                   {
+        if (root.value > rangeControl.maximumValue)
+            rangeControl.maximumValue;
+        else if (root.value < rangeControl.minimumValue)
+            rangeControl.minimumValue;
+        else
+            root.value;
+    }
 
-    required property double value
+    property double          value:                    0.0
 
     property real            outerRadius
+
+    required property RangeControl rangeControl;
 
     /* Font Loader
      * ****************************************************************************************/
@@ -58,6 +67,7 @@ Item {
 
     /* Children
      * ****************************************************************************************/
+
     property Component background: Rectangle {
         implicitHeight: root.height
         implicitWidth: root.width

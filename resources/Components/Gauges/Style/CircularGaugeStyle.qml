@@ -29,8 +29,6 @@ RoniaControlStyle {
 
     /* Property Declarations
      * ****************************************************************************************/
-    property RangeControl         rangeControl
-
     property real                 minorInsetRadius:        outerRadius - rangeControl.minorTickmarkInset
 
     property real                 majorInsetRadius:        outerRadius - rangeControl.tickmarkInset
@@ -40,23 +38,12 @@ RoniaControlStyle {
     property bool                 digitalValueVisibility: true
 
     property real needleRotation: {
-        if (control._value < rangeControl.minimumValue)
-            control._value = rangeControl.minimumValue
-        else
-            control._value = control.value
-        if (control._value > rangeControl.maximumValue)
-            control._value = rangeControl.maximumValue
-        else
-            control._value = control.value
         var percentage = (control._value - rangeControl.minimumValue) /
                          ( rangeControl.maximumValue -  rangeControl.minimumValue);
         rangeControl.startAngle + percentage *
                 Math.abs(rangeControl.endAngle -  rangeControl.startAngle);
     }
 
-
-    PropertyAnimation { id: animationOne; target: valueText;alwaysRunToEnd: true; property: "color"; from:"white"; to: "red"; loops: Animation.Infinite; duration: 500}
-    PropertyAnimation { id: animationTwo; target: valueText;alwaysRunToEnd: true; property: "color"; from:"red"; to: "white";loops:  Animation.Infinite; duration: 500}
 
     /* Font Loader
      * ****************************************************************************************/
@@ -80,17 +67,6 @@ RoniaControlStyle {
         majorTickmarkMapChanged();
         minorTickmarkMapChanged();
         labelMapChanged();
-    }
-
-    onValueChanged: {
-        if (control.value > rangeControl.maximumValue){
-            animationOne.start()
-            animationTwo.start()
-        }
-        else {
-            animationOne.stop()
-            animationTwo.stop()
-        }
     }
 
     /* Children
@@ -261,7 +237,7 @@ RoniaControlStyle {
     }
 
     //! Digital Value
-    Text{
+    Text {
         id: valueText
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
@@ -271,12 +247,16 @@ RoniaControlStyle {
         font.pixelSize: outerRadius * 0.2
         color: labelMap[theme]
         visible: digitalValueVisibility
-        Behavior on color {
-            SequentialAnimation {
-                loops: 3
-                ColorAnimation { from: "white"; to: "red"; duration: 300 }
-                ColorAnimation { from: "red"; to: "white";  duration: 300 }
-            }
+
+        ColorAnimation on color {
+            id: blinkAnimation
+            from: "white"
+            to: "red"
+            duration: 1000
+            easing.type: Easing.OutQuad
+            loops: Animation.Infinite
+            running: (value > rangeControl.maximumValue || value < rangeControl.minimumValue)
+            onStopped: valueText.color = labelMap[theme]
         }
     }
 
