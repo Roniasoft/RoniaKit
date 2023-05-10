@@ -32,6 +32,7 @@ CircularGaugeStyle {
     needleKnob: null
     theme: RoniaControl.Theme.Dark
     digitalValueVisibility: false
+    labelMap: {0: "white" , 1: "white"}
 
     /* Font Loader
      * ****************************************************************************************/
