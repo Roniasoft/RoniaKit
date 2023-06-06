@@ -27,7 +27,7 @@ option(BUILD_DEBUG_POSTFIX_D "Append d suffix to debug libraries" OFF)
 # Dependencies
 # ##################################################################################################
 # Find the Qt libraries
-find_package(Qt6 REQUIRED COMPONENTS Quick Core5Compat)
+find_package(Qt6 REQUIRED COMPONENTS Quick)
 
 if (NOT (Qt6_FOUND OR Qt5_FOUND))
   message(FATAL_ERRROR "Qt libraries were not found.")
@@ -137,7 +137,7 @@ target_include_directories(RoniaKit
 target_compile_definitions(RoniaKit
     PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 
-target_link_libraries(RoniaKit PRIVATE Qt6::Quick Qt6::Core5Compat)
+target_link_libraries(RoniaKit PRIVATE Qt6::Quick)
 
 set_target_properties(RoniaKit PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
