@@ -48,6 +48,9 @@ QtObject {
             case RoniaControl.GaugeType.Level: {
                 component = Qt.createComponent("qrc:/RoniaKit/resources/Components/Gauges/LevelGauge.qml");
             } break;
+            case RoniaControl.GaugeType.Fuel: {
+                component = Qt.createComponent("qrc:/RoniaKit/resources/Components/Gauges/FuelGauge.qml");
+            } break;
             case RoniaControl.GaugeType.CircularAnalog: {
                 component = Qt.createComponent("qrc:/RoniaKit/resources/Components/Gauges/Extra/CircularAnalogGauge.qml");
             } break;
@@ -78,6 +81,9 @@ QtObject {
             obj.rangeControl.minimumValue =       Qt.binding(function() { return viewModel.minimumValue })
             obj.rangeControl.maximumValue =       Qt.binding(function() { return viewModel.maximumValue })
         }
+
+        else if(component.status === Component.Error)
+            console.log("$$$$$$ " + component.errorString() + " $$$$$$")
 
         return obj;
     }

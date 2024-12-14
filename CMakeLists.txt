@@ -64,12 +64,13 @@ qt_add_qml_module(RoniaKit
         resources/Components/Gauges/Thermometer.qml
         resources/Components/Gauges/RoniaControl.qml
         resources/Components/Gauges/CircularGauge.qml
-        resources/Components/Gauges/FuelGauge.qml
         resources/Components/Gauges/RangeControl.qml
+        resources/Components/Gauges/FuelGauge.qml
         resources/Components/Gauges/LevelGauge.qml
         resources/Components/Gauges/CircularBasicGauge.qml
         resources/Components/Gauges/Style/CircularGaugeStyle.qml
         resources/Components/Gauges/Style/RoniaControlStyle.qml
+        resources/Components/Gauges/Style/FuelGaugeStyle.qml
         resources/Components/Gauges/Style/LevelGaugeStyle.qml
         resources/Components/Gauges/Style/CircularBasicGaugeStyle.qml
         resources/Components/Gauges/Extra/CircularModernGauge1.qml
@@ -80,7 +81,6 @@ qt_add_qml_module(RoniaKit
         resources/Components/Gauges/Extra/Style/CircularAnalogGaugeStyle.qml
         resources/Components/Gauges/Extra/CircularModernGauge2.qml
         resources/Components/Gauges/Extra/Style/CircularModernGauge2Style.qml
-
 
     SOURCES
 	
@@ -104,6 +104,10 @@ qt_add_qml_module(RoniaKit
         resources/Images/gauge/Modern/blueNeedle.png
         resources/Images/gauge/redNeedle2.png
         resources/Images/gauge/redNeedle3.png
+        resources/Images/gauge/Fuel/back.png
+        resources/Images/gauge/Fuel/fuel-station-red.png
+        resources/Images/gauge/Fuel/fuel-station-yellow.png
+        resources/Images/gauge/Fuel/fuel-station-green.png
 )
 	
 #Add a library to the project using the specified source file
