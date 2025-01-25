@@ -101,6 +101,17 @@ Qt Creator
 3. `Build -> Build All`
 4. Click the button `Run`
 
+**Linking against RoniaKit**
+============================
+
+
+In order to link your QML projects against RoniaKit and use its components, you have numerous options, two of which are as follows:
+
+1. If you go for adding RoniaKit as a sub-project of your own project by using CMake’s "add_subdirectory" command, you can simply assign the same path to the CMake’s "QT_QML_OUTPUT_DIRECTORY" variable in the "CmakeLists.txt" files of both projects; this as a side-effect adds path specified by "QT_QML_OUTPUT_DIRECTORY" variable to the QML import path of your project, which enables the QML engine to find the necessary RoniaKit plugin files, to link your project against RoniaKit at runtime. You can instead pass in the path, into which you want to install the RoniaKit plugin files, as the value for the optional "OUTPUT_DIRECTORY" argument of the "qt_add_qml_module" CMake command in RoniaKit’s "CmakeLists.txt" file, in which case the value of the "QT_QML_OUTPUT_DIRECTORY" variable will be ignored in the RoniaKit project.
+
+2. If you plan to link more than one project of yours against RoniaKit, you may want to install RoniaKit plugin into some other shared path in your system, e.g. via adding CMake’s install(FILES …) command to RoniaKit’s "CmakeLists.txt" file and passing the full paths of the necessary plugin files to copy, namely the “qmldir” and “.qmltypes” files, as arguments plus the chosen installation destination path as the value of the CMake’s “install” command’s “DESTINATION” argument; then if you’ve passed e.g. the path X/RoniaKit as the value of the Cmake’s “install” command’s “DESTINATION” argument in the RoniaKit project’s "CmakeLists.txt" file, where X is an absolute path, then you have to add X to the QML import path of your own projects, by either adding X to your projects CMake’s "QML_IMPORT_PATH" variable or e.g. in case your project is an application project by alternatively calling “QqmlEngine” class’s “addImportPath” method on your “QqmlEngine” or “QQmlApplicationEngine” object instantiated in your project’s main funtion in the main.cpp file and passing in X as the sole argument; also be careful, that if you’ve specified e.g. the name “RoniaKit” as the RoniaKit’s module’s "URI" argument of CMake’s "qt_add_qml_module" in "CmakeLists.txt" file of the RoniaKit’s project, then in our example you definitively have to specify X/RoniaKit as the value of the Cmake’s “install” command’s “DESTINATION” argument in the RoniaKit project’s "CmakeLists.txt" file, otherwise QML engine won’t be able to find the RoniaKit’s necessary plugin files, to link your project against RoniaKit plugin at runtime.
+ 
+
 Help Needed
 ===========
 
