@@ -58,10 +58,11 @@ ApplicationWindow {
         var gauge1 = gaugeFactory.createGauge(RoniaControl.GaugeType.CircularBasic,     null);
         var gauge2 = gaugeFactory.createGauge(RoniaControl.GaugeType.Circular,          null);
         var gauge3 = gaugeFactory.createGauge(RoniaControl.GaugeType.Level,             null);
-        var gauge4 = gaugeFactory.createGauge(RoniaControl.GaugeType.CircularAnalog,    null);
-        var gauge5 = gaugeFactory.createGauge(RoniaControl.GaugeType.CircularModern1,   null);
-        var gauge6 = gaugeFactory.createGauge(RoniaControl.GaugeType.CircularModern2,   null);
-        var gauge7 = gaugeFactory.createGauge(RoniaControl.GaugeType.CircularSpeed,     null);
+        var gauge4 = gaugeFactory.createGauge(RoniaControl.GaugeType.Fuel,              null);
+        var gauge5 = gaugeFactory.createGauge(RoniaControl.GaugeType.CircularAnalog,    null);
+        var gauge6 = gaugeFactory.createGauge(RoniaControl.GaugeType.CircularModern1,   null);
+        var gauge7 = gaugeFactory.createGauge(RoniaControl.GaugeType.CircularModern2,   null);
+        var gauge8 = gaugeFactory.createGauge(RoniaControl.GaugeType.CircularSpeed,     null);
 
         gauges.push(gauge1);
         gauges.push(gauge2);
@@ -70,6 +71,7 @@ ApplicationWindow {
         gauges.push(gauge5);
         gauges.push(gauge6);
         gauges.push(gauge7);
+        gauges.push(gauge8);
 
         gaugesChanged();
     }

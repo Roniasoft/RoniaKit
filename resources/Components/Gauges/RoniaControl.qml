@@ -66,6 +66,7 @@ Item {
         Circular       = 2,
         Level          = 3,
         Thermometer    = 4,
+        Fuel           = 5,
 
 
         // Extra Types

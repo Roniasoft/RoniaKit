@@ -18,7 +18,33 @@
  */
 
 import QtQuick
+import QtQuick.Controls
+import RoniaKit
 
-Item {
+/*! ***********************************************************************************************
+ * Fuel Gauge
+ * ************************************************************************************************/
+RoniaControl
+{
+    id: control
+
+    /* Property Declarations
+     * ****************************************************************************************/
+
+
+    /* Object Properties
+     * ****************************************************************************************/
+    outerRadius: Math.min(control.width, control.height) * 0.5
+    type: RoniaControl.GaugeType.Fuel
+    width: 250
+    height: 250
+
+    style: FuelGaugeStyle
+    {
+        outerRadius: control.outerRadius
+        theme: control.theme
+        value: control.value
+        rangeControl: control.rangeControl
+    }
 
 }
