@@ -18,12 +18,13 @@
  */
 
 import QtQuick
-import RoniaKit
+import QtQuick.Controls
+import RoniaKit.Gauges
 
 /*! ***********************************************************************************************
- * Circular Speed Gauge
+ * Circular Gauge
  * ************************************************************************************************/
-CircularGauge {
+RoniaControl {
     id: control
 
     /* Property Declarations
@@ -33,17 +34,13 @@ CircularGauge {
     /* Object Properties
      * ****************************************************************************************/
     outerRadius: Math.min(control.width, control.height) * 0.5
-    type: RoniaControl.GaugeType.CircularSpeed
+    type: RoniaControl.GaugeType.Circular
     width: 250
     height: 250
 
-    /* Children
-     * ****************************************************************************************/
-    style: CircularSpeedGaugeStyle {
-        anchors.fill: parent
+    style: CircularGaugeStyle {
         rangeControl: control.rangeControl
         outerRadius: control.outerRadius
-        name: control.name
         theme: control.theme
         value: control.value
     }

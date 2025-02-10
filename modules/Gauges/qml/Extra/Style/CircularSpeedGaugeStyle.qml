@@ -19,7 +19,7 @@
 
 import QtQuick 2.15
 import QtQuick.Controls
-import RoniaKit
+import RoniaKit.Gauges
 
 /*! ***********************************************************************************************
  * Circular Speed Gauge Style
@@ -36,7 +36,7 @@ CircularGaugeStyle {
 
     /* Font Loader
      * ****************************************************************************************/
-    FontLoader {id: webFont; source: "qrc:/RoniaKit/resources/Fonts/FontsFree-Net-DS-DIGI-1.ttf" }
+    FontLoader {id: webFont; source: "qrc:/RoniaKit/assets/fonts/fontsFree-Net-DS-DIGI-1.ttf" }
 
     Component.onCompleted: {
         rangeControl.minorTickVisible = false
@@ -56,7 +56,7 @@ CircularGaugeStyle {
 
         Image {
             anchors.fill: parent
-            source: "qrc:/RoniaKit/resources/Images/gauge/Speed/backOn.png"
+            source: "qrc:/RoniaKit/Gauges/assets/images/speed/backOn.png"
             asynchronous: true
             sourceSize {
                 width: width
@@ -82,7 +82,7 @@ CircularGaugeStyle {
 
         Image {
             anchors.fill: parent
-            source: "qrc:/RoniaKit/resources/Images/gauge/Speed/needle-on.png"
+            source: "qrc:/RoniaKit/Gauges/assets/images/speed/needle-on.png"
         }
     }    
 

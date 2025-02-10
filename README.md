@@ -13,7 +13,7 @@ To use a gauge component, simply add it to your QML file and set its properties 
 
 ```qml
 import QtQuick 2.0
-import RoniaKit
+import RoniaKit.Gauges
 
 CircularGauge {
     width: 200

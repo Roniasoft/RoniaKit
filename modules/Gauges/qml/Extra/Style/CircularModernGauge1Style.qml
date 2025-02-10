@@ -17,34 +17,57 @@
  * limitations under the License.
  */
 
-import QtQuick
+import QtQuick 2.15
 import QtQuick.Controls
-import RoniaKit
+import RoniaKit.Gauges
 
 /*! ***********************************************************************************************
- * Circular Basic Gauge
+ * Circular Modern Gauge 1 Style
  * ************************************************************************************************/
-RoniaControl {
+CircularGaugeStyle {
     id: control
 
     /* Property Declarations
      * ****************************************************************************************/
+    property string name;
 
     /* Object Properties
      * ****************************************************************************************/
-    outerRadius: Math.min(control.width, control.height) * 0.5
-    type: RoniaControl.GaugeType.CircularBasic
-    width: 250
-    height: 250
+    theme: RoniaControl.Theme.Dark
+
+    /* Font Loader
+     * ****************************************************************************************/
+    FontLoader {id: webFont; source: "qrc:/RoniaKit/assets/fonts/fontsFree-Net-DS-DIGI-1.ttf" }
 
     /* Children
      * ****************************************************************************************/
-    style: CircularBasicGaugeStyle {
-        anchors.fill: parent
-        rangeControl: control.rangeControl
-        outerRadius: control.outerRadius
-        theme: control.theme
-        value: control.value
+    background: Rectangle {
+        implicitHeight: control.outerRadius * 2
+        implicitWidth: control.outerRadius * 2
+        color: "#CCCCCC"
+        anchors.centerIn: parent
+        radius: width / 2
+
+        Image {
+            anchors.fill: parent
+            source: "qrc:/RoniaKit/Gauges/assets/images/modern/back.png"
+            asynchronous: true
+            sourceSize {
+                width: width
+            }
+        }
+    }
+
+    //! Gauge Name
+    Text {
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: parent.top
+        anchors.topMargin: parent.height / 2 - 4 * Math.min(parent.height,parent.width) / 16
+        text: control.name
+        font.family: webFont.name
+        font.pixelSize: control.outerRadius * 0.15
+        color: "white"
     }
 
 }
+

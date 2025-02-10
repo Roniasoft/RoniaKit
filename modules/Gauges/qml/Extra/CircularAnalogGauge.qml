@@ -18,10 +18,11 @@
  */
 
 import QtQuick
-import RoniaKit
+import QtQuick.Controls
+import RoniaKit.Gauges
 
 /*! ***********************************************************************************************
- * Modern Circular Gauge
+ * Circular Analog Gauge
  * ************************************************************************************************/
 CircularGauge {
     id: control
@@ -29,17 +30,16 @@ CircularGauge {
     /* Property Declarations
      * ****************************************************************************************/
 
-
     /* Object Properties
      * ****************************************************************************************/
     outerRadius: Math.min(control.width, control.height) * 0.5
-    type: RoniaControl.GaugeType.CircularModern2
+    type: RoniaControl.GaugeType.CircularAnalog
     width: 250
     height: 250
 
     /* Children
      * ****************************************************************************************/
-    style: CircularModernGauge2Style {
+    style: CircularAnalogGaugeStyle {
         anchors.fill: parent
         rangeControl: control.rangeControl
         outerRadius: control.outerRadius

@@ -18,34 +18,28 @@
  */
 
 import QtQuick
-import QtQuick.Controls
-import QtQuick.Shapes
-import RoniaKit
+import RoniaKit.Gauges
 
 /*! ***********************************************************************************************
- * Level Gauge
+ * Modern Circular Gauge
  * ************************************************************************************************/
-RoniaControl {
+CircularGauge {
     id: control
 
     /* Property Declarations
      * ****************************************************************************************/
-    property RangeControl rangeControl: RangeControl {
-        minorTickCount: 1
-        majorTickCount: 10
-    }
+
 
     /* Object Properties
      * ****************************************************************************************/
-    outerRadius: Math.min(3 * control.width,control.height)
-    type: RoniaControl.GaugeType.Level
+    outerRadius: Math.min(control.width, control.height) * 0.5
+    type: RoniaControl.GaugeType.CircularModern2
     width: 250
     height: 250
 
     /* Children
      * ****************************************************************************************/
-    style: LevelGaugeStyle {
-        id: levelGauge
+    style: CircularModernGauge2Style {
         anchors.fill: parent
         rangeControl: control.rangeControl
         outerRadius: control.outerRadius

@@ -19,7 +19,7 @@
 
 import QtQuick 2.15
 import QtQuick.Controls
-import RoniaKit
+import RoniaKit.Gauges
 
 /*! ***********************************************************************************************
  * Circular Modern Gauge 2 Style
@@ -35,7 +35,7 @@ CircularGaugeStyle {
 
     /* Font Loader
      * ****************************************************************************************/
-    FontLoader {id: webFont; source: "qrc:/RoniaKit/resources/Fonts/FontsFree-Net-DS-DIGI-1.ttf" }
+    FontLoader {id: webFont; source: "qrc:/RoniaKit/assets/fonts/fontsFree-Net-DS-DIGI-1.ttf" }
 
 
     /* Children
@@ -49,7 +49,7 @@ CircularGaugeStyle {
 
         Image {
             anchors.fill: parent
-            source: "qrc:/RoniaKit/resources/Images/gauge/Modern/back.png"
+            source: "qrc:/RoniaKit/Gauges/assets/images/modern/back.png"
             asynchronous: true
             sourceSize {
                 width: width
@@ -58,7 +58,7 @@ CircularGaugeStyle {
 
         Image {
             id: glowingCircle;
-            source: "qrc:/RoniaKit/resources/Images/gauge/Modern/blueLight.png";
+            source: "qrc:/RoniaKit/Gauges/assets/images/modern/blueLight.png";
             anchors.centerIn: parent
             antialiasing: true
             anchors.fill: parent;
@@ -97,7 +97,7 @@ CircularGaugeStyle {
 
         Image {
             anchors.fill: parent
-            source: "qrc:/RoniaKit/resources/Images/gauge/Modern/blueNeedle.png"
+            source: "qrc:/RoniaKit/Gauges/assets/images/modern/blueNeedle.png"
         }
 
     }

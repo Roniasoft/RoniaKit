@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import RoniaKit
+import RoniaKit.Gauges
 
 import QtQuick 2.15
 import QtQuick.Controls
@@ -66,7 +66,7 @@ RoniaControlStyle
     {
         Image
         {
-            source: "qrc:/RoniaKit/resources/Images/gauge/Fuel/back.png";
+            source: "qrc:/RoniaKit/Gauges/assets/images/fuel/back.png";
             anchors.fill: parent;
             antialiasing: true
             smooth: true
@@ -286,16 +286,16 @@ RoniaControlStyle
             if(control.value >=0 && control.value <= (control.rangeControl.maximumValue - control.rangeControl.minimumValue) * 1.0 /6)
             {
                 station.blinking = true;
-                return "qrc:/RoniaKit/resources/Images/gauge/Fuel/fuel-station-red.png";
+                return "qrc:/RoniaKit/Gauges/assets/images/fuel/fuel-station-red.png";
             }
 
             else
                 station.blinking = false;
 
             if(control.value < (control.rangeControl.maximumValue - control.rangeControl.minimumValue) * 7.0 / 24)
-                return "qrc:/RoniaKit/resources/Images/gauge/Fuel/fuel-station-yellow.png";
+                return "qrc:/RoniaKit/Gauges/assets/images/fuel/fuel-station-yellow.png";
 
-            return "qrc:/RoniaKit/resources/Images/gauge/Fuel/fuel-station-green.png";
+            return "qrc:/RoniaKit/Gauges/assets/images/fuel/fuel-station-green.png";
         }
     }
 

@@ -19,31 +19,32 @@
 
 import QtQuick
 import QtQuick.Controls
-import RoniaKit
+import RoniaKit.Gauges
 
 /*! ***********************************************************************************************
- * Circular Analog Gauge
+ * Fuel Gauge
  * ************************************************************************************************/
-CircularGauge {
+RoniaControl
+{
     id: control
 
     /* Property Declarations
      * ****************************************************************************************/
 
+
     /* Object Properties
      * ****************************************************************************************/
     outerRadius: Math.min(control.width, control.height) * 0.5
-    type: RoniaControl.GaugeType.CircularAnalog
+    type: RoniaControl.GaugeType.Fuel
     width: 250
     height: 250
 
-    /* Children
-     * ****************************************************************************************/
-    style: CircularAnalogGaugeStyle {
-        anchors.fill: parent
-        rangeControl: control.rangeControl
+    style: FuelGaugeStyle
+    {
         outerRadius: control.outerRadius
         theme: control.theme
         value: control.value
+        rangeControl: control.rangeControl
     }
+
 }

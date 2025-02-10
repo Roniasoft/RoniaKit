@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 import QtQuick
-import RoniaKit
+import RoniaKit.Gauges
 import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts

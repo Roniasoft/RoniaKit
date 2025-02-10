@@ -18,33 +18,80 @@
  */
 
 import QtQuick
-import RoniaKit
+import RoniaKit.Gauges
 
 /*! ***********************************************************************************************
- * Modern Circular Gauge
+ * This is the abstract type of all gauges definitions
  * ************************************************************************************************/
-CircularGauge {
-
-    id: control
+Item {
+    id: root
 
     /* Property Declarations
      * ****************************************************************************************/
 
+    //! Name
+    property string       name:         "Name"
+
+    //! Value
+    property double       value:        100.0
+
+    //! Outer radius
+    property real         outerRadius:  0.0
+
+    //! Theme
+    property int          theme:        RoniaControl.Theme.Light
+
+    //! Gauge Type
+    property int type:    RoniaControl.GaugeType.UNDEFINED
+
+    //! Range Control
+    property RangeControl rangeControl: RangeControl {}
+
+    //! Style
+    property Component    style:        null
+
+
+    //! Theme Definitions
+    enum Theme {
+        Light = 0,
+        Dark  = 1
+    }
+
+    //! Gauge Types
+    enum GaugeType {
+        UNDEFINED      = 0,
+
+        // Basic Types
+        CircularBasic  = 1,
+        Circular       = 2,
+        Level          = 3,
+        Thermometer    = 4,
+        Fuel           = 5,
+
+
+        // Extra Types
+        CircularAnalog = 50,
+        CircularModern1= 51,
+        CircularModern2= 52,
+        CircularSpeed  = 53,
+
+        // User Types
+        UserGauge     = 99
+    }
+
     /* Object Properties
      * ****************************************************************************************/
-    outerRadius: Math.min(control.width, control.height) * 0.5
-    type: RoniaControl.GaugeType.CircularModern1
-    width: 250
-    height: 250
+
 
     /* Children
      * ****************************************************************************************/
-    style: CircularModernGauge1Style {
+    Loader {
         anchors.fill: parent
-        rangeControl: control.rangeControl
-        outerRadius: control.outerRadius
-        name: control.name
-        theme: control.theme
-        value: control.value
+        sourceComponent: style
     }
+
+    /* Functions
+     * ****************************************************************************************/
+
+
 }

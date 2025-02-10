@@ -20,7 +20,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
-import RoniaKit
+import RoniaKit.Gauges
 import simple
 
 /*! ***********************************************************************************************

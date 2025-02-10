@@ -19,25 +19,25 @@
 
 import QtQuick 2.15
 import QtQuick.Controls
-import RoniaKit
+import RoniaKit.Gauges
 
 /*! ***********************************************************************************************
- * Circular basic Gauge Style
+ * Circular Gauge Style
  * ************************************************************************************************/
 RoniaControlStyle {
     id: control
 
     /* Property Declarations
-     * ****************************************************************************************/    
+     * ****************************************************************************************/
+    property RangeControl         rangeControl
+
     property real                 minorInsetRadius:        outerRadius - rangeControl.minorTickmarkInset
 
     property real                 majorInsetRadius:        outerRadius - rangeControl.tickmarkInset
 
     property real                 labelInsetRadius:        outerRadius - rangeControl.labelInset
 
-    property bool                 digitalValueVisibility : true
-
-    property RangeControl         rangeControl;
+    property bool                 digitalValueVisibility: true
 
     property real needleRotation: {
         var percentage = (control.value - rangeControl.minimumValue) /
@@ -46,14 +46,14 @@ RoniaControlStyle {
                 Math.abs(rangeControl.endAngle -  rangeControl.startAngle);
     }
 
+    /* Font Loader
+     * ****************************************************************************************/
+    FontLoader {id: webFont; source: "qrc:/RoniaKit/assets/fonts/fontsFree-Net-DS-DIGI-1.ttf" }
+
     /* Object Properties
      * ****************************************************************************************/
     width: 250
     height: 250
-
-    /* Font Loader
-     * ****************************************************************************************/
-    FontLoader {id: webFont; source: "qrc:/RoniaKit/resources/Fonts/FontsFree-Net-DS-DIGI-1.ttf" }
 
     Component.onCompleted: {
         backgroundMap[RoniaControl.Theme.Light] = "#ffffff"
@@ -64,16 +64,10 @@ RoniaControlStyle {
         majorTickmarkMap[RoniaControl.Theme.Light] = "#c8d0d0"
         minorTickmarkMap[RoniaControl.Theme.Dark] = "#e5e5e5"
         minorTickmarkMap[RoniaControl.Theme.Light] = "#c8d0d0"
-        needleMap[RoniaControl.Theme.Dark] =  "qrc:/RoniaKit/resources/Images/gauge/redNeedle2.png"
-        needleMap[RoniaControl.Theme.Light] = "qrc:/RoniaKit/resources/Images/gauge/redNeedle3.png"
-        needleKnobMap[RoniaControl.Theme.Dark] =  "#ff2c2c"
-        needleKnobMap[RoniaControl.Theme.Light] = "#ff6861"
         backgroundMapChanged();
         majorTickmarkMapChanged();
         minorTickmarkMapChanged();
         labelMapChanged();
-        needleMapChanged();
-        needleKnobMapChanged();
     }
 
     /* Children
@@ -98,33 +92,9 @@ RoniaControlStyle {
     background: Rectangle {
         implicitHeight: parent.height
         implicitWidth: parent.width
-        color: "transparent"
+        color: backgroundMap[theme]
         anchors.centerIn: parent
         radius: width / 2
-        Rectangle {
-            implicitHeight: parent.height/2
-            implicitWidth: parent.width/2
-            color: "transparent"
-            anchors.centerIn: parent
-            radius: width / 2
-            border.color: majorTickmarkMap[theme]
-            border.width: 1
-
-            Rectangle {
-                implicitHeight: parent.height/ 3
-                implicitWidth: parent.width/3
-                color: majorTickmarkMap[theme]
-                anchors.centerIn: parent
-                radius: width / 2
-                Rectangle {
-                    implicitHeight: parent.height / 3
-                    implicitWidth: parent.width / 3
-                    color: needleKnobMap[theme]
-                    anchors.centerIn: parent
-                    radius: width / 2
-                }
-            }
-        }
     }
     Loader {
         id: backgroundLoader
@@ -136,11 +106,20 @@ RoniaControlStyle {
 
     needle : Item {
         implicitWidth: 0.08 * outerRadius
-        implicitHeight: 0.8 * outerRadius
+        implicitHeight: 0.9 * outerRadius
 
         Image {
             anchors.fill: parent
-            source: needleMap[theme]
+            source: "qrc:/RoniaKit/Gauges/assets/images/needle.png"
+        }
+    }
+
+    needleKnob : Item {
+        implicitWidth: 0.05 * outerRadius
+        implicitHeight: 0.05 * outerRadius
+        Image {
+            source: "qrc:/RoniaKit/Gauges/assets/images/knob.png"
+            anchors.centerIn: parent
         }
     }
 
@@ -231,8 +210,8 @@ RoniaControlStyle {
                 x: control.labelInsetRadius
                 y: control.labelInsetRadius
 
-                sourceComponent: Text{
-                    font.pixelSize: Math.max(6, 0.1 * outerRadius)
+                sourceComponent: Text {
+                    font.pixelSize: Math.max(6, 0.12 * outerRadius)
                     text: Math.round((rangeControl.maximumValue
                                       - rangeControl.minimumValue)
                                       / (rangeControl.majorTickCount - 1)
@@ -258,6 +237,18 @@ RoniaControlStyle {
         }
     }
 
+    //! Digital Value
+    Text{
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: parent.height/2 - 5*Math.min(parent.height,parent.width)/16
+        text: parseFloat(control.value.toFixed(rangeControl.decimalPoint))
+        font.family: webFont.name
+        font.pixelSize: outerRadius * 0.2
+        color: labelMap[theme]
+        visible: digitalValueVisibility
+    }
+
     //! Needle Loader
     Loader {
         id: needleLoader
@@ -275,6 +266,12 @@ RoniaControlStyle {
         ]
     }
 
+    //! Needle Knob
+    Loader {
+        sourceComponent: needleKnob
+        anchors.fill: parent
+    }
+
     //! Foreground loader
     Loader {
         id: foregroundLoader
@@ -283,6 +280,5 @@ RoniaControlStyle {
         anchors.centerIn: parent
         sourceComponent: foreground
     }
-
 
 }

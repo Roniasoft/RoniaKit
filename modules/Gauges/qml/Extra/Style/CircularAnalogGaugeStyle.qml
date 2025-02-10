@@ -19,7 +19,7 @@
 
 import QtQuick 2.15
 import QtQuick.Controls
-import RoniaKit
+import RoniaKit.Gauges
 
 /*! ***********************************************************************************************
  * Circular Analog Gauge Style
@@ -29,7 +29,7 @@ CircularGaugeStyle {
 
     /* Font Loader
      * ****************************************************************************************/
-    FontLoader {id: webFont; source: "qrc:/RoniaKit/resources/Fonts/FontsFree-Net-DS-DIGI-1.ttf" }
+    FontLoader {id: webFont; source: "qrc:/RoniaKit/assets/fonts/fontsFree-Net-DS-DIGI-1.ttf" }
 
     Component.onCompleted: {
         rangeControl.minorTickVisible = false
@@ -54,7 +54,7 @@ CircularGaugeStyle {
         radius: 360
         Image {
             anchors.fill: parent
-            source: "qrc:/RoniaKit/resources/Images/gauge/AnalougeGauge/backScreen.svg";
+            source: "qrc:/RoniaKit/Gauges/assets/images/analougeGauge/backScreen.svg";
             asynchronous: true
             smooth: true;
             antialiasing: true;
@@ -64,21 +64,21 @@ CircularGaugeStyle {
         }
         Image {
             id: outerRingImg;
-            source: "qrc:/RoniaKit/resources/Images/gauge/AnalougeGauge/outerRing.svg";
+            source: "qrc:/RoniaKit/Gauges/assets/images/analougeGauge/outerRing.svg";
             anchors.centerIn: parent
             antialiasing: true
             anchors.fill: parent;
         }
         Image {
             id: middleRingImg;
-            source: "qrc:/RoniaKit/resources/Images/gauge/AnalougeGauge/middleRing.svg";
+            source: "qrc:/RoniaKit/Gauges/assets/images/analougeGauge/middleRing.svg";
             anchors.centerIn: parent
             antialiasing: true
             anchors.fill: parent;
         }
         Image {
             id: innerRingImg;
-            source: "qrc:/RoniaKit/resources/Images/gauge/AnalougeGauge/innerRing.svg";
+            source: "qrc:/RoniaKit/Gauges/assets/images/analougeGauge/innerRing.svg";
             anchors.centerIn: parent
             antialiasing: true
             anchors.fill: parent;
@@ -113,7 +113,7 @@ CircularGaugeStyle {
         id: foregroundItem1;
         Image {
             id: needleCntr;
-            source: "qrc:/RoniaKit/resources/Images/gauge/AnalougeGauge/topScreen.svg";
+            source: "qrc:/RoniaKit/Gauges/assets/images/analougeGauge/topScreen.svg";
             anchors.fill: parent;
             antialiasing: true
         }

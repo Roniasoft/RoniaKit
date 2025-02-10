@@ -19,10 +19,10 @@
 
 import QtQuick
 import QtQuick.Controls
-import RoniaKit
+import RoniaKit.Gauges
 
 /*! ***********************************************************************************************
- * Circular Gauge
+ * Circular Basic Gauge
  * ************************************************************************************************/
 RoniaControl {
     id: control
@@ -30,15 +30,17 @@ RoniaControl {
     /* Property Declarations
      * ****************************************************************************************/
 
-
     /* Object Properties
      * ****************************************************************************************/
     outerRadius: Math.min(control.width, control.height) * 0.5
-    type: RoniaControl.GaugeType.Circular
+    type: RoniaControl.GaugeType.CircularBasic
     width: 250
     height: 250
 
-    style: CircularGaugeStyle {
+    /* Children
+     * ****************************************************************************************/
+    style: CircularBasicGaugeStyle {
+        anchors.fill: parent
         rangeControl: control.rangeControl
         outerRadius: control.outerRadius
         theme: control.theme

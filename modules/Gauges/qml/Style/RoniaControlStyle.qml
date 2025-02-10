@@ -19,7 +19,7 @@
 
 import QtQuick 2.15
 import QtQuick.Controls
-import RoniaKit
+import RoniaKit.Gauges
 
 /*! ***********************************************************************************************
  * Ronia Control Style
@@ -51,7 +51,7 @@ Item {
 
     /* Font Loader
      * ****************************************************************************************/
-    FontLoader {id: webFont; source: "qrc:/RoniaKit/resources/Fonts/FontsFree-Net-DS-DIGI-1.ttf" }
+    FontLoader {id: webFont; source: "qrc:/RoniaKit/assets/fonts/fontsFree-Net-DS-DIGI-1.ttf" }
 
 
     /* Children

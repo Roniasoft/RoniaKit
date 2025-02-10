@@ -17,57 +17,34 @@
  * limitations under the License.
  */
 
-import QtQuick 2.15
-import QtQuick.Controls
-import RoniaKit
+import QtQuick
+import RoniaKit.Gauges
 
 /*! ***********************************************************************************************
- * Circular Modern Gauge 1 Style
+ * Modern Circular Gauge
  * ************************************************************************************************/
-CircularGaugeStyle {
+CircularGauge {
+
     id: control
 
     /* Property Declarations
      * ****************************************************************************************/
-    property string name;
 
     /* Object Properties
      * ****************************************************************************************/
-    theme: RoniaControl.Theme.Dark
-
-    /* Font Loader
-     * ****************************************************************************************/
-    FontLoader {id: webFont; source: "qrc:/RoniaKit/resources/Fonts/FontsFree-Net-DS-DIGI-1.ttf" }
+    outerRadius: Math.min(control.width, control.height) * 0.5
+    type: RoniaControl.GaugeType.CircularModern1
+    width: 250
+    height: 250
 
     /* Children
      * ****************************************************************************************/
-    background: Rectangle {
-        implicitHeight: control.outerRadius * 2
-        implicitWidth: control.outerRadius * 2
-        color: "#CCCCCC"
-        anchors.centerIn: parent
-        radius: width / 2
-
-        Image {
-            anchors.fill: parent
-            source: "qrc:/RoniaKit/resources/Images/gauge/Modern/back.png"
-            asynchronous: true
-            sourceSize {
-                width: width
-            }
-        }
+    style: CircularModernGauge1Style {
+        anchors.fill: parent
+        rangeControl: control.rangeControl
+        outerRadius: control.outerRadius
+        name: control.name
+        theme: control.theme
+        value: control.value
     }
-
-    //! Gauge Name
-    Text {
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: parent.top
-        anchors.topMargin: parent.height / 2 - 4 * Math.min(parent.height,parent.width) / 16
-        text: control.name
-        font.family: webFont.name
-        font.pixelSize: control.outerRadius * 0.15
-        color: "white"
-    }
-
 }
-

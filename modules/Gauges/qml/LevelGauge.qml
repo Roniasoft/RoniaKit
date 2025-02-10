@@ -19,32 +19,37 @@
 
 import QtQuick
 import QtQuick.Controls
-import RoniaKit
+import QtQuick.Shapes
+import RoniaKit.Gauges
 
 /*! ***********************************************************************************************
- * Fuel Gauge
+ * Level Gauge
  * ************************************************************************************************/
-RoniaControl
-{
+RoniaControl {
     id: control
 
     /* Property Declarations
      * ****************************************************************************************/
-
+    property RangeControl rangeControl: RangeControl {
+        minorTickCount: 1
+        majorTickCount: 10
+    }
 
     /* Object Properties
      * ****************************************************************************************/
-    outerRadius: Math.min(control.width, control.height) * 0.5
-    type: RoniaControl.GaugeType.Fuel
+    outerRadius: Math.min(3 * control.width,control.height)
+    type: RoniaControl.GaugeType.Level
     width: 250
     height: 250
 
-    style: FuelGaugeStyle
-    {
+    /* Children
+     * ****************************************************************************************/
+    style: LevelGaugeStyle {
+        id: levelGauge
+        anchors.fill: parent
+        rangeControl: control.rangeControl
         outerRadius: control.outerRadius
         theme: control.theme
         value: control.value
-        rangeControl: control.rangeControl
     }
-
 }
