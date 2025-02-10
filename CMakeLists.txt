@@ -1,152 +1,19 @@
-cmake_minimum_required(VERSION 3.16)
+set( RONIA_KIT_LIB "RoniaKit" CACHE INTERNAL "RoniaKit")
+set( QT_QML_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR} )
 
-#The Library name
-project(RoniaKit VERSION 1.0 LANGUAGES CXX)
+file( GLOB_RECURSE RONIA_KIT_QML_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "qml/*.qml" )
 
-# ##################################################################################################
-# Project Settings
-# ##################################################################################################
+qt_add_library( ${RONIA_KIT_LIB} STATIC )
 
-
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-set (QML_IMPORT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
-
-
-#message(${QML_IMPORT_PATH})
-#Turns on default settings for development of RoniaKit
-set(DEVELOPER_DEFAULTS ON)
-
-option(BUILD_TESTING "Build tests" ${DEVELOPER_DEFAULTS})
-option(BUILD_EXAMPLES "Build Examples" ${DEVELOPER_DEFAULTS})
-option(BUILD_SHARED_LIBS "Build as shared library" ON)
-option(BUILD_DEBUG_POSTFIX_D "Append d suffix to debug libraries" OFF)
-
-# ##################################################################################################
-# Dependencies
-# ##################################################################################################
-# Find the Qt libraries
-find_package(Qt6 REQUIRED COMPONENTS Quick Core5Compat)
-
-if (NOT (Qt6_FOUND OR Qt5_FOUND))
-  message(FATAL_ERRROR "Qt libraries were not found.")
-endif()
-
-
-if (Qt6_FOUND)
-  set(Qt Qt)
-else()
-  set(Qt Qt5)
-endif()
-
-
-# ##################################################################################################
-# Project Files
-# ##################################################################################################
-set(QT_QML_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/qml)
-
-# Library Definition
-qt_add_library(RoniaKit STATIC)
-
-# Extra QML File properties
-set_source_files_properties(
-    PROPERTIES
-        QT_QML_SINGLETON_TYPE True
-)
-
-qt_add_qml_module(RoniaKit
-    URI "RoniaKit"
-    VERSION 1.0
-
-    QML_FILES
-        resources/Components/Gauges/HalfDial.qml
-        resources/Components/Gauges/Thermometer.qml
-        resources/Components/Gauges/RoniaControl.qml
-        resources/Components/Gauges/CircularGauge.qml
-        resources/Components/Gauges/RangeControl.qml
-        resources/Components/Gauges/FuelGauge.qml
-        resources/Components/Gauges/LevelGauge.qml
-        resources/Components/Gauges/CircularBasicGauge.qml
-        resources/Components/Gauges/Style/CircularGaugeStyle.qml
-        resources/Components/Gauges/Style/RoniaControlStyle.qml
-        resources/Components/Gauges/Style/FuelGaugeStyle.qml
-        resources/Components/Gauges/Style/LevelGaugeStyle.qml
-        resources/Components/Gauges/Style/CircularBasicGaugeStyle.qml
-        resources/Components/Gauges/Extra/CircularModernGauge1.qml
-        resources/Components/Gauges/Extra/Style/CircularModernGauge1Style.qml
-        resources/Components/Gauges/Extra/CircularSpeedGauge.qml
-        resources/Components/Gauges/Extra/Style/CircularSpeedGaugeStyle.qml
-        resources/Components/Gauges/Extra/CircularAnalogGauge.qml
-        resources/Components/Gauges/Extra/Style/CircularAnalogGaugeStyle.qml
-        resources/Components/Gauges/Extra/CircularModernGauge2.qml
-        resources/Components/Gauges/Extra/Style/CircularModernGauge2Style.qml
-
-    SOURCES
-	
+qt_add_qml_module( ${RONIA_KIT_LIB}
+    URI RoniaKit
+    RESOURCE_PREFIX /
+    QML_FILES ${RONIA_KIT_QML_FILES}
     RESOURCES
-        resources/Fonts/Font\ Awesome\ 6\ Pro-Regular-400.otf
-        resources/Fonts/Font\ Awesome\ 6\ Pro-Solid-900.otf
-        resources/Fonts/FontsFree-Net-DS-DIGI-1.ttf
-        resources/Images/gauge/Modern/back.png
-        resources/Images/gauge/Modern/knob.png
-        resources/Images/gauge/needle.png
-        resources/Images/gauge/knob.png
-        resources/Images/gauge/Speed/backOn.png
-        resources/Images/gauge/Speed/backOff.png
-        resources/Images/gauge/Speed/needle-on.png
-        resources/Images/gauge/AnalougeGauge/backScreen.svg
-        resources/Images/gauge/AnalougeGauge/innerRing.svg
-        resources/Images/gauge/AnalougeGauge/middleRing.svg
-        resources/Images/gauge/AnalougeGauge/outerRing.svg
-        resources/Images/gauge/AnalougeGauge/topScreen.svg
-        resources/Images/gauge/Modern/blueLight.png
-        resources/Images/gauge/Modern/blueNeedle.png
-        resources/Images/gauge/redNeedle2.png
-        resources/Images/gauge/redNeedle3.png
-        resources/Images/gauge/Fuel/back.png
-        resources/Images/gauge/Fuel/fuel-station-red.png
-        resources/Images/gauge/Fuel/fuel-station-yellow.png
-        resources/Images/gauge/Fuel/fuel-station-green.png
-)
-	
-#Add a library to the project using the specified source file
-#add_library(RoniaKit::RoniaKit ALIAS RoniaKit)
-
-target_include_directories(RoniaKit
-  PUBLIC
-    $<INSTALL_INTERFACE:include>
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/resources>
-  PRIVATE
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Source>
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/RoniaKit>
+        assets/fonts/fontAwesome6-Pro-Regular-400.otf
+        assets/fonts/fontAwesome6-Pro-Solid-900.otf
+        assets/fonts/fontsFree-Net-DS-DIGI-1.ttf
+    NO_PLUGIN
 )
 
-#Definitions of preprocessor macros
-target_compile_definitions(RoniaKit
-    PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
-
-target_link_libraries(RoniaKit PRIVATE Qt6::Quick Qt6::Core5Compat)
-
-set_target_properties(RoniaKit PROPERTIES
-    MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
-    MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
-    MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
-    MACOSX_BUNDLE TRUE
-    WIN32_EXECUTABLE TRUE
-)
-
-install(TARGETS RoniaKit
-    BUNDLE DESTINATION .
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
-
-set(QML_IMPORT_PATH ${QT_QML_OUTPUT_DIRECTORY} CACHE STRING "QtCreator QML Modules Lookup")
-
-if(${BUILD_EXAMPLES})
-  add_subdirectory(examples)
-endif()
-
-if(BUILD_TESTING)
-#  add_subdirectory(test)
-endif()
+add_subdirectory(modules/Gauges)
